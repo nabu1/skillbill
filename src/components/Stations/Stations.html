@@ -1,0 +1,129 @@
+<div>
+  <b-container class="mb-3">
+    <b-row class="mb-2">
+
+    </b-row>
+    <b-row class="my-2">
+      <span>
+        <router-link to="/home"
+                     active-class='active'
+                     class='mx-3'><a>Home</a>
+        </router-link>
+
+        <router-link to="/about"
+                     active-class='active'
+                     class='mx-3'><a>About</a>
+        </router-link>
+      </span>
+    </b-row>
+
+    <b-row class="mt-3">
+      <b-col md="1"><h4>TVP TVN</h4></b-col>
+
+      <b-col>
+        <b-form-checkbox-group data-test="stationsTvpTvn"
+                               v-model="selected"
+                               @change="stationsSelected"
+                               class="mt-0"
+                               :options="tvpTvn">
+        </b-form-checkbox-group>
+      </b-col>
+    </b-row>
+
+    <b-row class="mt-2">
+      <b-col md="1"><h4>Polsat</h4></b-col>
+
+      <b-col>
+        <b-form-checkbox-group data-test="stationsPolsat"
+                               v-model="selected"
+                               @change="stationsSelected"
+                               class="mt-0"
+                               :options="polsat">
+        </b-form-checkbox-group>
+      </b-col>
+    </b-row>
+
+    <b-row class="mt-4">
+        <b-col md="1"><h4>Polskie</h4></b-col>
+
+        <b-col>
+          <b-form-checkbox-group data-test="stationsPolskie"
+                                 v-model="selected"
+                                 @change="stationsSelected"
+                                 class="mt-0"
+                                 :options="polskie">
+          </b-form-checkbox-group>
+        </b-col>
+      </b-row>
+
+    <b-row class="mt-4">
+      <b-col md="1" class="mr-0"><h4>Canal+</h4></b-col>
+
+      <b-col>
+        <b-form-checkbox-group data-test="stationsCanal"
+                               v-model="selected"
+                               @change="stationsSelected"
+                               class="mt-0"
+                               :options="canal">
+        </b-form-checkbox-group>
+      </b-col>
+    </b-row>
+
+    <b-row class="mt-3">
+      <b-col md="1" class="mr-0"><h4>DisNat</h4></b-col>
+
+      <b-col>
+        <b-form-checkbox-group data-test="stationsDiscoveryNational"
+                               v-model="selected"
+                               @change="stationsSelected"
+                               class="mt-0"
+                               :options="discoveryNational">
+        </b-form-checkbox-group>
+      </b-col>
+    </b-row>
+
+    <b-row class="mt-3">
+      <b-col md="2" class="mr-0"><h4>Filmbox, HBO</h4></b-col>
+
+      <b-col>
+        <b-form-checkbox-group data-test="stationsFilmboxHboKino"
+                               v-model="selected"
+                               @change="stationsSelected"
+                               class="mt-0"
+                               :options="filmboxHboKino">
+        </b-form-checkbox-group>
+      </b-col>
+    </b-row>
+
+    <b-row class="mt-3">
+      <b-col md="1" class="mr-1"><h4>Inne</h4></b-col>
+
+      <b-col>
+        <b-form-checkbox-group data-test="stationsInne"
+                               v-model="selected"
+                               @change="stationsSelected"
+                               class="mt-0 mb-3"
+                               :options="inne">
+        </b-form-checkbox-group>
+      </b-col>
+    </b-row>
+
+
+      <b-button data-test='btnOK'
+                @click="onOK"
+                size="md"
+                class="ml-0 mr-5 mt-0 px-5 pt-2 pb-2"
+                variant="secondary">
+        OK
+      </b-button>
+
+      <b-button data-test='btnReset'
+                @click="resetStations"
+                size="md"
+                class="ml-5 mt-0 px-5 pt-2 pb-2"
+                variant="secondary">
+        Kasuj
+      </b-button>
+    </b-row>
+  </b-container>
+</div>
