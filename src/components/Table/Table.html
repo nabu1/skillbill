@@ -1,5 +1,5 @@
 <div id="app">
-  <v-app id="inspire">
+  <v-app id="inspire" class="mx-5">
     <div>
       <v-toolbar flat color="grey">
         <v-toolbar-title>SkillBill</v-toolbar-title>
@@ -75,7 +75,15 @@
 
         <template slot="items" slot-scope="props">
 
-          <td class="body-2">{{ props.item.name }}</td>
+          <td class="text-xs-left body-2">{{ props.item.id }}</td>
+          <td class="text-xs-left body-2">{{ props.item.title }}</td>
+          <td class="text-xs-left body-2">{{ props.item.first }}</td>
+          <td class="text-xs-left body-2">{{ props.item.last }}</td>
+
+          <td class="text-xs-left body-2">{{ props.item.city }}</td>
+          <td class="text-xs-left body-2">{{ props.item.status }}</td>
+
+
           <td class="text-xs-left body-2">{{ props.item.skill_1 }}</td>
           <td class="text-xs-left body-2">{{ props.item.rank_1 }}</td>
 
@@ -84,6 +92,15 @@
 
           <td class="text-xs-left body-2">{{ props.item.skill_3 }}</td>
           <td class="text-xs-left body-2">{{ props.item.rank_3 }}</td>
+
+          <td class="text-xs-left body-2">
+              <v-img :src = "props.item.picture"
+                     aspect-ratio="1">
+              </v-img>
+
+          </td>
+
+
 
           <td class="justify-center layout px-0">
 

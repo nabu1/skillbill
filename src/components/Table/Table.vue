@@ -6,12 +6,21 @@ export default {
     dialog: false,
     search: '',
     headers: [
+      { text: 'id', align: 'left', sortable: false, value: 'id' },
+      { text: 'title', align: 'left', sortable: false, value: 'title' },
+      { text: 'First', align: 'left', sortable: false, value: 'first' },
+      { text: 'Last', align: 'left', sortable: false, value: 'last' },
+
+      { text: 'City', align: 'left', sortable: false, value: 'city' },
+      { text: 'Status', align: 'left', sortable: false, value: 'status' },
+
       { text: 'Skill 1', align: 'left', sortable: false, value: 'skill_1' },
       { text: 'Rank 1', value: 'rank_1' },
       { text: 'Skill 2', value: 'rank_2' },
       { text: 'Rank 2', value: 'rank_2' },
       { text: 'Skill 3', value: 'rank_3' },
-      { text: 'Rank 3', value: 'rank_3' }
+      { text: 'Rank 3', value: 'rank_3' },
+      { text: 'Picture', value: 'picture' }
     ],
     desserts: [],
     editedIndex: -1,
