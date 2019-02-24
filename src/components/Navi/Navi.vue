@@ -67,19 +67,3 @@ export default {
 }
 </script>
 
-<style>
-a {
-  color: lime;
-  font-size: 1.1em
-}
-body {
-  color: white;
-  font-variant: italic;
-}
-.stations {
-  color: yellow;
-}
-.documents {
-  color: lime;
-}
-</style>

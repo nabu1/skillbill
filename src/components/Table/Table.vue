@@ -1,32 +1,10 @@
-<template>
-
-  <v-data-table v-model="selected"
-                :headers="headers"
-                :items="desserts"
-                class="elevation-1"
-                dark
-                :loading="true">
-
-    <template slot="items" slot-scope="props">
-      <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">
-        {{ props.item.calories }}
-      </td>
-
-      <td class="text-xs-right">{{ props.item.fat }}</td>
-      <td class="text-xs-right">{{ props.item.carbs }}</td>
-      <td class="text-xs-right">{{ props.item.protein }}</td>
-      <td class="text-xs-right">{{ props.item.iron }}</td>
-
-    </template>
-  </v-data-table>
-
-</template>
+<template src="./Table.html"></template>
 
 <script>
 export default {
   data () {
     return {
+      search: '',
       headers: [
         { text: 'Dessert (100g serving)', align: 'left', sortable: false, value: 'name' },
         { text: 'Calories', value: 'calories' },

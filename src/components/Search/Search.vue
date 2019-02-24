@@ -105,11 +105,3 @@ export default {
 }
 </script>
 
-<style scoped>
-div {
-  color: white;
-}
-.d-block {
-  color: black;
-}
-</style>
