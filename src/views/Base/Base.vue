@@ -1,4 +1,4 @@
-<template src="./Base.html" />
+<template src="./Base.html"></template>
 
 <script>
 import Search from '../../components/Search/Search.vue'
@@ -7,9 +7,9 @@ import Navi from '../../components/Navi/Navi.vue'
 
 export default {
   components: {
-    'tv-navi': Navi,
-    'tv-search': Search,
-    'tv-table': Table,
+    'skillbill-navi': Navi,
+    'skillbill-search': Search,
+    'skillbill-table': Table,
   },
 }
 </script>

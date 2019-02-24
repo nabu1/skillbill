@@ -1,5 +1,5 @@
 <div id="app">
-  <v-app id="inspire" class="mx-5">
+  <v-app class="mx-5">
     <div>
       <v-toolbar flat color="grey">
         <v-toolbar-title>SkillBill</v-toolbar-title>
@@ -28,6 +28,11 @@
             <v-card-title>
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
+
+
+
+
+
 
             <v-card-text>
               <v-container grid-list-md>
@@ -67,18 +72,51 @@
         </v-dialog>
       </v-toolbar>
 
+
+
+      <div id="app">
+        <v-layout >
+
+          <v-flex xs12 sm1 d-flex offset-xs5>
+            <v-select :items="items" label="Java" solo></v-select>
+          </v-flex>
+
+          <v-flex xs12 sm1 d-flex mx-2>
+            <v-select :items="items" label="CPP" solo></v-select>
+          </v-flex>
+
+          <v-flex xs12 sm1 d-flex>
+            <v-select :items="items" label="Ruby" solo></v-select>
+          </v-flex>
+
+          <v-flex xs12 sm1 d-flex mx-2>
+            <v-select :items="items" label="JS" solo></v-select>
+          </v-flex>
+
+          <v-flex xs12 sm1 d-flex>
+            <v-select :items="items" label="Go" solo></v-select>
+          </v-flex>
+
+          <v-flex xs12 sm1 d-flex mx-2>
+            <v-select :items="items" label="C" solo></v-select>
+          </v-flex>
+
+        </v-layout>
+      </div>
+
+
+
       <v-data-table :headers="headers"
                     :items="desserts"
                     :search="search"
-                    class="elevation-1"
+                    class="elevation-6"
                     dark>
 
         <template slot="items" slot-scope="props">
 
           <td class="text-xs-left body-2">{{ props.item.id }}</td>
           <td class="text-xs-left body-2">{{ props.item.title }}</td>
-          <td class="text-xs-left body-2">{{ props.item.first }}</td>
-          <td class="text-xs-left body-2">{{ props.item.last }}</td>
+          <td class="text-xs-left body-2">{{ props.item.first }} {{ props.item.last }}</td>
 
           <td class="text-xs-left body-2">{{ props.item.city }}</td>
           <td class="text-xs-left body-2">{{ props.item.status }}</td>
