@@ -1,9 +1,7 @@
 export const LITERALS = {
-  TV_LIST: 'https://api.mlab.com/api/1/databases/tvui/collections/tvui1?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
-  TV_LIST_PREFIX: 'https://api.mlab.com/api/1/databases/tvui/collections/tvui1?',
-  TV_LIST_SUFFIX: '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
-  START_STATIONS: ['TVP 1', 'TVP 2', 'TVN', 'POLSAT'],
-  CATEGORY_NAMES: ['film', 'serial', 'sport', 'wiadomosci', 'rozrywka', 'dzieci', 'inne'],
+  LIST: 'https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
+  PREFIX: 'https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?',
+  SUFFIX: '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
   EXCESSIVE_DATA_MSG: 'Zmniejsz ilość stacji TV (najważniejsze), ustaw przedział czasu, lub wybierz kategorie, bo teraz część późniejszych programów nie jest wyświetlana',
   EMAIL_PROXY: 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email',
   EMAIL_SUBJECT: 'TVui telewizyjny rozklad jazdy',

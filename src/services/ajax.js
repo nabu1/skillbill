@@ -2,20 +2,18 @@ import axios from 'axios'
 import url from './ajaxHelpers'
 import { LITERALS } from './constants'
 
-export const ajaxGetSelectedPrograms = context => {
+export const ajaxGetDevs = context => {
   axios
     .get(url(context))
     .then(res => {
-      // context.commit('SET_LOADING', false)
-      if (res.data.length > 999) alert(LITERALS.EXCESSIVE_DATA_MSG)
       console.log('%c res.data.length = ' + res.data.length, 'color: violet')
 
-      context.commit('GET_DOCUMENTS_COUNT', res.data.length)
-      context.commit('START_STATIONS', res.data)
+      //context.commit('GET_DOCUMENTS_COUNT', res.data.length)
+      context.commit('GET_DEVS', res.data)
     })
     .catch(err => console.log('My error: ', err))
     .finally(() => {
-      context.commit('SET_LOADING', false)
+      //context.commit('SET_LOADING', false)
     })
 }
 
