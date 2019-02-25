@@ -19,7 +19,7 @@ export default {
       { text: 'Rank 3', sortable: false, value: 'rank_3' },
       { text: 'Picture', sortable: true, value: 'picture' }
     ],
-    desserts: [],
+    devs: [],
     editedIndex: -1,
     editedItem: {
       name: '',
@@ -42,7 +42,9 @@ export default {
       skill_3: 0,
       rank_3: 0
 
-    }
+    },
+    ranks: [5, 4, 3, 2, 1],
+    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'Ruby'],
   }),
 
   computed: {
@@ -99,3 +101,11 @@ export default {
   }
 }
 </script>
+
+<style>
+
+  #filters {
+    background-color: #424242;
+    color: white;
+  }
+</style>

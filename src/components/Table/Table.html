@@ -74,31 +74,31 @@
 
 
 
-      <div id="app">
-        <v-layout >
+      <div >
+        <v-layout id="filters">
 
           <v-flex xs12 sm1 d-flex offset-xs5>
-            <v-select :items="items" label="Java" solo></v-select>
+            <v-select :items="skills" label="Skill" standard></v-select>
           </v-flex>
 
           <v-flex xs12 sm1 d-flex mx-2>
-            <v-select :items="items" label="CPP" solo></v-select>
+            <v-select :items="ranks" label="Rank" standard></v-select>
           </v-flex>
 
           <v-flex xs12 sm1 d-flex>
-            <v-select :items="items" label="Ruby" solo></v-select>
+            <v-select :items="skills" label="Skill" standard></v-select>
           </v-flex>
 
           <v-flex xs12 sm1 d-flex mx-2>
-            <v-select :items="items" label="JS" solo></v-select>
+            <v-select :items="ranks" label="Rank" standard></v-select>
           </v-flex>
 
           <v-flex xs12 sm1 d-flex>
-            <v-select :items="items" label="Go" solo></v-select>
+            <v-select :items="skills" label="Skill" standard></v-select>
           </v-flex>
 
           <v-flex xs12 sm1 d-flex mx-2>
-            <v-select :items="items" label="C" solo></v-select>
+            <v-select :items="ranks" label="Rank" standard></v-select>
           </v-flex>
 
         </v-layout>
