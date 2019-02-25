@@ -150,12 +150,20 @@ export default {
     onSearch() {
       console.log('%c onSearch ', 'color: lime')
       this.$store.dispatch('getDevs', selectedSkills)
-
-      console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
     },
 
     onReset() {
       console.log('%c onReset ', 'color: lime')
+    },
+
+    onSelected() {
+      console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
+
+    },
+    onResetSelected() {
+      console.log('%c onResetSelected', 'color: lime')
+      this.selected = []
+
     }
   }
 }

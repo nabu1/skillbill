@@ -2,7 +2,7 @@ import axios from 'axios'
 import url from './ajaxHelpers'
 
 export const ajaxGetDevs = (context, selectedSkills) => {
-  console.log('%c ajax: selectedSkills = ' + selectedSkills, 'color: white')
+  // console.log('%c ajax: selectedSkills = ' + selectedSkills, 'color: white')
 
   axios
     .get(url(context, selectedSkills))

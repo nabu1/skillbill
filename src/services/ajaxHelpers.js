@@ -1,10 +1,8 @@
 import { LITERALS } from './constants'
 
-export default (context, selectedSkills) => {
+export default (context, selectedSkills = {}) => {
   //console.log('%c ajaxHelpers selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
   let query = ''
-  const title = selectedSkills.title
-
   const skill_1 = selectedSkills.skill_1
   const rank_1 = selectedSkills.rank_1 || 1
   const skill_2 = selectedSkills.skill_2
