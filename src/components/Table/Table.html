@@ -11,12 +11,21 @@
 
         <v-spacer></v-spacer>
 
-        <v-text-field v-model="search"
-                      append-icon="search"
-                      label="Search"
-                      single-line
-                      hide-details>
-        </v-text-field>
+        <v-flex xs8 sm4 md2>
+          <v-text-field v-model="search"
+                        append-icon="search"
+                        clearable
+                        label="Search"
+                        single-line
+                        box
+                        height="small"
+                        hide-details>
+          </v-text-field>
+        </v-flex>
+
+        <v-btn color="primary" dark class="mb-2">Selected</v-btn>
+        <v-btn color="primary" dark class="mb-2">Reset</v-btn>
+        <v-btn color="primary" dark class="mb-2">Email</v-btn>
 
 
         <v-dialog v-model="dialog" max-width="500px">
@@ -80,31 +89,45 @@
           <v-flex xs12 sm1 d-flex offset-xs1 class="filters">
             <v-select :items="title" label="Title" standard></v-select>
           </v-flex>
+
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <v-flex xs12 sm1 d-flex offset-xs2>
-            <v-select :items="skills" label="Skill" standard class="filters"></v-select>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+          <v-flex xs12 sm1 d-flex offset-xs0>
+            <v-select :items="skills" label="Skill 1" standard class="filters" clearable dense></v-select>
           </v-flex>
 
-          <v-flex xs12 sm1 d-flex mx-0>
-            <v-select :items="ranks" label="Rank" standard class="filters"></v-select>
-          </v-flex>
 
           <v-flex xs12 sm1 d-flex mx-0>
-            <v-select :items="skills" label="Skill" standard class="filters"></v-select>
+            <v-select :items="ranks" label="Rank 1" standard class="filters" clearable dense></v-select>
           </v-flex>
 
-          <v-flex xs12 sm1 d-flex mx-0>
-            <v-select :items="ranks" label="Rank" standard class="filters"></v-select>
-          </v-flex>
 
           <v-flex xs12 sm1 d-flex mx-0>
-            <v-select :items="skills" label="Skill" standard class="filters"></v-select>
+            <v-select :items="skills" label="Skill 2" standard class="filters" clearable dense></v-select>
           </v-flex>
 
+
           <v-flex xs12 sm1 d-flex mx-0>
-            <v-select :items="ranks" label="Rank" standard class="filters"></v-select>
+            <v-select :items="ranks" label="Rank 2" standard class="filters" clearable dense></v-select>
           </v-flex>
+
+
+          <v-flex xs12 sm1 d-flex mx-0>
+            <v-select :items="skills" label="Skill 3" standard class="filters" clearable dense></v-select>
+          </v-flex>
+
+
+          <v-flex xs12 sm1 d-flex ml-0 mr-3>
+            <v-select :items="ranks" label="Rank 3" standard class="filters" clearable dense></v-select>
+          </v-flex>
+
+          <v-btn color="primary" dark class="mt-3 ml-5">Search</v-btn>
+          <v-btn color="primary" dark class="mt-3">Reset</v-btn>
+<!--
+ -->
 
         </v-layout>
       </div>
@@ -123,7 +146,6 @@
           <td class="text-xs-left body-2">{{ props.item.title }}</td>
           <td class="text-xs-left body-2">{{ props.item.first }} {{ props.item.last }}</td>
 
-          <td class="text-xs-left body-2">{{ props.item.city }}</td>
 
 
           <td class="text-xs-left body-2">{{ props.item.skill_1 }}</td>
@@ -134,6 +156,8 @@
 
           <td class="text-xs-left body-2">{{ props.item.skill_3 }}</td>
           <td class="text-xs-left body-2">{{ props.item.rank_3 }}</td>
+
+          <td class="text-xs-left body-2">{{ props.item.city }}</td>
 
           <td class="text-xs-left body-2">
               <v-img :src = "props.item.picture"
