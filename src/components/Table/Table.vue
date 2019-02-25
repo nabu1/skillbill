@@ -47,7 +47,7 @@ export default {
 
     },
     ranks: [5, 4, 3, 2, 1],
-    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'Ruby'],
+    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
     rowsPerPageItems: [10, 25, 100, 1000],
     pagination: {
