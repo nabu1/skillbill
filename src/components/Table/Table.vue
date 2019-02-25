@@ -8,7 +8,8 @@ export default {
     headers: [
       { text: 'id', sortable: true, value: 'id' },
       { text: 'title', sortable: true, value: 'title' },
-      { text: 'Name', sortable: false, value: 'first' },
+      { text: 'First', sortable: false, value: 'first' },
+      { text: 'Last', sortable: false, value: 'last' },
       { text: 'Skill 1', sortable: true, value: 'skill_1' },
       { text: 'Rank 1', sortable: false, value: 'rank_1' },
       { text: 'Skill 2', sortable: true, value: 'rank_2' },
@@ -112,7 +113,7 @@ export default {
 <style scoped>
 
   .filters {
-    transform: scale(0.8, 1);
+    transform: scale(0.75, 1);
     transform-origin: left;
   }
 
