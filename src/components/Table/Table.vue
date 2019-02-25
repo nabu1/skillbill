@@ -3,6 +3,7 @@
 <script>
 export default {
   data: () => ({
+    skill_1: null,
     dialog: false,
     search: '',
     headers: [
@@ -103,6 +104,14 @@ export default {
         this.desserts.push(this.editedItem)
       }
       this.close()
+    },
+    onSkill1(e) {
+      console.log('%c onSkill1 = ' , 'color: yellow')
+      //console.log(e.target.value)
+      console.log(e)
+    },
+    keyUpSkill_1(e) {
+      console.log('%c keyUpSkill_1 = ' + e.target.value, 'color: yellow')
     }
   }
 }
