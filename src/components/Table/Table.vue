@@ -9,6 +9,7 @@ export default {
     dialog: false,
     search: '',
     headers: [
+      { text: '', sortable: false, value: '' },
       { text: 'id', sortable: true, value: 'id' },
       { text: 'title', sortable: true, value: 'title' },
       { text: 'First', sortable: false, value: 'first' },
@@ -162,7 +163,7 @@ export default {
 
 <style scoped>
   .filters {
-    transform: scale(0.75, 1);
+    transform: scale(1, 1);
     transform-origin: left;
   }
 
