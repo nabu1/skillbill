@@ -25,14 +25,21 @@ export default (context, selectedSkills) => {
 
   // let query = `q={"skill_1":"C",$and:[{"rank_1":{$gte:0}},{$and:[{"skill_2":"Java"},{$and:[{"rank_2":{$gte:3}},{$and:[{"skill_3":"JS"},{$and:[{"rank_3":{$gte:0}}]}]}]}]}]}`
 
-  let query = `q={"skill_1":"JS",$and:[{"rank_1":{$gte:1}},{$and:[{"skill_2":"Java"},{$and:[{"rank_2":{$gte:1}},{$and:[{"skill_3":"ObjC"},{$and:[{"rank_3":{$gte:1}}]}]}]}]}]}`
+  /// let query = 'q={"skill_1":"JS",$and:[{"rank_1":{$gte:1}},{$and:[{"skill_2":"Java"},{$and:[{"rank_2":{$gte:1}},{$and:[{"skill_3":"ObjC"},{$and:[{"rank_3":{$gte:1}}]}]}]}]}]}'
+
+  ///let query = 'q={"skill_1":' + `"JS"` + ',$and:[{"rank_1":{$gte:' + 1 + '}},{$and:[{"skill_2":"' + "Java" +'"},{$and:[{"rank_2":{$gte:1}},{$and:[{"skill_3":"ObjC"},{$and:[{"rank_3":{$gte:1}}]}]}]}]}]}'
+
+  ///let query = 'q={"skill_1":' + `"JS"` + ',$and:[{"rank_1":{$gte:' + 1 + '}},{$and:[{"skill_2":"' + "Java" + '"},{$and:[{"rank_2":{$gte:' + 1 + '}},{$and:[{"skill_3":"ObjC"},{$and:[{"rank_3":{$gte:1}}]}]}]}]}]}'
+
+  /// let query = 'q={"skill_1":"' + "JS" + '",$and:[{"rank_1":{$gte:' + 1 + '}},{$and:[{"skill_2":"' + "Java" + '"},{$and:[{"rank_2":{$gte:' + 1 + '}},{$and:[{"skill_3":"' + "ObjC" + '"},{$and:[{"rank_3":{$gte:' + 1 + '}}]}]}]}]}]}'
+
+  let query = 'q={"skill_1":"' + "JS" + '",$and:[{"rank_1":{$gte:' + 1 + '}},{$and:[{"skill_2":"' + "Java" + '"},{$and:[{"rank_2":{$gte:' + 1 + '}},{$and:[{"skill_3":"' + "ObjC" + '"},{$and:[{"rank_3":{$gte:' + 1 + '}}]}]}]}]}]}'
 
 
-  //let query = 'q={"skill_1":"C",$and:[{"rank_1":{$gte:0}},{$and:[{"skill_2":"Java"},{$and:[{"rank_2":{$gte:3}},{$and:[{"skill_3":"JS"},{$and:[{"rank_3":{$gte:0}}]}]}]}]}]}'
 
 
 
- 
+
 
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
   console.log('%c urlString =  ' + urlString, 'color: lime')
