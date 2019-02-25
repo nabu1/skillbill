@@ -1,5 +1,5 @@
 <div id="app">
-  <v-app class="mx-5 my-3">
+  <v-app class="mx-5 my-1">
     <div>
       <v-toolbar flat color="grey">
         <v-toolbar-title>Skill Bill</v-toolbar-title>
@@ -24,7 +24,7 @@
 
         <v-dialog v-model="dialog" max-width="500px">
 
-          <v-btn slot="activator" color="primary" dark class="mb-2">New Dev</v-btn>
+          <v-btn slot="activator" color="primary" dark class="mt-3">New Dev</v-btn>
 
           <v-card>
 
@@ -32,33 +32,44 @@
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
 
-
-
-
-
-
             <v-card-text>
               <v-container grid-list-md>
                 <v-layout wrap>
 
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                    <v-text-field v-model="editedItem.first" label="First"></v-text-field>
                   </v-flex>
 
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                    <v-text-field v-model="editedItem.last" label="Last"></v-text-field>
                   </v-flex>
 
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.title" label="Title"></v-text-field>
                   </v-flex>
 
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.skill_1" label="Skill 1"></v-text-field>
                   </v-flex>
 
                   <v-flex xs12 sm6 md4>
-                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                    <v-text-field v-model="editedItem.rank_1" label="Rank 1"></v-text-field>
+                  </v-flex>
+
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="editedItem.skill_2" label="Skill 2"></v-text-field>
+                  </v-flex>
+
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="editedItem.rank_2" label="Rank 2"></v-text-field>
+                  </v-flex>
+
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="editedItem.skill_3" label="Skill 3"></v-text-field>
+                  </v-flex>
+
+                  <v-flex xs12 sm6 md4>
+                    <v-text-field v-model="editedItem.rank_3" label="Rank 3"></v-text-field>
                   </v-flex>
 
                 </v-layout>
@@ -115,12 +126,12 @@
           </v-flex>
 
 
-          <v-flex xs12 sm1 d-flex ml-0 mr-3>
+          <v-flex xs12 sm1 d-flex ml-0 mr-0>
             <v-select :items="ranks" label="Rank 3" standard class="filters" clearable dense></v-select>
           </v-flex>
 
           <v-btn color="primary" dark class="mt-3 ml-5">Search</v-btn>
-          <v-btn color="primary" dark class="mt-3">Reset</v-btn>
+          <v-btn color="primary" dark class="mt-3 mr-2">Reset</v-btn>
 <!--
  -->
 
@@ -133,8 +144,10 @@
                     :search="search"
                     :rows-per-page-items="rowsPerPageItems"
                     :pagination.sync="pagination"
+                    :loading="loading"
                     class="elevation-6"
                     dark>
+
 
         <template slot="items" slot-scope="props">
 

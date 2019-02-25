@@ -48,8 +48,9 @@ export default {
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
     rowsPerPageItems: [10, 25, 100, 1000],
     pagination: {
-      rowsPerPage: 7
+      rowsPerPage: 10
     },
+    loading: false
   }),
 
   computed: {
