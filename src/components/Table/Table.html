@@ -75,30 +75,35 @@
 
 
       <div >
-        <v-layout id="filters">
+        <v-layout class="filters-row">
 
-          <v-flex xs12 sm1 d-flex offset-xs5>
-            <v-select :items="skills" label="Skill" standard></v-select>
+          <v-flex xs12 sm1 d-flex offset-xs1 class="filters">
+            <v-select :items="title" label="Title" standard></v-select>
+          </v-flex>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <v-flex xs12 sm1 d-flex offset-xs2>
+            <v-select :items="skills" label="Skill" standard class="filters"></v-select>
           </v-flex>
 
-          <v-flex xs12 sm1 d-flex mx-2>
-            <v-select :items="ranks" label="Rank" standard></v-select>
+          <v-flex xs12 sm1 d-flex mx-0>
+            <v-select :items="ranks" label="Rank" standard class="filters"></v-select>
           </v-flex>
 
-          <v-flex xs12 sm1 d-flex>
-            <v-select :items="skills" label="Skill" standard></v-select>
+          <v-flex xs12 sm1 d-flex mx-0>
+            <v-select :items="skills" label="Skill" standard class="filters"></v-select>
           </v-flex>
 
-          <v-flex xs12 sm1 d-flex mx-2>
-            <v-select :items="ranks" label="Rank" standard></v-select>
+          <v-flex xs12 sm1 d-flex mx-0>
+            <v-select :items="ranks" label="Rank" standard class="filters"></v-select>
           </v-flex>
 
-          <v-flex xs12 sm1 d-flex>
-            <v-select :items="skills" label="Skill" standard></v-select>
+          <v-flex xs12 sm1 d-flex mx-0>
+            <v-select :items="skills" label="Skill" standard class="filters"></v-select>
           </v-flex>
 
-          <v-flex xs12 sm1 d-flex mx-2>
-            <v-select :items="ranks" label="Rank" standard></v-select>
+          <v-flex xs12 sm1 d-flex mx-0>
+            <v-select :items="ranks" label="Rank" standard class="filters"></v-select>
           </v-flex>
 
         </v-layout>
@@ -119,7 +124,6 @@
           <td class="text-xs-left body-2">{{ props.item.first }} {{ props.item.last }}</td>
 
           <td class="text-xs-left body-2">{{ props.item.city }}</td>
-          <td class="text-xs-left body-2">{{ props.item.status }}</td>
 
 
           <td class="text-xs-left body-2">{{ props.item.skill_1 }}</td>

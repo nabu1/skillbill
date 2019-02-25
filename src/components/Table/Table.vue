@@ -10,7 +10,6 @@ export default {
       { text: 'title', sortable: true, value: 'title' },
       { text: 'Name', sortable: false, value: 'first' },
       { text: 'City', sortable: true, value: 'city' },
-      { text: 'Status', sortable: false, value: 'status' },
       { text: 'Skill 1', sortable: true, value: 'skill_1' },
       { text: 'Rank 1', sortable: false, value: 'rank_1' },
       { text: 'Skill 2', sortable: true, value: 'rank_2' },
@@ -43,8 +42,16 @@ export default {
       rank_3: 0
 
     },
+    paginationSync: {
+      descending: false,
+      page: 10,
+      rowsPerPage: 10, // -1 for All
+      sortBy: "title",
+      totalItems: 10
+    },
     ranks: [5, 4, 3, 2, 1],
     skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'Ruby'],
+    title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
   }),
 
   computed: {
@@ -102,10 +109,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-  #filters {
-    background-color: #424242;
-    color: white;
+  .filters {
+    /* background-color: #424242; */
+   /*  background-color: gray; */
+    transform: scale(0.55, 1);
+    transform-origin: left;
+  }
+
+  .filters-row {
+    background-color: grey;
   }
 </style>
