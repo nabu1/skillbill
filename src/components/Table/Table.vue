@@ -20,7 +20,7 @@ export default {
       { text: 'Rank 2', sortable: false, value: 'rank_2' },
       { text: 'Skill 3', sortable: true, value: 'rank_3' },
       { text: 'Rank 3', sortable: false, value: 'rank_3' },
-      { text: 'City', sortable: true, value: 'city' },
+      //{ text: 'City', sortable: true, value: 'city' },
       { text: 'Picture', sortable: true, value: 'picture' }
     ],
     //devs: [],
