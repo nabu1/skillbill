@@ -13,14 +13,15 @@ function initialState() {
 }
 
 export default new Vuex.Store({
-  plugins: [createPersistedState()],
+  // plugins: [createPersistedState()],
   state: initialState,
   getters: {
     getDevs: state => state.devs
   },
   mutations: {
     GET_DEVS(state, devs) {
-      //console.log('%c devs = ' + devs.length, 'color: violet')
+      console.log('%c devs = ' + JSON.stringify(devs), 'color: violet')
+      console.log('%c devs = ' + devs.length, 'color: violet')
       //console.log(devs)
       state.devs = devs
     },

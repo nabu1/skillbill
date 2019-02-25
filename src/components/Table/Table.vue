@@ -22,7 +22,7 @@ export default {
       { text: 'City', sortable: true, value: 'city' },
       { text: 'Picture', sortable: true, value: 'picture' }
     ],
-    devs: [],
+    //devs: [],
     editedIndex: -1,
     editedItem: {
       name: '',
@@ -57,9 +57,12 @@ export default {
   }),
 
   computed: {
+    devs () {
+      return this.$store.getters.getDevs
+    },
     formTitle () {
-      // return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-      return {}
+      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      //return {}
     }
   },
 
