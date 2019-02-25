@@ -35,15 +35,15 @@ export default (context, selectedSkills) => {
 
   /// let query = 'q={"skill_1":"' + "JS" + '",$and:[{"rank_1":{$gte:' + 1 + '}},{$and:[{"skill_2":"' + "Java" + '"},{$and:[{"rank_2":{$gte:' + 1 + '}},{$and:[{"skill_3":"' + "ObjC" + '"},{$and:[{"rank_3":{$gte:' + 1 + '}}]}]}]}]}]}'
 
-  let query = 'q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}},{$and:[{"skill_3":"' + skill_3 + '"},{$and:[{"rank_3":{$gte:' + rank_3 + '}}]}]}]}]}]}'
+  let query1 = 'q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}},{$and:[{"skill_3":"' + skill_3 + '"},{$and:[{"rank_3":{$gte:' + rank_3 + '}}]}]}]}]}]}'
+
+
+  let query2 = 'q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}}]}]}]}'
 
 
 
 
-
-
-
-  const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
+  const urlString = LITERALS.PREFIX + query2 + LITERALS.SUFFIX
   console.log('%c urlString =  ' + urlString, 'color: lime')
 
   return urlString
