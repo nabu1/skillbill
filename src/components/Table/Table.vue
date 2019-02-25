@@ -60,7 +60,7 @@ export default {
   created () {
     this.initialize()
     console.log('%c this.$store.getters.getDevs = ' + this.$store.getters.getDevs, 'color: white')
-    this.desserts = this.$store.getters.getDevs
+    this.devs = this.$store.getters.getDevs
   },
 
   methods: {
