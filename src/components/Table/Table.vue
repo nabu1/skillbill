@@ -51,7 +51,8 @@ export default {
     pagination: {
       rowsPerPage: 10
     },
-    loading: false
+    loading: false,
+    selectedSkills: []
   }),
 
   computed: {
@@ -105,14 +106,37 @@ export default {
       }
       this.close()
     },
-    onSkill1(e) {
-      console.log('%c onSkill1 = ' , 'color: yellow')
-      //console.log(e.target.value)
-      console.log(e)
+    onSkill_1(e) {
+      console.log('%c onSkill_1 = ' + e, 'color: yellow')
+      console.log( typeof this.selectedSkills)
+      console.log('%c selectedSkills = ' + this.selectedSkills, 'color: white')
+
     },
-    keyUpSkill_1(e) {
-      console.log('%c keyUpSkill_1 = ' + e.target.value, 'color: yellow')
+    onRank_1(e) {
+      console.log('%c onRank_1 = ' + e, 'color: yellow')
+    },
+    onSkill_2(e) {
+      console.log('%c onSkill_2 = ' + e, 'color: yellow')
+    },
+    onRank_2(e) {
+      console.log('%c onRank_2 = ' + e, 'color: yellow')
+    },
+    onSkill_3(e) {
+      console.log('%c onSkill_3 = ' + e, 'color: yellow')
+    },
+    onRank_3(e) {
+      console.log('%c onRank_3 = ' + e, 'color: yellow')
+      console.log('%c selectedSkills = ' + this.selectedSkills, 'color: white')
+    },
+    onSearch() {
+      console.log('%c onSearch ', 'color: lime')
+      console.log('%c selectedSkills = ' + this.selectedSkills, 'color: white')
+
+    },
+    onReset() {
+      console.log('%c onReset ', 'color: lime')
     }
+
   }
 }
 </script>
