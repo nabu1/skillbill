@@ -166,10 +166,11 @@ export default {
       console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
       this.$store.commit('GET_DEVS', this.selected)
     },
-    
+
     onResetSelected() {
       console.log('%c onResetSelected', 'color: lime')
       this.selected = []
+      this.$store.commit('GET_DEVS', this.selected)
 
     }
   }
