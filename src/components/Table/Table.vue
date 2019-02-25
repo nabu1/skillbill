@@ -1,11 +1,12 @@
 <template src="./Table.html"></template>
 
 <script>
-const selectedSkills = {}
+// const selectedSkills = {}
 
 export default {
   data: () => ({
     selected: [],
+    selectedSkills: {},
     dialog: false,
     search: '',
     headers: [
@@ -117,49 +118,50 @@ export default {
 
     onTitle(e) {
       console.log('%c onTitle = ' + e, 'color: yellow')
-      selectedSkills.title = e
+      this.selectedSkills.title = e
     },
 
     onSkill_1(e) {
       console.log('%c onSkill_1 = ' + e, 'color: yellow')
-      selectedSkills.skill_1 = e
+      this.selectedSkills.skill_1 = e
     },
 
     onRank_1(e) {
       console.log('%c onRank_1 = ' + e, 'color: yellow')
-      selectedSkills.rank_1 = e
+      this.selectedSkills.rank_1 = e
 
-      console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
+      this.console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
     },
 
     onSkill_2(e) {
       console.log('%c onSkill_2 = ' + e, 'color: yellow')
-      selectedSkills.skill_2 = e
+      this.selectedSkills.skill_2 = e
     },
 
     onRank_2(e) {
       console.log('%c onRank_2 = ' + e, 'color: yellow')
-      selectedSkills.rank_2 = e
+      this.selectedSkills.rank_2 = e
     },
 
     onSkill_3(e) {
       console.log('%c onSkill_3 = ' + e, 'color: yellow')
-      selectedSkills.skill_3 = e
+      this.selectedSkills.skill_3 = e
     },
 
     onRank_3(e) {
       console.log('%c onRank_3 = ' + e, 'color: yellow')
-      selectedSkills.rank_3 = e
+      this.selectedSkills.rank_3 = e
     },
 
     onSearch() {
       console.log('%c onSearch ', 'color: lime')
-      this.$store.dispatch('getDevs', selectedSkills)
+      console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: orange')
+      this.$store.dispatch('getDevs', this.selectedSkills)
     },
 
     onClear() {
       console.log('%c onClear ', 'color: lime')
-      selectedSkills = {}
+      this.selectedSkills = {}
     },
 
     onSelected() {
