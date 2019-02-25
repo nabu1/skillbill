@@ -40,10 +40,12 @@ export default (context, selectedSkills) => {
 
   let query2 = 'q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}}]}]}]}'
 
+  let query3 = 'q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}]}'
 
 
 
-  const urlString = LITERALS.PREFIX + query2 + LITERALS.SUFFIX
+
+  const urlString = LITERALS.PREFIX + query3 + LITERALS.SUFFIX
   console.log('%c urlString =  ' + urlString, 'color: lime')
 
   return urlString
