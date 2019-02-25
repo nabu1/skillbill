@@ -43,21 +43,19 @@ export default {
       rank_3: 0
 
     },
-    paginationSync: {
-      descending: false,
-      page: 10,
-      rowsPerPage: 10, // -1 for All
-      sortBy: "title",
-      totalItems: 10
-    },
     ranks: [5, 4, 3, 2, 1],
     skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
+    rowsPerPageItems: [10, 25, 100, 1000],
+    pagination: {
+      rowsPerPage: 7
+    },
   }),
 
   computed: {
     formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      // return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return {}
     }
   },
 
@@ -69,7 +67,6 @@ export default {
 
   created () {
     this.initialize()
-    console.log('%c this.$store.getters.getDevs = ' + this.$store.getters.getDevs, 'color: white')
     this.devs = this.$store.getters.getDevs
   },
 

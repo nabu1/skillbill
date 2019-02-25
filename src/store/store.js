@@ -21,7 +21,7 @@ export default new Vuex.Store({
   mutations: {
     GET_DEVS(state, devs) {
       console.log('%c devs = ' + devs.length, 'color: violet')
-      console.log(devs)
+      //console.log(devs)
       state.devs = devs
     },
   },
