@@ -1,24 +1,18 @@
 <div id="app">
-  <v-app class="mx-5">
+  <v-app class="mx-5 my-3">
     <div>
       <v-toolbar flat color="grey">
-        <v-toolbar-title>SkillBill</v-toolbar-title>
-
-        <v-divider class="mx-2"
-                   inset
-                   vertical>
-        </v-divider>
+        <v-toolbar-title>Skill Bill</v-toolbar-title>
 
         <v-spacer></v-spacer>
 
-        <v-flex xs8 sm4 md2>
+        <v-flex xs8 sm4 md2 ml-0 mr-5>
           <v-text-field v-model="search"
                         append-icon="search"
                         clearable
                         label="Search"
                         single-line
                         box
-                        height="small"
                         hide-details>
           </v-text-field>
         </v-flex>
