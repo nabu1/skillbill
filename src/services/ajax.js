@@ -1,9 +1,11 @@
 import axios from 'axios'
 import url from './ajaxHelpers'
 
-export const ajaxGetDevs = context => {
+export const ajaxGetDevs = (context, selectedSkills) => {
+  console.log('%c ajax: selectedSkills = ' + selectedSkills, 'color: white')
+
   axios
-    .get(url(context))
+    .get(url(context, selectedSkills))
     .then(res => {
       //console.log('%c res.data.length = ' + res.data.length, 'color: violet')
 
