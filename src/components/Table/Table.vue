@@ -94,6 +94,8 @@ export default {
     },
 
     close () {
+      console.log('%c Tu close', 'color: red')
+
       this.dialog = false
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
@@ -102,10 +104,13 @@ export default {
     },
 
     save () {
+      console.log('%c Tu save', 'color: red')
+
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
-      } else {
-        this.desserts.push(this.editedItem)
+        Object.assign(this.divs[this.editedIndex], this.editedItem)
+      }
+      else {
+        this.divs.push(this.editedItem)
       }
       this.close()
     },
@@ -152,14 +157,16 @@ export default {
       this.$store.dispatch('getDevs', selectedSkills)
     },
 
-    onReset() {
-      console.log('%c onReset ', 'color: lime')
+    onClear() {
+      console.log('%c onClear ', 'color: lime')
+      selectedSkills = {}
     },
 
     onSelected() {
       console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
-
+      this.$store.commit('GET_DEVS', this.selected)
     },
+    
     onResetSelected() {
       console.log('%c onResetSelected', 'color: lime')
       this.selected = []
