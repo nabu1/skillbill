@@ -1,7 +1,6 @@
 <template src="./Table.html"></template>
 
 <script>
-// const selectedSkills = {}
 
 export default {
   data: () => ({
@@ -15,6 +14,7 @@ export default {
     skill_3: '',
     rank_3: '',
     dialog: false,
+    calendar: false,
     search: '',
     headers: [
       { text: '', sortable: false, value: '' },
@@ -70,12 +70,14 @@ export default {
     },
     formTitle () {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-      //return {}
     }
   },
 
   watch: {
     dialog (val) {
+      val || this.close()
+    },
+    calendar (val) {
       val || this.close()
     }
   },
@@ -174,14 +176,11 @@ export default {
     },
     onNewDev() {
       console.log('%c onNewDev = ' + onNewDev, 'color: lime')
-
     },
 
     onClose () {
       console.log('%c Tu close', 'color: lime')
-
       this.dialog = false
-
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
@@ -207,11 +206,8 @@ export default {
       this.close()
     },
 
-    showAlert(item){
-      if (event.target.classList.contains('btn__content')) return
-      //alert(JSON.stringify(item.city, item.status))
-      //alert(item.city, item.status)
-      alert(item.status)
+    onEmail() {
+      console.log('onEmail')
     }
   }
 }
@@ -226,4 +222,9 @@ export default {
   .filters-row {
     background-color: grey;
   }
+
+  .theme--dark.v-table thead th {
+    color: black;
+  }
+
 </style>
