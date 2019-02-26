@@ -90,18 +90,22 @@ export default {
     },
 
     editItem (item) {
+      console.log('%c editItem = ' + item, 'color: violet')
+
       this.editedIndex = this.desserts.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
 
     deleteItem (item) {
+      console.log('%c deleteItem = ' + item, 'color: violet')
+
       const index = this.desserts.indexOf(item)
       confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
     },
 
-    close () {
-      // console.log('%c Tu close', 'color: red')
+    onClose () {
+      console.log('%c Tu close', 'color: lime')
 
       this.dialog = false
       setTimeout(() => {
@@ -110,15 +114,18 @@ export default {
       }, 300)
     },
 
-    save () {
-      // console.log('%c Tu save', 'color: red')
+    onSave () {
+      console.log('%c Tu save', 'color: lime')
+      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
+      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
 
       if (this.editedIndex > -1) {
-        Object.assign(this.divs[this.editedIndex], this.editedItem)
+        Object.assign(this.devs[this.editedIndex], this.editedItem)
       }
       else {
-        this.divs.push(this.editedItem)
+        this.devs.push(this.editedItem)
       }
+      console.log('%c this.devs = ' + this.divs, 'color: yellow')
       this.close()
     },
 
