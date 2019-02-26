@@ -101,7 +101,7 @@ export default {
     },
 
     close () {
-      console.log('%c Tu close', 'color: red')
+      // console.log('%c Tu close', 'color: red')
 
       this.dialog = false
       setTimeout(() => {
@@ -111,7 +111,7 @@ export default {
     },
 
     save () {
-      console.log('%c Tu save', 'color: red')
+      // console.log('%c Tu save', 'color: red')
 
       if (this.editedIndex > -1) {
         Object.assign(this.divs[this.editedIndex], this.editedItem)
@@ -123,39 +123,39 @@ export default {
     },
 
     onTitle(e) {
-      console.log('%c onTitle = ' + e, 'color: yellow')
+      // console.log('%c onTitle = ' + e, 'color: yellow')
       this.selectedSkills.title = e
     },
 
     onSkill_1(e) {
-      console.log('%c onSkill_1 = ' + e, 'color: yellow')
+      // console.log('%c onSkill_1 = ' + e, 'color: yellow')
       this.selectedSkills.skill_1 = e
     },
 
     onRank_1(e) {
-      console.log('%c onRank_1 = ' + e, 'color: yellow')
+      // console.log('%c onRank_1 = ' + e, 'color: yellow')
       this.selectedSkills.rank_1 = e
 
       this.console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
     },
 
     onSkill_2(e) {
-      console.log('%c onSkill_2 = ' + e, 'color: yellow')
+      // console.log('%c onSkill_2 = ' + e, 'color: yellow')
       this.selectedSkills.skill_2 = e
     },
 
     onRank_2(e) {
-      console.log('%c onRank_2 = ' + e, 'color: yellow')
+      // console.log('%c onRank_2 = ' + e, 'color: yellow')
       this.selectedSkills.rank_2 = e
     },
 
     onSkill_3(e) {
-      console.log('%c onSkill_3 = ' + e, 'color: yellow')
+      // console.log('%c onSkill_3 = ' + e, 'color: yellow')
       this.selectedSkills.skill_3 = e
     },
 
     onRank_3(e) {
-      console.log('%c onRank_3 = ' + e, 'color: yellow')
+      // console.log('%c onRank_3 = ' + e, 'color: yellow')
       this.selectedSkills.rank_3 = e
     },
 
@@ -166,8 +166,8 @@ export default {
     },
 
     onClear() {
-      console.log('%c this.skill_1 = ' + this.skill_1, 'color: lime')
-      console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
+      // console.log('%c this.skill_1 = ' + this.skill_1, 'color: lime')
+      // console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
       this.selectedSkills = {}
       this.skill_1 = null
       this.skill_2 = null
@@ -183,7 +183,7 @@ export default {
     },
 
     onResetSelected() {
-      console.log('%c onResetSelected', 'color: lime')
+      // console.log('%c onResetSelected', 'color: lime')
       this.selected = []
       this.$store.commit('GET_DEVS', this.selected)
 
