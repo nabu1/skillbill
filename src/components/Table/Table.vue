@@ -208,6 +208,11 @@ export default {
 
     onEmail() {
       console.log('onEmail')
+    },
+
+    onTableRow(e) {
+      console.log('%c onTableRow', 'color: white')
+      this.calendar = true
     }
   }
 }
