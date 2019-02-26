@@ -134,60 +134,60 @@
                     :rows-per-page-items="rowsPerPageItems"
                     :pagination.sync="pagination"
                     :loading="loading"
+                    :expand="expand"
                     v-model="selected"
                     class="elevation-6"
                     dark>
 
 
         <template slot="items" slot-scope="props">
-          <td>
-            <v-checkbox v-model="props.selected"
-                        primary
-                        hide-details>
-            </v-checkbox>
-          </td>
+          <!-- <tr  @dblclick="showAlert(props.item)"> -->
+          <tr @click="props.expanded = !props.expanded">
 
-          <td class="text-xs-left body-2">{{ props.item.id }}</td>
-          <td class="text-xs-left body-2">{{ props.item.title }}</td>
-          <td class="text-xs-left body-2">{{ props.item.first }}</td>
-          <td class="text-xs-left body-2">{{ props.item.last }}</td>
+            <td>
+              <v-checkbox v-model="props.selected"
+                          primary
+                          hide-details>
+              </v-checkbox>
+            </td>
 
+            <td class="text-xs-left body-2">{{ props.item.id }}</td>
+            <td class="text-xs-left body-2">{{ props.item.title }}</td>
+            <td class="text-xs-left body-2">{{ props.item.first }}</td>
+            <td class="text-xs-left body-2">{{ props.item.last }}</td>
+            <td class="text-xs-left body-2">{{ props.item.skill_1 }}</td>
+            <td class="text-xs-left body-2">{{ props.item.rank_1 }}</td>
+            <td class="text-xs-left body-2">{{ props.item.skill_2 }}</td>
+            <td class="text-xs-left body-2">{{ props.item.rank_2 }}</td>
+            <td class="text-xs-left body-2">{{ props.item.skill_3 }}</td>
+            <td class="text-xs-left body-2">{{ props.item.rank_3 }}</td>
 
+            <td class="text-xs-left body-2">
+                <v-img :src = "props.item.picture" aspect-ratio="1.3"></v-img>
+            </td>
 
-          <td class="text-xs-left body-2">{{ props.item.skill_1 }}</td>
-          <td class="text-xs-left body-2">{{ props.item.rank_1 }}</td>
+            <td class="justify-center layout px-0">
 
-          <td class="text-xs-left body-2">{{ props.item.skill_2 }}</td>
-          <td class="text-xs-left body-2">{{ props.item.rank_2 }}</td>
+              <v-icon small
+                      class="mr-2"
+                      @click="editItem(props.item)">
+                      edit
+              </v-icon>
 
-          <td class="text-xs-left body-2">{{ props.item.skill_3 }}</td>
-          <td class="text-xs-left body-2">{{ props.item.rank_3 }}</td>
+              <v-icon small
+                      @click="deleteItem(props.item)">
+                      delete
+              </v-icon>
 
-          <!-- <td class="text-xs-left body-2">{{ props.item.city }}</td> -->
+            </td>
+          </tr>
+        </template>
 
-          <td class="text-xs-left body-2">
-              <v-img :src = "props.item.picture"
-                     aspect-ratio="1.3">
-              </v-img>
-
-          </td>
-
-
-
-          <td class="justify-center layout px-0">
-
-            <v-icon small
-                    class="mr-2"
-                    @click="editItem(props.item)">
-                    edit
-            </v-icon>
-
-            <v-icon small
-                    @click="deleteItem(props.item)">
-                    delete
-            </v-icon>
-
-          </td>
+        <template slot="expand" slot-scope="props">
+          <v-card flat>
+            <v-card-text>{{ props.item.city }}</v-card-text>
+            <v-card-text>{{ props.item.status }}</v-card-text>
+          </v-card>
         </template>
 
         <v-alert slot="no-results" :value="true" color="error" icon="warning">

@@ -5,6 +5,7 @@
 
 export default {
   data: () => ({
+    expand: false,
     selected: [],
     selectedSkills: {},
     skill_1: '',
@@ -200,8 +201,18 @@ export default {
       }
 
       console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
+
+      // todo zapis rekordu na mLabie
+
       this.close()
     },
+
+    showAlert(item){
+      if (event.target.classList.contains('btn__content')) return
+      //alert(JSON.stringify(item.city, item.status))
+      //alert(item.city, item.status)
+      alert(item.status)
+    }
   }
 }
 </script>
