@@ -7,6 +7,12 @@ export default {
   data: () => ({
     selected: [],
     selectedSkills: {},
+    skill_1: '',
+    rank_1: '',
+    skill_2: '',
+    rank_2: '',
+    skill_3: '',
+    rank_3: '',
     dialog: false,
     search: '',
     headers: [
@@ -154,18 +160,25 @@ export default {
     },
 
     onSearch() {
-      console.log('%c onSearch ', 'color: lime')
-      console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: orange')
+      // console.log('%c onSearch ', 'color: lime')
+      // console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: orange')
       this.$store.dispatch('getDevs', this.selectedSkills)
     },
 
     onClear() {
-      console.log('%c onClear ', 'color: lime')
+      console.log('%c this.skill_1 = ' + this.skill_1, 'color: lime')
+      console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
       this.selectedSkills = {}
+      this.skill_1 = null
+      this.skill_2 = null
+      this.skill_3 = null
+      this.rank_1 = null
+      this.rank_2 = null
+      this.rank_3 = null
     },
 
     onSelected() {
-      console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
+      // console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
       this.$store.commit('GET_DEVS', this.selected)
     },
 
