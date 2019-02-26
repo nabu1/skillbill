@@ -1,7 +1,7 @@
 <template src="./Navi.html"></template>
 
 <script>
-import { sendEmail } from '../../services/ajax'
+// import { sendEmail } from '../../services/ajax'
 let email = ''
 let favorites = null
 

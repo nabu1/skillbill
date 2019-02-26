@@ -30,17 +30,17 @@ export default {
       //{ text: 'City', sortable: true, value: 'city' },
       { text: 'Picture', sortable: true, value: 'picture' }
     ],
-    //devs: [],
     editedIndex: -1,
     editedItem: {
-      name: '',
-      title: 0,
-      skill_1: 0,
-      rank_1: 0,
-      skill_2: 0,
-      rank_2: 0,
-      skill_3: 0,
-      rank_3: 0
+      first: '',
+      last: '',
+      title: '',
+      skill_1: '',
+      rank_1: '',
+      skill_2: '',
+      rank_2: '',
+      skill_3: '',
+      rank_3: ''
     },
     defaultItem: {
       name: '',
@@ -60,6 +60,7 @@ export default {
       rowsPerPage: 10
     },
     loading: false,
+    newDevs: []
   }),
 
   computed: {
@@ -102,31 +103,6 @@ export default {
 
       const index = this.desserts.indexOf(item)
       confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
-    },
-
-    onClose () {
-      console.log('%c Tu close', 'color: lime')
-
-      this.dialog = false
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      }, 300)
-    },
-
-    onSave () {
-      console.log('%c Tu save', 'color: lime')
-      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
-      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
-
-      if (this.editedIndex > -1) {
-        Object.assign(this.devs[this.editedIndex], this.editedItem)
-      }
-      else {
-        this.devs.push(this.editedItem)
-      }
-      console.log('%c this.devs = ' + this.divs, 'color: yellow')
-      this.close()
     },
 
     onTitle(e) {
@@ -194,7 +170,38 @@ export default {
       this.selected = []
       this.$store.commit('GET_DEVS', this.selected)
 
-    }
+    },
+    onNewDev() {
+      console.log('%c onNewDev = ' + onNewDev, 'color: lime')
+
+    },
+
+    onClose () {
+      console.log('%c Tu close', 'color: lime')
+
+      this.dialog = false
+
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+    },
+
+    onSave () {
+      console.log('%c Tu save', 'color: lime')
+      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
+      console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
+
+      if (this.editedIndex > -1) {
+        Object.assign(this.devs[this.editedIndex], this.editedItem)
+      }
+      else {
+        this.newDevs.push(this.editedItem)
+      }
+
+      console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
+      this.close()
+    },
   }
 }
 </script>
