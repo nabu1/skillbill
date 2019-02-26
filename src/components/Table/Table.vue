@@ -61,7 +61,9 @@ export default {
       rowsPerPage: 10
     },
     loading: false,
-    newDevs: []
+    newDevs: [],
+    picker: new Date().toISOString().substr(0, 10),
+    calendar: '2019-03-02'
   }),
 
   computed: {
@@ -213,7 +215,41 @@ export default {
     onTableRow(e) {
       console.log('%c onTableRow', 'color: white')
       this.calendar = true
-    }
+    },
+
+    // todo dostosować bo na razie tylko na żywca skopiowane
+    allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
+
+    onCalendarClose () {
+      // todo dostosować bo na razie tylko na żywca skopiowane
+      console.log('%c Tu onCalendarClose', 'color: lime')
+
+      this.calendar = false
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+    },
+
+    onCalendarSave () {
+      // todo dostosować bo na razie tylko na żywca skopiowane
+      console.log('%c Tu onCalendarSave', 'color: lime')
+      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
+      console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
+
+      if (this.editedIndex > -1) {
+        Object.assign(this.devs[this.editedIndex], this.editedItem)
+      }
+      else {
+        this.newDevs.push(this.editedItem)
+      }
+
+      console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
+
+      // todo zapis rekordu na mLabie
+
+      this.close()
+    },
   }
 }
 </script>

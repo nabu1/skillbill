@@ -93,12 +93,29 @@
 
       <!----------- CALENDAR MODAL                  ------------------------------------------------------------>
 
-        <v-dialog v-model="calendar" max-width="500px">
+        <v-dialog v-model="calendar"
+                  color="blue"
+                  header-color="primary"
+                  landscape="true"
+                  max-width="320px">
           <!-- <v-btn  @click="onCalendar" slot="activator" color="primary" dark class="mt-3 mr-0">Calendar</v-btn> -->
           <v-card>
             <v-card-title>
-              <v-date-picker v-model="picker" :landscape="landscape" :reactive="reactive"></v-date-picker>
+              <v-date-picker v-model="picker"
+                             :landscape="landscape"
+                             :reactive="reactive"
+                             :allowed-dates="allowedDates"
+                             min="2019-01-15"
+                             max="2020-12-31">
+              </v-date-picker>
             </v-card-title>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" flat @click="onCalendarClose">Cancel</v-btn>
+              <v-btn color="blue darken-1" flat @click="onCalendarSave">Save</v-btn>
+            </v-card-actions>
+
           </v-card>
         </v-dialog>
 
