@@ -1,7 +1,7 @@
 <template src="./Table.html"></template>
 
 <script>
-import { ajaxInsertDev } from '../../services/ajax'
+import { ajaxInsertDev, ajaxDelete } from '../../services/ajax'
 
 
 export default {
@@ -106,10 +106,12 @@ export default {
     },
 
     deleteItem (item) {
-      console.log('%c deleteItem = ' + item, 'color: violet')
+      //console.log('%c deleteItem = ' + JSON.stringify(item.id), 'color: violet')
+      console.log('%c deleteItem = ' + item.id, 'color: violet')
 
-      const index = this.desserts.indexOf(item)
-      confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
+      //const index = this.desserts.indexOf(item)
+      //confirm('Na pewno chcesz usunąć ten rekord ?') && this.desserts.splice(index, 1) && ajaxDelete(JSON.stringify(item.id))
+      confirm('Na pewno chcesz usunąć ten rekord ?') && ajaxDelete(JSON.stringify(item.id))
     },
 
     onTitle(e) {
