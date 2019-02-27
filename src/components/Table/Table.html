@@ -49,12 +49,8 @@
                       <v-text-field v-model="editedItem.last" label="Last"></v-text-field>
                     </v-flex>
 
-                    <!-- <v-flex xs12 sm6 md4>
-                      <v-select v-model="editedItem.title" :items="title" @change="onNewTitle" label="Title" standard class="filters" clearable dense> </v-select>
-                    </v-flex> -->
-
                     <v-flex xs12 sm6 md4>
-                      <v-select v-model="editedItem.dates" :items="dates" @change="onNewTitle" label="Title" standard class="filters" clearable dense> </v-select>
+                      <v-select v-model="editedItem.title" :items="title" @change="onNewTitle" label="Title" standard class="filters" clearable dense> </v-select>
                     </v-flex>
 
                     <v-flex xs12 sm6 md4>
