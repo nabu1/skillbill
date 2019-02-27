@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { fetch, insertDev} from './ajaxHelpers'
+import { LITERALS } from '../services/constants'
+import { fetch } from './ajaxHelpers'
 
 export const ajaxGetDevs = (context, selectedSkills) => {
   // console.log('%c ajax: selectedSkills = ' + selectedSkills, 'color: white')
@@ -66,8 +67,9 @@ export const ajaxDelete = _id => {
 
   // const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill/5c742d443603900f550d492a?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
 
+  // const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
 
-  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
 
   console.log('%c url = ' + url, 'color: white')
 
