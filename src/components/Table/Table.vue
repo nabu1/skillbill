@@ -219,7 +219,7 @@ export default {
     },
 
     onTableRow(e) {
-      console.log('%c onTableRow', 'color: white')
+      console.log('%c onTableRow: _id =' + JSON.stringify(e._id.$oid), 'color: white')
       this.calendar = true
     },
 
@@ -241,6 +241,7 @@ export default {
     onCalendarSave (item) {
       // todo dostosować bo na razie tylko na żywca skopiowane
       console.log('%c Tu onCalendarSave', 'color: lime')
+      console.log('%c item = ' + JSON.stringify(item), 'color: white')
       console.log(this.picker)
 
       /* if (this.editedIndex > -1) {
@@ -254,7 +255,7 @@ export default {
 
       // todo zapis rekordu na mLabie
 
-       this.calendar = false
+      this.calendar = false
     },
   }
 }
