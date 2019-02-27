@@ -84,8 +84,8 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" flat @click="onClose">Cancel</v-btn>
-                <v-btn color="blue darken-1" flat @click="onSave">Save</v-btn>
+                <v-btn color="blue darken-1" flat @click="onNewDevClose">Cancel</v-btn>
+                <v-btn color="blue darken-1" flat @click="onNewDevSave">Save</v-btn>
               </v-card-actions>
 
             </v-card>
@@ -168,7 +168,6 @@
                       class="elevation-6"
                       dark>
 
-
           <template slot="items" slot-scope="props">
             <tr @dblclick="onTableRow(props.item)">
               <td>
@@ -214,7 +213,6 @@
           </v-alert>
 
         </v-data-table>
-
 
       </div>
   </v-app>

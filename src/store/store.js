@@ -25,12 +25,12 @@ export default new Vuex.Store({
       //console.log(devs)
       state.devs = devs
     },
+
   },
   actions: {
     getDevs(context, selectedSkills) {
       // console.log('%c actions: selectedSkills = ' + selectedSkills, 'color: white')
       ajaxGetDevs(context, selectedSkills)
     },
-
   },
 })

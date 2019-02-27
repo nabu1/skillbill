@@ -1,6 +1,8 @@
 <template src="./Table.html"></template>
 
 <script>
+import { ajaxInsertDev } from '../../services/ajax'
+
 
 export default {
   data: () => ({
@@ -14,7 +16,6 @@ export default {
     skill_3: '',
     rank_3: '',
     dialog: false,
-    calendar: false,
     search: '',
     headers: [
       { text: '', sortable: false, value: '' },
@@ -29,7 +30,7 @@ export default {
       { text: 'Skill 3', sortable: false, value: 'rank_3' },
       { text: 'Rank 3', sortable: true, value: 'rank_3' },
       //{ text: 'City', sortable: true, value: 'city' },
-      { text: 'Picture', sortable: true, value: 'picture' }
+      { text: 'Picture', sortable: false, value: 'picture' }
     ],
     editedIndex: -1,
     editedItem: {
@@ -44,14 +45,15 @@ export default {
       rank_3: ''
     },
     defaultItem: {
-      name: '',
-      title: 0,
-      skill_1: 0,
-      rank_1: 0,
-      skill_2: 0,
-      rank_2: 0,
-      skill_3: 0,
-      rank_3: 0
+      first: '',
+      last: '',
+      title: '',
+      skill_1: '',
+      rank_1: '',
+      skill_2: '',
+      rank_2: '',
+      skill_3: '',
+      rank_3: ''
     },
     ranks: [5, 4, 3, 2, 1],
     skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
@@ -62,8 +64,8 @@ export default {
     },
     loading: false,
     newDevs: [],
+    calendar: false,
     picker: ['2019-02-21', '2019-02-23'],
-    calendar: '2019-03-02'
   }),
 
   computed: {
@@ -180,7 +182,7 @@ export default {
       console.log('%c onNewDev = ' + onNewDev, 'color: lime')
     },
 
-    onClose () {
+    onNewDevClose () {
       console.log('%c Tu close', 'color: lime')
       this.dialog = false
       setTimeout(() => {
@@ -189,7 +191,7 @@ export default {
       }, 300)
     },
 
-    onSave () {
+    onNewDevSave () {
       console.log('%c Tu save', 'color: lime')
       console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
       console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
@@ -198,14 +200,18 @@ export default {
         Object.assign(this.devs[this.editedIndex], this.editedItem)
       }
       else {
-        this.newDevs.push(this.editedItem)
+        // this.newDevs.push(this.editedItem)
+        console.log('%c ajaxInsertDev', 'color: lime')
+        ajaxInsertDev(this.editedItem)
       }
 
-      console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
+      // console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
 
       // todo zapis rekordu na mLabie
 
-      this.close()
+
+      // this.close()
+      this.dialog = false
     },
 
     onEmail() {
@@ -226,10 +232,10 @@ export default {
       console.log('%c Tu onCalendarClose', 'color: lime')
 
       this.calendar = false
-      setTimeout(() => {
+      /* setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
-      }, 300)
+      }, 300) */
     },
 
     onCalendarSave (item) {

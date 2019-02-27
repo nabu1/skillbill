@@ -1,6 +1,6 @@
 import { LITERALS } from './constants'
 
-export default (context, selectedSkills = {}) => {
+export const fetch = (context, selectedSkills = {}) => {
   //console.log('%c ajaxHelpers selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
   let query = ''
   const skill_1 = selectedSkills.skill_1
@@ -40,7 +40,9 @@ export default (context, selectedSkills = {}) => {
   }
 
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
-  // console.log('%c urlString =  ' + urlString, 'color: lime')
+  console.log('%c urlString =  ' + urlString, 'color: lime')
 
   return urlString
 }
+
+
