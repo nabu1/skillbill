@@ -49,12 +49,8 @@ export const ajaxInsertDev = dev => {
 }
 
 export const ajaxDelete = _id => {
-  console.log('%c _id = ', 'color: white')
-  console.log(_id.replace(/"/g, ''))
-
-  // const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill/5c742d443603900f550d492a?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  // const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-
+  //console.log('%c _id = ', 'color: white')
+  //console.log(_id.replace(/"/g, ''))
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
 
   console.log('%c url = ' + url, 'color: white')
@@ -62,4 +58,34 @@ export const ajaxDelete = _id => {
   axios.delete(url)
     .then(res => console.log('Skasowany ziutex: ', res))
     .catch(err => console.log('Błąd: ', err))
+}
+
+export const ajaxUpdateDates = (_id, dates) => {
+  console.log('%c dates = ' + dates, 'color: orange')
+  console.log('%c _id = ' + _id, 'color: orange')
+
+  const axios = require('axios')
+  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  const countUrl = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?&c=true&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+
+  axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+  axios.get(countUrl)
+    .then(res => {
+      console.log('%c res = ' + res, 'color: blue')
+      dev.id = res.data
+
+      axios.post(url, dev)
+        .then(res => {
+          console.log(res)
+          console.log(res.data)
+          alert('Dane zostały zapisane na serwerze')
+        })
+        .catch(err =>  {
+          alert('Błąd zapisu na serwerze (1): ', err)
+        })
+    })
+    .catch(err => {
+      alert('Błąd zapisu na serwerze (2): ', err)
+    })
 }

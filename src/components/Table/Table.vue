@@ -219,7 +219,10 @@ export default {
     },
 
     onTableRow(e) {
-      console.log('%c onTableRow: _id =' + JSON.stringify(e._id.$oid), 'color: white')
+      //console.log('%c onTableRow: _id =' + JSON.stringify(e._id.$oid), 'color: white')
+      // console.log('%c onTableRow: _id =' + e._id.$oid, 'color: white')
+      this.$store.dispatch('setDdblClickedId', e._id.$oid)
+
       this.calendar = true
     },
 
@@ -240,8 +243,9 @@ export default {
 
     onCalendarSave (item) {
       // todo dostosować bo na razie tylko na żywca skopiowane
-      console.log('%c Tu onCalendarSave', 'color: lime')
-      console.log('%c item = ' + JSON.stringify(item), 'color: white')
+      // console.log('%c Tu onCalendarSave', 'color: lime')
+      // console.log('%c item = ' + JSON.stringify(item), 'color: white')
+      console.log('%c this.$store.getters.getDblClickedId = ' + this.$store.getters.getDblClickedId, 'color: white')
       console.log(this.picker)
 
       /* if (this.editedIndex > -1) {
