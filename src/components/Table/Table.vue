@@ -62,7 +62,7 @@ export default {
     },
     loading: false,
     newDevs: [],
-    picker: new Date().toISOString().substr(0, 10),
+    picker: ['2019-02-21', '2019-02-23'],
     calendar: '2019-03-02'
   }),
 
@@ -218,7 +218,8 @@ export default {
     },
 
     // todo dostosować bo na razie tylko na żywca skopiowane
-    allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
+    //allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
+    allowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
 
     onCalendarClose () {
       // todo dostosować bo na razie tylko na żywca skopiowane
@@ -231,24 +232,23 @@ export default {
       }, 300)
     },
 
-    onCalendarSave () {
+    onCalendarSave (item) {
       // todo dostosować bo na razie tylko na żywca skopiowane
       console.log('%c Tu onCalendarSave', 'color: lime')
-      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
-      console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
+      console.log(this.picker)
 
-      if (this.editedIndex > -1) {
+      /* if (this.editedIndex > -1) {
         Object.assign(this.devs[this.editedIndex], this.editedItem)
       }
       else {
         this.newDevs.push(this.editedItem)
-      }
+      } */
 
-      console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
+      //console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
 
       // todo zapis rekordu na mLabie
 
-      this.close()
+       this.calendar = false
     },
   }
 }
