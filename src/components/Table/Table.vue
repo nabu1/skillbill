@@ -20,7 +20,10 @@ export default {
     headers: [
       { text: '', sortable: false, value: '' },
       { text: 'id', sortable: true, value: 'id' },
-      { text: 'title', sortable: true, value: 'title' },
+
+      //{ text: 'title', sortable: true, value: 'title' },
+      { text: 'dates', sortable: true, value: 'dates' },
+
       { text: 'First', sortable: false, value: 'first' },
       { text: 'Last', sortable: false, value: 'last' },
       { text: 'Skill 1', sortable: false, value: 'skill_1' },

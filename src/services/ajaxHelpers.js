@@ -36,7 +36,7 @@ export const fetch = (context, selectedSkills = {}) => {
     query = '?s={skill_1:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}]}'
   }
   else {
-    query = '?&l=9'  // limit 9 rekordów zamiast 1,000 przy pustych selektach
+    query = '?&l=1000'  // limit 9 rekordów zamiast 1,000 przy pustych selektach
   }
 
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX

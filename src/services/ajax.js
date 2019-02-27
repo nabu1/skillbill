@@ -66,13 +66,15 @@ export const ajaxUpdateDates = (_id, dates) => {
 
   const axios = require('axios')
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  axios.defaults.headers.post['Content-Type'] = 'application/json'
   //const url = `${LITERALS.PREFIX}/id=${id}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
 
   console.log('%c url = ' + url, 'color: white')
 
-  axios.defaults.headers.post['Content-Type'] = 'application/json'
+  const datesObj = { "$set" : { "dates" : dates } }
 
-  axios.put(url, { dates })
+
+  axios.put(url, datesObj)
   // axios.put(url, JSON.stringify(dates))
     .then(res => {
       console.log(res)
