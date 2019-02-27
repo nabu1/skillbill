@@ -37,3 +37,6 @@ _lint.js
 cypress/screenshots/examples/misc.spec.js/my-image.png
 cypress/screenshots/examples/misc.spec.js/my-image (1).png
 cSpell.json
+mockaroo.json
+mockaroo2.json
+mockaroo3.json

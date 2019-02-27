@@ -25,19 +25,21 @@ export const fetch = (context, selectedSkills = {}) => {
 
   if (skill_1 && rank_1 && skill_2 && rank_2 && skill_3 && rank_3) {
     // console.log('3 skille')
-    query = '?s={skill_1:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}},{$and:[{"skill_3":"' + skill_3 + '"},{$and:[{"rank_3":{$gte:' + rank_3 + '}}]}]}]}]}]}'
+    query = '?s={id:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}},{$and:[{"skill_3":"' + skill_3 + '"},{$and:[{"rank_3":{$gte:' + rank_3 + '}}]}]}]}]}]}'
   }
   else if (skill_1 && rank_1 && skill_2 && rank_2) {
     // console.log('2 skille')
-    query = '?s={skill_1:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}}]}]}]}'
+    query = '?s={id:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}},{$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}}]}]}]}'
   }
   else if (skill_1 && rank_1) {
     // console.log('1 skill')
-    query = '?s={skill_1:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}]}'
+    query = '?s={id:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}]}'
   }
   else {
-    query = '?&l=1000'  // limit 9 rekordów zamiast 1,000 przy pustych selektach
+    query = '?s={id:1}&l=1000'  // limit 9 rekordów zamiast 1,000 przy pustych selektach
   }
+
+  // ?s={hour:1}
 
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
   console.log('%c urlString =  ' + urlString, 'color: lime')
