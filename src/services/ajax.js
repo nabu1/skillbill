@@ -47,23 +47,31 @@ export const ajaxInsertDev = dev => {
     })
 }
 
-export const ajaxDelete = id => {
-  console.log('%c id = ' + id, 'color: white')
+//export const ajaxDelete = _id => {
+export const ajaxDelete = _id => {
+  console.log('%c _id = ', 'color: white')
+  console.log(_id.replace(/"/g, ''))
+
   const axios = require('axios')
-  var config = {
+  const config = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Z-Key',
     'Content-Type': 'application/json',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
     "Access-Control-Allow-Credentials": "true"
   }
-  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  const options = {
+    contentType: "application/json"
+  }
 
-  const deleteId = { id: Number(id) }
-  console.log('%c deleteId = ' + deleteId, 'color: white')
+  // const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill/5c742d443603900f550d492a?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
 
-  axios.put(url, { id })
-  //axios.delete(url, { id }, config)
+
+  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+
+  console.log('%c url = ' + url, 'color: white')
+
+  axios.delete(url)
     .then(res => console.log('Skasowany ziutex: ', res))
     .catch(err => console.log('Błąd: ', err))
 }

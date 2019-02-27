@@ -106,12 +106,10 @@ export default {
     },
 
     deleteItem (item) {
-      //console.log('%c deleteItem = ' + JSON.stringify(item.id), 'color: violet')
-      console.log('%c deleteItem = ' + item.id, 'color: violet')
+      console.log('%c id = ' + JSON.stringify(item.id), 'color: violet')
+      console.log('%c _id = ' + JSON.stringify(item._id.$oid), 'color: violet')
 
-      //const index = this.desserts.indexOf(item)
-      //confirm('Na pewno chcesz usunąć ten rekord ?') && this.desserts.splice(index, 1) && ajaxDelete(JSON.stringify(item.id))
-      confirm('Na pewno chcesz usunąć ten rekord ?') && ajaxDelete(JSON.stringify(item.id))
+      confirm('Na pewno chcesz usunąć ten rekord ?') && ajaxDelete(JSON.stringify(item._id.$oid))
     },
 
     onTitle(e) {
@@ -277,3 +275,4 @@ export default {
   }
 
 </style>
+
