@@ -3,14 +3,9 @@ import { LITERALS } from '../services/constants'
 import { fetch } from './ajaxHelpers'
 
 export const ajaxGetDevs = (context, selectedSkills) => {
-  // console.log('%c ajax: selectedSkills = ' + selectedSkills, 'color: white')
-
   axios
     .get(fetch(context, selectedSkills))
     .then(res => {
-      //console.log('%c res.data.length = ' + res.data.length, 'color: violet')
-
-      //context.commit('GET_DOCUMENTS_COUNT', res.data.length)
       context.commit('GET_DEVS', res.data)
     })
     .catch(err => console.log('My error: ', err))
@@ -60,32 +55,29 @@ export const ajaxDelete = _id => {
     .catch(err => console.log('Błąd: ', err))
 }
 
+//export const ajaxUpdateDates = (_id, dates) => {
 export const ajaxUpdateDates = (_id, dates) => {
-  console.log('%c dates = ' + dates, 'color: orange')
+  console.log('%c dates = ', 'color: orange')
+  console.log(dates)
   console.log('%c _id = ' + _id, 'color: orange')
+  // console.log('%c id = ' + id, 'color: orange')
 
   const axios = require('axios')
-  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  const countUrl = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?&c=true&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  //const url = `${LITERALS.PREFIX}/id=${id}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+
+  console.log('%c url = ' + url, 'color: white')
 
   axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-  axios.get(countUrl)
+  axios.put(url, { dates })
+  // axios.put(url, JSON.stringify(dates))
     .then(res => {
-      console.log('%c res = ' + res, 'color: blue')
-      dev.id = res.data
-
-      axios.post(url, dev)
-        .then(res => {
-          console.log(res)
-          console.log(res.data)
-          alert('Dane zostały zapisane na serwerze')
-        })
-        .catch(err =>  {
-          alert('Błąd zapisu na serwerze (1): ', err)
-        })
+      console.log(res)
+      console.log(res.data)
+      alert('Daty zostały zapisane na serwerze')
     })
-    .catch(err => {
-      alert('Błąd zapisu na serwerze (2): ', err)
+    .catch(err =>  {
+      alert('Błąd zapisu dat na serwerze: ', err)
     })
 }

@@ -101,13 +101,16 @@
           <!-- <v-btn  @click="onCalendar" slot="activator" color="primary" dark class="mt-3 mr-0">Calendar</v-btn> -->
           <v-card>
             <v-card-title>
+              <h3 id="calendar_heading">#{{ devId }}&nbsp;&nbsp;&nbsp;&nbsp;{{ devFirst }} {{ devLast }} </h3>
               <v-date-picker v-model="picker"
                              :landscape="landscape"
                              :reactive="reactive"
                              :allowed-dates="allowedDates"
                              multiple
                              min="2019-01-15"
-                             max="2020-12-31">
+                             max="2020-12-31"
+                             >
+
               </v-date-picker>
             </v-card-title>
 

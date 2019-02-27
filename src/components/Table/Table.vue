@@ -1,7 +1,7 @@
 <template src="./Table.html"></template>
 
 <script>
-import { ajaxInsertDev, ajaxDelete } from '../../services/ajax'
+import { ajaxInsertDev, ajaxDelete, ajaxUpdateDates } from '../../services/ajax'
 
 
 export default {
@@ -66,6 +66,9 @@ export default {
     newDevs: [],
     calendar: false,
     picker: ['2019-02-21', '2019-02-23'],
+    devId: null,
+    devFirst: null,
+    devLast: null,
   }),
 
   computed: {
@@ -218,47 +221,31 @@ export default {
       console.log('onEmail')
     },
 
-    onTableRow(e) {
-      //console.log('%c onTableRow: _id =' + JSON.stringify(e._id.$oid), 'color: white')
-      // console.log('%c onTableRow: _id =' + e._id.$oid, 'color: white')
-      this.$store.dispatch('setDdblClickedId', e._id.$oid)
-
-      this.calendar = true
-    },
-
-    // todo dostosować bo na razie tylko na żywca skopiowane
+    //!  dostosować bo na razie tylko na żywca skopiowane
     //allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
     allowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
 
-    onCalendarClose () {
-      // todo dostosować bo na razie tylko na żywca skopiowane
-      console.log('%c Tu onCalendarClose', 'color: lime')
-
-      this.calendar = false
-      /* setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      }, 300) */
+    onTableRow(e) {
+      console.log('%c onTableRow: id =' + e.id, 'color: white')
+      console.log('%c onTableRow: _id =' + e._id.$oid, 'color: white')
+      this.devId = e.id
+      this.devFirst = e.first
+      this.devLast = e.last
+      this.$store.dispatch('setDdblClickedId', e._id.$oid)
+      // this.$store.dispatch('setDdblClickedId', e.id)
+      this.calendar = true
     },
 
     onCalendarSave (item) {
-      // todo dostosować bo na razie tylko na żywca skopiowane
-      // console.log('%c Tu onCalendarSave', 'color: lime')
-      // console.log('%c item = ' + JSON.stringify(item), 'color: white')
       console.log('%c this.$store.getters.getDblClickedId = ' + this.$store.getters.getDblClickedId, 'color: white')
       console.log(this.picker)
 
-      /* if (this.editedIndex > -1) {
-        Object.assign(this.devs[this.editedIndex], this.editedItem)
-      }
-      else {
-        this.newDevs.push(this.editedItem)
-      } */
+      this.calendar = false
+      ajaxUpdateDates(this.$store.getters.getDblClickedId, this.picker)
+    },
 
-      //console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
-
-      // todo zapis rekordu na mLabie
-
+    onCalendarClose () {
+      console.log('%c Tu onCalendarClose', 'color: lime')
       this.calendar = false
     },
   }
@@ -277,6 +264,11 @@ export default {
 
   .theme--dark.v-table thead th {
     color: black;
+  }
+
+  #calendar_heading {
+    color: #2196F3;
+    margin: 0 0 10px 0
   }
 
 </style>
