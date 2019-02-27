@@ -245,13 +245,18 @@ export default {
     allowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
 
     onTableRow(e) {
-      console.log('%c onTableRow: id =' + e.id, 'color: white')
-      console.log('%c onTableRow: _id =' + e._id.$oid, 'color: white')
+      // console.log('%c onTableRow: id =' + e.id, 'color: white')
+      // console.log('%c onTableRow: _id =' + e._id.$oid, 'color: white')
+
+      console.log('%c onTableRow: dates =' + e.dates, 'color: white')
+
       this.devId = e.id
       this.devFirst = e.first
       this.devLast = e.last
       this.$store.dispatch('setDdblClickedId', e._id.$oid)
       // this.$store.dispatch('setDdblClickedId', e.id)
+      //this.picker = [ "2019-02-21" , "2019-02-23" , "2019-02-22"]
+      this.picker = e.dates || []
       this.calendar = true
     },
 
@@ -265,6 +270,8 @@ export default {
 
     onCalendarClose () {
       console.log('%c Tu onCalendarClose', 'color: lime')
+      console.log('%c this.picker = ' + this.picker, 'color: white')
+      this.picker = []
       this.calendar = false
     },
   }
