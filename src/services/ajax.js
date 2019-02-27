@@ -47,11 +47,13 @@ export const ajaxDelete = _id => {
   //console.log('%c _id = ', 'color: white')
   //console.log(_id.replace(/"/g, ''))
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-
   console.log('%c url = ' + url, 'color: white')
 
   axios.delete(url)
-    .then(res => console.log('Skasowany ziutex: ', res))
+    .then(res => {
+
+      console.log('Skasowany ziutex: ', res)
+    })
     .catch(err => console.log('Błąd: ', err))
 }
 

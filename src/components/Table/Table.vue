@@ -109,10 +109,29 @@ export default {
     },
 
     deleteItem (item) {
-      console.log('%c id = ' + JSON.stringify(item.id), 'color: violet')
-      console.log('%c _id = ' + JSON.stringify(item._id.$oid), 'color: violet')
+      //console.log('%c item = ' + JSON.stringify(item), 'color: violet')
+      console.log('%c id = ' + item.id, 'color: violet')
+      //console.log('%c _id = ' + item._id.$oid, 'color: violet')
+      // console.log('%c this.$store.getters.getDevs = ' + JSON.stringify(this.$store.getters.getDevs), 'color: white')
+
+      const devs = this.$store.getters.getDevs
+      // console.log('%c devs = ' + devs, 'color: violet')
+      console.log('%c devs.length = ' + devs.length, 'color: violet')
 
       confirm('Na pewno chcesz usunąć ten rekord ?') && ajaxDelete(JSON.stringify(item._id.$oid))
+
+      for(let i = 0; i < devs.length; i++) {
+
+        if (devs[i].id === item.id ) {
+          console.log('%c devs[i].id = ' + devs[i].id, 'color: white')
+          console.log('%c item.id = ' + item.id, 'color: white')
+          devs.splice(i, 1)
+          console.log('%c devs = ')
+          console.log(devs)
+          this.$store.commit('GET_DEVS', devs)
+        }
+      }
+
     },
 
     onTitle(e) {
