@@ -1,16 +1,16 @@
 import { LITERALS } from './constants'
 
 export const fetch = (context, selectedSkills = {}) => {
-  console.log('%c ajaxHelpers selectedSkills = ' + JSON.stringify(selectedSkills), 'color: lime')
+  //console.log('%c ajaxHelpers selectedSkills = ' + JSON.stringify(selectedSkills), 'color: lime')
 
   if (selectedSkills.paginationLimit) {
-    console.log('%c selectedSkills.paginationLimit = ' + selectedSkills.paginationLimit, 'color: lime')
+    //console.log('%c selectedSkills.paginationLimit = ' + selectedSkills.paginationLimit, 'color: lime')
 
     if (selectedSkills.paginationLimit > 1000) {
       const limit = Number(String(selectedSkills.paginationLimit).slice(1)) || 1000
       const skip = Number(selectedSkills.paginationLimit) - limit
-      console.log('%c skip = ' + skip, 'color: violet')
-      console.log('%c limit = ' + limit, 'color: violet')
+      //console.log('%c skip = ' + skip, 'color: violet')
+      //console.log('%c limit = ' + limit, 'color: violet')
       return LITERALS.PREFIX + `?s={id:1}&sk=${skip}&l=${limit}` + LITERALS.SUFFIX
     }
 

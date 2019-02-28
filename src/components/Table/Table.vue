@@ -58,7 +58,7 @@ export default {
     ranks: [5, 4, 3, 2, 1],
     skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
-    rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 3000],
+    rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 2085, 3000],
     pagination: {
       rowsPerPage: 10
     },
@@ -220,17 +220,10 @@ export default {
         Object.assign(this.devs[this.editedIndex], this.editedItem)
       }
       else {
-        // this.newDevs.push(this.editedItem)
         console.log('%c ajaxInsertDev', 'color: lime')
         ajaxInsertDev(this.editedItem)
       }
 
-      // console.log('%c this.newDevs = ' + JSON.stringify(this.newDevs), 'color: yellow')
-
-      // todo zapis rekordu na mLabie
-
-
-      // this.close()
       this.dialog = false
     },
 
@@ -238,8 +231,6 @@ export default {
       console.log('onEmail')
     },
 
-    //!  dostosować bo na razie tylko na żywca skopiowane
-    //allowedDates: val => parseInt(val.split('-')[2], 10) % 2 === 0,
     allowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
 
     onTableRow(e) {
@@ -272,10 +263,11 @@ export default {
       this.picker = []
       this.calendar = false
     },
+
     updatePagination(pagination) {
-      console.log('%c pagination = ' + pagination.rowsPerPage, 'color: white')
+      //console.log('%c pagination = ' + pagination.rowsPerPage, 'color: white')
       //if (pagination.rowsPerPage > 1000) {
-        console.log('Idź do mLaba ze skipem 1000 czy 2000')
+        //console.log('Idź do mLaba ze skipem 1000 czy 2000')
         this.$store.dispatch('getDevs', { paginationLimit: pagination.rowsPerPage })
       //}
     }

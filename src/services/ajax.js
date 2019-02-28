@@ -32,27 +32,27 @@ export const ajaxInsertDev = dev => {
       .catch(err => console.log('Error 1: ', err))
   }
 
-  const getLastDocument = async lastDocumentUrl => {
+  const getLastDocumentId = async lastDocumentUrl => {
     console.log('%c lastDocumentUrl = ' + lastDocumentUrl, 'color: white')
     return axios.get(lastDocumentUrl)
       .then(res => {
-        console.log('%c res.data = ' + JSON.stringify(res.data), 'color: orange')
-        return res.data
+        console.log('%c res.data[0].last = ' + JSON.stringify(res.data[0].last), 'color: orange')
+        console.log('%c res.data[0].id = ' + JSON.stringify(res.data[0].id), 'color: orange')
+        return res.data[0].id
       })
       .catch(err => console.log('Error 2: ', err))
   }
 
   const insertDocument = async (url, dev, lastDocumentId) => {
     console.log('%c url = ' + JSON.stringify(url), 'color: orange')
-    console.log('%c stary dev = ' + JSON.stringify(dev), 'color: orange')
-    console.log('%c new lastDocumentId = ' + JSON.stringify(lastDocumentId), 'color: orange')
-    dev.id = lastDocumentId
+    console.log('%c dev = ' + JSON.stringify(dev), 'color: orange')
+    console.log('%c lastDocumentId = ' + JSON.stringify(lastDocumentId), 'color: orange')
+    dev.id = lastDocumentId + 1
     console.log('%c nowy dev = ' + JSON.stringify(dev), 'color: orange')
 
     return axios.post(url, dev)
       .then(res => {
-        console.log(res)
-        console.log(res.data)
+        console.log(JSON.stringify(res.data))
         alert('Dane zostały zapisane na serwerze')
       })
       .catch(err =>  {
@@ -62,15 +62,11 @@ export const ajaxInsertDev = dev => {
 
   async function insertDev() {
     try {
-      const count = await getCount()
+      const count = await getCount() -1
 
-      const lastDocument = await getLastDocument(LITERALS.PREFIX + `?sk=${count - 1}` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI')
+      const lastDocumentId = await getLastDocumentId(LITERALS.PREFIX + `?sk=${count}` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI')
 
-      /* console.log('%c lastDocumentId = ' + lastDocumentId, 'color: orange')
-      console.log('%c lastDocumentId + 1 = ' + lastDocumentId + 1, 'color: orange')
-      */
-
-      //await insertDocument(url, dev, lastDocument.id)
+      await insertDocument(url, dev, lastDocumentId)
     }
     catch (err) {
       console.log('Wystapił błąd: ', err)

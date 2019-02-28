@@ -28,7 +28,7 @@ export default new Vuex.Store({
   },
   actions: {
     getDevs(context, selectedSkills) {
-      console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
+      //console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
       ajaxGetDevs(context, selectedSkills)
     },
     setDdblClickedId(context, _id) {
