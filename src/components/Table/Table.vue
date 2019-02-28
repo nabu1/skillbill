@@ -30,7 +30,7 @@ export default {
       { text: 'Skill 3', sortable: true, value: 'rank_3' },
       { text: 'Rank 3', sortable: false, value: 'rank_3' },
       //{ text: 'City', sortable: true, value: 'city' },
-      { text: 'Picture', sortable: false, value: 'picture' }
+      //{ text: 'Picture', sortable: false, value: 'picture' }
     ],
     editedIndex: -1,
     editedItem: {
@@ -58,7 +58,7 @@ export default {
     ranks: [5, 4, 3, 2, 1],
     skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
-    rowsPerPageItems: [10, 25, 100, 1000],
+    rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 3000],
     pagination: {
       rowsPerPage: 10
     },
@@ -272,6 +272,13 @@ export default {
       this.picker = []
       this.calendar = false
     },
+    updatePagination(pagination) {
+      console.log('%c pagination = ' + pagination.rowsPerPage, 'color: white')
+      if (pagination.rowsPerPage > 1000) {
+        console.log('Idź do mLaba ze skipem 1000 czy 2000')
+        this.$store.dispatch('getDevs', { paginationLimit: pagination.rowsPerPage })
+      }
+    }
   }
 }
 </script>
