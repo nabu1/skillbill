@@ -5,16 +5,16 @@ export const fetch = (context, selectedSkills = {}) => {
 
   if (selectedSkills.paginationLimit) {
     console.log('%c selectedSkills.paginationLimit = ' + selectedSkills.paginationLimit, 'color: lime')
-    const limit = Number(String(selectedSkills.paginationLimit).slice(1)) || 1000
-    const skip = Number(selectedSkills.paginationLimit) - limit
-    console.log('%c skip = ' + skip, 'color: violet')
-    console.log('%c limit = ' + limit, 'color: violet')
-    //return LITERALS.PREFIX + '?s={id:1}&sk=1000&l=1000' + LITERALS.SUFFIX
 
-    const query = LITERALS.PREFIX + `?s={id:1}&sk=${skip}&l=${limit}` + LITERALS.SUFFIX
+    if (selectedSkills.paginationLimit > 1000) {
+      const limit = Number(String(selectedSkills.paginationLimit).slice(1)) || 1000
+      const skip = Number(selectedSkills.paginationLimit) - limit
+      console.log('%c skip = ' + skip, 'color: violet')
+      console.log('%c limit = ' + limit, 'color: violet')
+      return LITERALS.PREFIX + `?s={id:1}&sk=${skip}&l=${limit}` + LITERALS.SUFFIX
+    }
 
-    console.log('%c query = ' + query, 'color: violet')
-    return query
+    return LITERALS.PREFIX + '?s={id:1}&l=1000' + LITERALS.SUFFIX
   }
 
   let query = ''
@@ -57,7 +57,7 @@ export const fetch = (context, selectedSkills = {}) => {
 
 
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
-  console.log('%c urlString =  ' + urlString, 'color: lime')
+  console.log('%c urlString = ' + urlString, 'color: lime')
 
   return urlString
 }

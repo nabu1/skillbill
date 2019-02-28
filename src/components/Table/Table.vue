@@ -274,10 +274,10 @@ export default {
     },
     updatePagination(pagination) {
       console.log('%c pagination = ' + pagination.rowsPerPage, 'color: white')
-      if (pagination.rowsPerPage > 1000) {
+      //if (pagination.rowsPerPage > 1000) {
         console.log('Idź do mLaba ze skipem 1000 czy 2000')
         this.$store.dispatch('getDevs', { paginationLimit: pagination.rowsPerPage })
-      }
+      //}
     }
   }
 }
