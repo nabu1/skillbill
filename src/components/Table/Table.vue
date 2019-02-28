@@ -101,9 +101,7 @@ export default {
     },
 
     editItem (item) {
-      console.log('%c editItem = ' + item, 'color: violet')
-
-      this.editedIndex = this.desserts.indexOf(item)
+      console.log('%c editItem = ' + JSON.stringify(item), 'color: violet')
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
@@ -200,8 +198,8 @@ export default {
       this.$store.commit('GET_DEVS', this.selected)
 
     },
-    onNewDev() {
-      console.log('%c onNewDev = ' + onNewDev, 'color: lime')
+    onNewDev(item) {
+      console.log('%c onNewDev', 'color: lime')
     },
 
     onNewDevClose () {

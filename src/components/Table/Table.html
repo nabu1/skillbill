@@ -28,9 +28,9 @@
             <v-btn @click="onEmail" color="primary" dark class="mt-3">Email</v-btn>
         </v-layout>
 
-      <!----------- NEW DEV MODAL                   ------------------------------------------------------------>
+      <!----------- NEW DEV MODAL i BATON NEW DEV   ------------------------------------------------------------>
           <v-dialog v-model="dialog" max-width="500px">
-            <v-btn  @click="onNewDevx" slot="activator" color="primary" dark class="mt-3 mr-0">New Dev</v-btn>
+            <v-btn  @click="onNewDev" slot="activator" color="primary" dark class="mt-3 mr-0">New Dev</v-btn>
 
             <v-card>
               <v-card-title>
@@ -124,7 +124,7 @@
         </v-dialog>
 
         </v-toolbar>
-      <!----------- TABLE                           ------------------------------------------------------------>
+      <!----------- SELECTY SKILL i RANK            ------------------------------------------------------------>
         <div >
         <v-layout class="filters-row" >
           <div style="width: 230px"></div>
@@ -160,6 +160,8 @@
 
         </v-layout>
         </div>
+
+      <!----------- DATA TABLE                      ------------------------------------------------------------>
 
         <v-data-table :headers="headers"
                       :items="devs"
