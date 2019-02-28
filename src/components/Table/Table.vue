@@ -1,7 +1,7 @@
 <template src="./Table.html"></template>
 
 <script>
-import { ajaxInsertDev, ajaxDelete, ajaxUpdateDates } from '../../services/ajax'
+import { ajaxInsertDev, ajaxDeleteDev, ajaxUpdateDev } from '../../services/ajax'
 
 
 export default {
@@ -116,7 +116,7 @@ export default {
       // console.log('%c devs = ' + devs, 'color: violet')
       console.log('%c devs.length = ' + devs.length, 'color: violet')
 
-      confirm('Na pewno chcesz usunąć ten rekord ?') && ajaxDelete(JSON.stringify(item._id.$oid))
+      confirm('Na pewno chcesz usunąć ten rekord ?') && ajaxDeleteDev(JSON.stringify(item._id.$oid))
 
       for(let i = 0; i < devs.length; i++) {
 
@@ -215,9 +215,11 @@ export default {
       console.log('%c Tu save', 'color: lime')
       console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
       console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
+      console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: yellow')
 
-      if (this.editedIndex > -1) {
-        Object.assign(this.devs[this.editedIndex], this.editedItem)
+      if (this.editedItem.id) {
+        console.log('%c Editing Dev', 'color: lime')
+        ajaxUpdateDev(this.editedItem)
       }
       else {
         console.log('%c ajaxInsertDev', 'color: lime')

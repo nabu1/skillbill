@@ -110,7 +110,7 @@ export const ajaxInsertDev = dev => {
   //   })
 }
 
-export const ajaxDelete = _id => {
+export const ajaxDeleteDev = _id => {
   //console.log('%c _id = ', 'color: white')
   //console.log(_id.replace(/"/g, ''))
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
@@ -123,6 +123,28 @@ export const ajaxDelete = _id => {
     })
     .catch(err => console.log('Błąd: ', err))
 }
+
+export const ajaxUpdateDev = dev => {
+  const axios = require('axios')
+  axios.defaults.headers.post['Content-Type'] = 'application/json'
+
+  console.log('%c ajaxUpdateDev dev = ' + JSON.stringify(dev), 'color: orange')
+  console.log('%c ajaxUpdateDev dev._id = ' + JSON.stringify(dev._id.$oid), 'color: orange')
+
+  const url = `${LITERALS.PREFIX}/${dev._id.$oid.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  console.log('%c ajaxUpdateDev url = ' + url, 'color: orange')
+
+  axios.put(url, dev)
+  // axios.put(url, JSON.stringify(dates))
+    .then(res => {
+      console.log(res.data)
+      alert('Dane zostały uaktualnione')
+    })
+    .catch(err =>  {
+      alert('Błąd zapisu dat na serwerze: ', err)
+    })
+}
+
 
 //export const ajaxUpdateDates = (_id, dates) => {
 export const ajaxUpdateDates = (_id, dates) => {
