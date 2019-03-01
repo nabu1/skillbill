@@ -43,7 +43,7 @@ export default new Vuex.Store({
 
     insertDev(context, dev) {
       console.log('%c dev = ' + JSON.stringify(dev), 'color: white')
-      ajaxUpdateDev(context, dev)
+      ajaxInsertDev(context, dev)
     },
 
     updateDev(context, dev) {

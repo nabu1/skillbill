@@ -140,17 +140,17 @@ export default {
     },
 
     onNewDev(item) {
-      console.log('%c onNewDev', 'color: lime')
+      // console.log('%c onNewDev', 'color: lime')
     },
 
     onNewDevSave () {
-      console.log('%c Tu save', 'color: lime')
+      //console.log('%c Tu save', 'color: lime')
       // console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
       // console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
       // console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: yellow')
 
-      const devs = this.$store.getters.readDevs
-      console.log('%c devs.length = ' + devs.length, 'color: violet')
+      //const devs = this.$store.getters.readDevs
+      //console.log('%c devs.length = ' + devs.length, 'color: violet')
 
       if (!this.editedItem.id) {
         console.log('%c Inserting Dev', 'color: lime')
