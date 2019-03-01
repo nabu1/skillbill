@@ -9,13 +9,7 @@ export default {
   data: () => ({
     expand: false,
     selected: [],
-    selectedSkills: {},
-    skill_1: '',
-    rank_1: '',
-    skill_2: '',
-    rank_2: '',
-    skill_3: '',
-    rank_3: '',
+    
     dialog: false,
     search: '',
     headers: [
@@ -56,9 +50,6 @@ export default {
       skill_3: '',
       rank_3: ''
     },
-    ranks: [5, 4, 3, 2, 1],
-    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
-    title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
     rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 2085, 3000],
     pagination: {
       rowsPerPage: 10
@@ -99,32 +90,7 @@ export default {
       // console.log('%c onTitle = ' + e, 'color: yellow')
       this.selectedSkills.title = e
     },
-    onSkill_1(e) {
-      // console.log('%c onSkill_1 = ' + e, 'color: yellow')
-      this.selectedSkills.skill_1 = e
-    },
-    onRank_1(e) {
-      // console.log('%c onRank_1 = ' + e, 'color: yellow')
-      this.selectedSkills.rank_1 = e
 
-      this.console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
-    },
-    onSkill_2(e) {
-      // console.log('%c onSkill_2 = ' + e, 'color: yellow')
-      this.selectedSkills.skill_2 = e
-    },
-    onRank_2(e) {
-      // console.log('%c onRank_2 = ' + e, 'color: yellow')
-      this.selectedSkills.rank_2 = e
-    },
-    onSkill_3(e) {
-      // console.log('%c onSkill_3 = ' + e, 'color: yellow')
-      this.selectedSkills.skill_3 = e
-    },
-    onRank_3(e) {
-      // console.log('%c onRank_3 = ' + e, 'color: yellow')
-      this.selectedSkills.rank_3 = e
-    },
     onSelected() {
       // console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
       this.$store.commit('READ_DEVS', this.selected)
@@ -173,24 +139,6 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
-    },
-
-    onSearch() {
-      // console.log('%c onSearch ', 'color: lime')
-      // console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: orange')
-      this.$store.dispatch('readDevs', this.selectedSkills)
-    },
-
-    onClear() {
-      // console.log('%c this.skill_1 = ' + this.skill_1, 'color: lime')
-      // console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
-      this.selectedSkills = {}
-      this.skill_1 = null
-      this.skill_2 = null
-      this.skill_3 = null
-      this.rank_1 = null
-      this.rank_2 = null
-      this.rank_3 = null
     },
 
     calendarAllowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
@@ -258,13 +206,14 @@ export default {
     background-color: grey;
   }
 
-  .theme--dark.v-table thead th {
-    color: black;
-  }
-
   #calendar_heading {
     color: #2196F3;
     margin: 0 0 10px 0
+  }
+
+  #app {
+    margin-top: 0px !important;
+    margin-bottom: 0px;
   }
 
 </style>
