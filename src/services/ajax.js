@@ -2,7 +2,7 @@ import axios from 'axios'
 import { LITERALS } from '../services/constants'
 import { fetch } from './ajaxHelpers'
 
-export const ajaxGetDevs = (context, selectedSkills) => {
+export const ajaxReadDevs = (context, selectedSkills) => {
   axios
     .get(fetch(context, selectedSkills))
     .then(res => {
@@ -11,6 +11,48 @@ export const ajaxGetDevs = (context, selectedSkills) => {
     .catch(err => console.log('My error: ', err))
     .finally(() => {
       //context.commit('SET_LOADING', false)
+    })
+}
+
+export const ajaxDeleteDev = (context, item) => {
+  //console.log('%c _id = ', 'color: white')
+  //console.log(_id.replace(/"/g, ''))
+  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  console.log('%c url = ' + url, 'color: white')
+
+  axios.delete(url)
+    .then(res => {
+      console.log('Skasowany ziutex: ', res)
+      updateView(this.$store.getters.readDevs, item)
+    })
+    .catch(err => console.log('Błąd: ', err))
+}
+
+export const ajaxUpdateDates = (_id, dates) => {
+  console.log('%c dates = ', 'color: orange')
+  console.log(dates)
+  console.log('%c _id = ' + _id, 'color: orange')
+  // console.log('%c id = ' + id, 'color: orange')
+
+  const axios = require('axios')
+  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  axios.defaults.headers.post['Content-Type'] = 'application/json'
+  //const url = `${LITERALS.PREFIX}/id=${id}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+
+  console.log('%c url = ' + url, 'color: white')
+
+  const datesObj = { "$set": { "dates": dates } }
+
+
+  axios.put(url, datesObj)
+    // axios.put(url, JSON.stringify(dates))
+    .then(res => {
+      console.log(res)
+      console.log(res.data)
+      alert('Daty zostały zapisane na serwerze')
+    })
+    .catch(err => {
+      alert('Błąd zapisu dat na serwerze: ', err)
     })
 }
 
@@ -110,20 +152,6 @@ export const ajaxInsertDev = dev => {
   //   })
 }
 
-export const ajaxDeleteDev = (context, item) => {
-  //console.log('%c _id = ', 'color: white')
-  //console.log(_id.replace(/"/g, ''))
-  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  console.log('%c url = ' + url, 'color: white')
-
-  axios.delete(url)
-    .then(res => {
-      console.log('Skasowany ziutex: ', res)
-      updateView(this.$store.getters.readDevs, item)
-    })
-    .catch(err => console.log('Błąd: ', err))
-}
-
 export const ajaxUpdateDev = (context, dev) => {
   const axios = require('axios')
   axios.defaults.headers.post['Content-Type'] = 'application/json'
@@ -148,34 +176,6 @@ export const ajaxUpdateDev = (context, dev) => {
       console.log(res.data)
       context.commit('READ_DEVS', devs)
       alert('Dane zostały uaktualnione')
-    })
-    .catch(err => {
-      alert('Błąd zapisu dat na serwerze: ', err)
-    })
-}
-
-export const ajaxUpdateDates = (_id, dates) => {
-  console.log('%c dates = ', 'color: orange')
-  console.log(dates)
-  console.log('%c _id = ' + _id, 'color: orange')
-  // console.log('%c id = ' + id, 'color: orange')
-
-  const axios = require('axios')
-  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  axios.defaults.headers.post['Content-Type'] = 'application/json'
-  //const url = `${LITERALS.PREFIX}/id=${id}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-
-  console.log('%c url = ' + url, 'color: white')
-
-  const datesObj = { "$set": { "dates": dates } }
-
-
-  axios.put(url, datesObj)
-    // axios.put(url, JSON.stringify(dates))
-    .then(res => {
-      console.log(res)
-      console.log(res.data)
-      alert('Daty zostały zapisane na serwerze')
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)

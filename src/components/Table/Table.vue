@@ -92,7 +92,6 @@ export default {
 
   created () {
     this.$store.dispatch('readDevs')
-    //this.devs = this.$store.getters.readDevs
   },
 
   methods: {
@@ -100,51 +99,42 @@ export default {
       // console.log('%c onTitle = ' + e, 'color: yellow')
       this.selectedSkills.title = e
     },
-
     onSkill_1(e) {
       // console.log('%c onSkill_1 = ' + e, 'color: yellow')
       this.selectedSkills.skill_1 = e
     },
-
     onRank_1(e) {
       // console.log('%c onRank_1 = ' + e, 'color: yellow')
       this.selectedSkills.rank_1 = e
 
       this.console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
     },
-
     onSkill_2(e) {
       // console.log('%c onSkill_2 = ' + e, 'color: yellow')
       this.selectedSkills.skill_2 = e
     },
-
     onRank_2(e) {
       // console.log('%c onRank_2 = ' + e, 'color: yellow')
       this.selectedSkills.rank_2 = e
     },
-
     onSkill_3(e) {
       // console.log('%c onSkill_3 = ' + e, 'color: yellow')
       this.selectedSkills.skill_3 = e
     },
-
     onRank_3(e) {
       // console.log('%c onRank_3 = ' + e, 'color: yellow')
       this.selectedSkills.rank_3 = e
     },
-
     onSelected() {
       // console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
       this.$store.commit('READ_DEVS', this.selected)
     },
-
     onResetSelected() {
       // console.log('%c onResetSelected', 'color: lime')
       this.selected = []
       this.$store.commit('READ_DEVS', this.selected)
 
     },
-
     onEmail() {
       console.log('onEmail')
     },
@@ -162,14 +152,15 @@ export default {
       const devs = this.$store.getters.readDevs
       console.log('%c devs.length = ' + devs.length, 'color: violet')
 
-      if (this.editedItem.id) {
-        console.log('%c Editing Dev', 'color: lime')
-        // ajaxUpdateDev(this.editedItem)
-        this.$store.dispatch('updateDev', this.editedItem)
+      if (!this.editedItem.id) {
+        console.log('%c Inserting Dev', 'color: lime')
+        this.$store.dispatch('insertDev', this.editedItem)
+        //ajaxInsertDev(this.editedItem)
       }
       else {
-        console.log('%c ajaxInsertDev', 'color: lime')
-        ajaxInsertDev(this.editedItem)
+        console.log('%c Updating Dev', 'color: lime')
+        // ajaxUpdateDev(this.editedItem)
+        this.$store.dispatch('updateDev', this.editedItem)
       }
 
       this.dialog = false
@@ -251,11 +242,7 @@ export default {
     },
 
     updatePagination(pagination) {
-      //console.log('%c pagination = ' + pagination.rowsPerPage, 'color: white')
-      //if (pagination.rowsPerPage > 1000) {
-        //console.log('Idź do mLaba ze skipem 1000 czy 2000')
-        this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
-      //}
+      this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
     }
   }
 }
