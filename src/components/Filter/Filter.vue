@@ -50,7 +50,7 @@
       },
       onClear() {
         // console.log('%c this.skill_1 = ' + this.skill_1, 'color: lime')
-        // console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
+        console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
         this.selectedSkills = {}
         this.skill_1 = null
         this.skill_2 = null

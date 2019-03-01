@@ -22,44 +22,44 @@
 
                 <v-flex xs12 sm6 md4>
                   <v-select v-model="editedItem.title" :items="title"
-                    @change="onNewTitle" label="Title" standard
+                    label="Title" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
                   <v-select v-model="editedItem.skill_1" :items="skills"
-                    @change="onNewSkill_1" label="Skill 1" standard
+                    label="Skill 1" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
 
                 <v-flex xs12 sm6 md4>
                   <v-select v-model="editedItem.rank_1" :items="ranks"
-                    @change="onRank_1" label="Rank 1" standard class="filters"
+                    label="Rank 1" standard class="filters"
                     clearable dense></v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
                   <v-select v-model="editedItem.skill_2" :items="skills"
-                    @change="onNewSkill_2" label="Skill 2" standard
+                    label="Skill 2" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
                   <v-select v-model="editedItem.rank_2" :items="ranks"
-                    @change="onRank_2" label="Rank 2" standard class="filters"
+                    label="Rank 2" standard class="filters"
                     clearable dense></v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
                   <v-select v-model="editedItem.skill_3" :items="skills"
-                    @change="onNewSkill_3" label="Skill 3" standard
+                    label="Skill 3" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
                   <v-select v-model="editedItem.rank_3" :items="ranks"
-                    @change="onRank_3" label="Rank 3" standard class="filters"
+                    label="Rank 3" standard class="filters"
                     clearable dense></v-select>
                 </v-flex>
 
@@ -84,17 +84,17 @@
 
         <v-card>
           <v-card-title>
-            <h3 id="calendar_heading">#{{ devId }}&nbsp;&nbsp;&nbsp;&nbsp;{{
-              devFirst }} {{ devLast }} </h3>
+            <h3 id="calendar_heading">#{{ devId }}&nbsp;&nbsp;&nbsp;&nbsp;{{ devFirst }} {{ devLast }} </h3>
+
             <v-date-picker v-model="picker"
-              :landscape="landscape"
-              :reactive="reactive"
+              :landscape="true"
+              :reactive="true"
               :allowed-dates="calendarAllowedDates"
               multiple
               min="2019-01-15"
               max="2020-12-31">
-
             </v-date-picker>
+
           </v-card-title>
 
           <v-card-actions>
@@ -107,6 +107,7 @@
       </v-dialog>
 
 <!----------- DATA TABLE                      ------------------------------------------------------------>
+
       <v-data-table :headers="headers"
         :items="devs"
         :search="search"
@@ -119,7 +120,11 @@
         dark>
 
         <template slot="items" slot-scope="props">
-          <tr @dblclick="onCalendar(props.item)">
+          <tr :active="props.selected"
+              @click="props.selected = !props.selected"
+              @dblclick="onCalendar(props.item)"
+              @change="onCheckbox(props.item)">
+
             <td>
               <v-checkbox v-model="props.selected"
                 primary

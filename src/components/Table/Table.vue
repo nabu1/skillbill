@@ -9,7 +9,6 @@ export default {
   data: () => ({
     expand: false,
     selected: [],
-    
     dialog: false,
     search: '',
     headers: [
@@ -50,6 +49,9 @@ export default {
       skill_3: '',
       rank_3: ''
     },
+    ranks: [5, 4, 3, 2, 1],
+    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
+    title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
     rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 2085, 3000],
     pagination: {
       rowsPerPage: 10
@@ -86,61 +88,6 @@ export default {
   },
 
   methods: {
-    onTitle(e) {
-      // console.log('%c onTitle = ' + e, 'color: yellow')
-      this.selectedSkills.title = e
-    },
-
-    onSelected() {
-      // console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
-      this.$store.commit('READ_DEVS', this.selected)
-    },
-    onResetSelected() {
-      // console.log('%c onResetSelected', 'color: lime')
-      this.selected = []
-      this.$store.commit('READ_DEVS', this.selected)
-
-    },
-    onEmail() {
-      console.log('onEmail')
-    },
-
-    onNewDev(item) {
-      // console.log('%c onNewDev', 'color: lime')
-    },
-
-    onNewDevSave () {
-      //console.log('%c Tu save', 'color: lime')
-      // console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
-      // console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
-      // console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: yellow')
-
-      //const devs = this.$store.getters.readDevs
-      //console.log('%c devs.length = ' + devs.length, 'color: violet')
-
-      if (!this.editedItem.id) {
-        console.log('%c Inserting Dev', 'color: lime')
-        this.$store.dispatch('insertDev', this.editedItem)
-        //ajaxInsertDev(this.editedItem)
-      }
-      else {
-        console.log('%c Updating Dev', 'color: lime')
-        // ajaxUpdateDev(this.editedItem)
-        this.$store.dispatch('updateDev', this.editedItem)
-      }
-
-      this.dialog = false
-    },
-
-    onNewDevClose () {
-      console.log('%c Tu close', 'color: lime')
-      this.dialog = false
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      }, 300)
-    },
-
     calendarAllowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
 
     onCalendar(e) {
@@ -173,6 +120,8 @@ export default {
 
     onEditItem (item) {
       console.log('Tu editItem')
+      console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: yellow')
+
       //console.log('%c this.$store.getters.readDevs = ' + this.$store.getters.readDevs.length, 'color: yellow')
       //console.log('%c editItem = ' + JSON.stringify(item), 'color: violet')
       this.editedItem = Object.assign({}, item)
@@ -189,8 +138,45 @@ export default {
       }
     },
 
+    onNewDevSave () {
+      //console.log('%c Tu save', 'color: lime')
+      // console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
+      // console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
+      console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: lime')
+
+      //const devs = this.$store.getters.readDevs
+      //console.log('%c devs.length = ' + devs.length, 'color: violet')
+
+      if (!this.editedItem.id) {
+        console.log('%c Inserting Dev', 'color: lime')
+        this.$store.dispatch('insertDev', this.editedItem)
+        //ajaxInsertDev(this.editedItem)
+      }
+      else {
+        console.log('%c Updating Dev', 'color: lime')
+        // ajaxUpdateDev(this.editedItem)
+        this.$store.dispatch('updateDev', this.editedItem)
+      }
+
+      this.dialog = false
+    },
+
+    onNewDevClose () {
+      console.log('%c Tu close', 'color: lime')
+      this.dialog = false
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+    },
+
     updatePagination(pagination) {
       this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
+    },
+
+    onCheckbox(item) {
+      console.log('%c onCheckbox = ' + onCheckbox, 'color: lime')
+      this.selected = !this.selected
     }
   }
 }
