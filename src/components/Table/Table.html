@@ -105,7 +105,7 @@
               <v-date-picker v-model="picker"
                              :landscape="landscape"
                              :reactive="reactive"
-                             :allowed-dates="allowedDates"
+                             :allowed-dates="calendarAllowedDates"
                              multiple
                              min="2019-01-15"
                              max="2020-12-31"
@@ -175,7 +175,7 @@
                       dark>
 
           <template slot="items" slot-scope="props">
-            <tr @dblclick="onTableRow(props.item)">
+            <tr @dblclick="onCalendar(props.item)">
               <td>
                 <v-checkbox v-model="props.selected"
                             primary
@@ -201,12 +201,12 @@
               <td class="justify-center layout px-0">
                 <v-icon small
                         class="mr-2"
-                        @click="editItem(props.item)">
+                        @click="onEditItem(props.item)">
                         edit
                 </v-icon>
 
                 <v-icon small
-                        @click="deleteItem(props.item)">
+                        @click="onDeleteItem(props.item)">
                         delete
                 </v-icon>
               </td>

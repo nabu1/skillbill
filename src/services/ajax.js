@@ -6,7 +6,7 @@ export const ajaxGetDevs = (context, selectedSkills) => {
   axios
     .get(fetch(context, selectedSkills))
     .then(res => {
-      context.commit('GET_DEVS', res.data)
+      context.commit('READ_DEVS', res.data)
     })
     .catch(err => console.log('My error: ', err))
     .finally(() => {
@@ -55,14 +55,14 @@ export const ajaxInsertDev = dev => {
         console.log(JSON.stringify(res.data))
         alert('Dane zostały zapisane na serwerze')
       })
-      .catch(err =>  {
+      .catch(err => {
         alert('Błąd zapisu na serwerze: ', err)
       })
   }
 
   async function insertDev() {
     try {
-      const count = await getCount() -1
+      const count = await getCount() - 1
 
       const lastDocumentId = await getLastDocumentId(LITERALS.PREFIX + `?sk=${count}` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI')
 
@@ -110,7 +110,7 @@ export const ajaxInsertDev = dev => {
   //   })
 }
 
-export const ajaxDeleteDev = _id => {
+export const ajaxDeleteDev = (context, item) => {
   //console.log('%c _id = ', 'color: white')
   //console.log(_id.replace(/"/g, ''))
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
@@ -118,13 +118,13 @@ export const ajaxDeleteDev = _id => {
 
   axios.delete(url)
     .then(res => {
-
       console.log('Skasowany ziutex: ', res)
+      updateView(this.$store.getters.readDevs, item)
     })
     .catch(err => console.log('Błąd: ', err))
 }
 
-export const ajaxUpdateDev = dev => {
+export const ajaxUpdateDev = (context, dev) => {
   const axios = require('axios')
   axios.defaults.headers.post['Content-Type'] = 'application/json'
 
@@ -134,19 +134,26 @@ export const ajaxUpdateDev = dev => {
   const url = `${LITERALS.PREFIX}/${dev._id.$oid.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   console.log('%c ajaxUpdateDev url = ' + url, 'color: orange')
 
+  //let devs = context.getters.readDevs.
+  let devs = context.getters.readDevs.push(dev)
+  console.log('%c devs.length PRZED = ' + devs.length, 'color: yellow')
+  //devs.push(dev)
+  //console.log('%c devs.length PO = ' + devs.length, 'color: yellow')
+  //devs.concatenate(dev)
+  //console.log('%c devs.length PO = ' + devs.length, 'color: white')
+
   axios.put(url, dev)
-  // axios.put(url, JSON.stringify(dates))
+    // axios.put(url, JSON.stringify(dates))
     .then(res => {
       console.log(res.data)
+      context.commit('READ_DEVS', devs)
       alert('Dane zostały uaktualnione')
     })
-    .catch(err =>  {
+    .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
     })
 }
 
-
-//export const ajaxUpdateDates = (_id, dates) => {
 export const ajaxUpdateDates = (_id, dates) => {
   console.log('%c dates = ', 'color: orange')
   console.log(dates)
@@ -160,17 +167,17 @@ export const ajaxUpdateDates = (_id, dates) => {
 
   console.log('%c url = ' + url, 'color: white')
 
-  const datesObj = { "$set" : { "dates" : dates } }
+  const datesObj = { "$set": { "dates": dates } }
 
 
   axios.put(url, datesObj)
-  // axios.put(url, JSON.stringify(dates))
+    // axios.put(url, JSON.stringify(dates))
     .then(res => {
       console.log(res)
       console.log(res.data)
       alert('Daty zostały zapisane na serwerze')
     })
-    .catch(err =>  {
+    .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
     })
 }

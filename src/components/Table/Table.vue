@@ -2,6 +2,7 @@
 
 <script>
 import { ajaxInsertDev, ajaxDeleteDev, ajaxUpdateDev } from '../../services/ajax'
+import { updateView } from '../../services/helpers'
 
 
 export default {
@@ -73,7 +74,7 @@ export default {
 
   computed: {
     devs () {
-      return this.$store.getters.getDevs
+      return this.$store.getters.readDevs
     },
     formTitle () {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
@@ -90,48 +91,11 @@ export default {
   },
 
   created () {
-    this.initialize()
-    this.devs = this.$store.getters.getDevs
+    this.$store.dispatch('readDevs')
+    //this.devs = this.$store.getters.readDevs
   },
 
   methods: {
-    initialize () {
-      this.$store.dispatch('getDevs')
-      //this.$store.dispatch('setLoading', true)
-    },
-
-    editItem (item) {
-      console.log('%c editItem = ' + JSON.stringify(item), 'color: violet')
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
-    },
-
-    deleteItem (item) {
-      //console.log('%c item = ' + JSON.stringify(item), 'color: violet')
-      console.log('%c id = ' + item.id, 'color: violet')
-      //console.log('%c _id = ' + item._id.$oid, 'color: violet')
-      // console.log('%c this.$store.getters.getDevs = ' + JSON.stringify(this.$store.getters.getDevs), 'color: white')
-
-      const devs = this.$store.getters.getDevs
-      // console.log('%c devs = ' + devs, 'color: violet')
-      console.log('%c devs.length = ' + devs.length, 'color: violet')
-
-      confirm('Na pewno chcesz usunąć ten rekord ?') && ajaxDeleteDev(JSON.stringify(item._id.$oid))
-
-      for(let i = 0; i < devs.length; i++) {
-
-        if (devs[i].id === item.id ) {
-          console.log('%c devs[i].id = ' + devs[i].id, 'color: white')
-          console.log('%c item.id = ' + item.id, 'color: white')
-          devs.splice(i, 1)
-          console.log('%c devs = ')
-          console.log(devs)
-          this.$store.commit('GET_DEVS', devs)
-        }
-      }
-
-    },
-
     onTitle(e) {
       // console.log('%c onTitle = ' + e, 'color: yellow')
       this.selectedSkills.title = e
@@ -169,10 +133,61 @@ export default {
       this.selectedSkills.rank_3 = e
     },
 
+    onSelected() {
+      // console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
+      this.$store.commit('READ_DEVS', this.selected)
+    },
+
+    onResetSelected() {
+      // console.log('%c onResetSelected', 'color: lime')
+      this.selected = []
+      this.$store.commit('READ_DEVS', this.selected)
+
+    },
+
+    onEmail() {
+      console.log('onEmail')
+    },
+
+    onNewDev(item) {
+      console.log('%c onNewDev', 'color: lime')
+    },
+
+    onNewDevSave () {
+      console.log('%c Tu save', 'color: lime')
+      // console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
+      // console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
+      // console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: yellow')
+
+      const devs = this.$store.getters.readDevs
+      console.log('%c devs.length = ' + devs.length, 'color: violet')
+
+      if (this.editedItem.id) {
+        console.log('%c Editing Dev', 'color: lime')
+        // ajaxUpdateDev(this.editedItem)
+        this.$store.dispatch('updateDev', this.editedItem)
+      }
+      else {
+        console.log('%c ajaxInsertDev', 'color: lime')
+        ajaxInsertDev(this.editedItem)
+      }
+
+      this.dialog = false
+    },
+
+    onNewDevClose () {
+      console.log('%c Tu close', 'color: lime')
+      this.dialog = false
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
+    },
+
     onSearch() {
       // console.log('%c onSearch ', 'color: lime')
       // console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: orange')
-      this.$store.dispatch('getDevs', this.selectedSkills)
+      this.$store.dispatch('readDevs', this.selectedSkills)
     },
 
     onClear() {
@@ -187,59 +202,10 @@ export default {
       this.rank_3 = null
     },
 
-    onSelected() {
-      // console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
-      this.$store.commit('GET_DEVS', this.selected)
-    },
+    calendarAllowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
 
-    onResetSelected() {
-      // console.log('%c onResetSelected', 'color: lime')
-      this.selected = []
-      this.$store.commit('GET_DEVS', this.selected)
-
-    },
-    onNewDev(item) {
-      console.log('%c onNewDev', 'color: lime')
-    },
-
-    onNewDevClose () {
-      console.log('%c Tu close', 'color: lime')
-      this.dialog = false
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      }, 300)
-    },
-
-    onNewDevSave () {
-      console.log('%c Tu save', 'color: lime')
-      console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
-      console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
-      console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: yellow')
-
-      if (this.editedItem.id) {
-        console.log('%c Editing Dev', 'color: lime')
-        ajaxUpdateDev(this.editedItem)
-      }
-      else {
-        console.log('%c ajaxInsertDev', 'color: lime')
-        ajaxInsertDev(this.editedItem)
-      }
-
-      this.dialog = false
-    },
-
-    onEmail() {
-      console.log('onEmail')
-    },
-
-    allowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
-
-    onTableRow(e) {
-      // console.log('%c onTableRow: id =' + e.id, 'color: white')
-      // console.log('%c onTableRow: _id =' + e._id.$oid, 'color: white')
-
-      console.log('%c onTableRow: dates =' + e.dates, 'color: white')
+    onCalendar(e) {
+      console.log('%c onCalendar: dates =' + e.dates, 'color: white')
 
       this.devId = e.id
       this.devFirst = e.first
@@ -266,11 +232,29 @@ export default {
       this.calendar = false
     },
 
+    onEditItem (item) {
+      console.log('Tu editItem')
+      //console.log('%c this.$store.getters.readDevs = ' + this.$store.getters.readDevs.length, 'color: yellow')
+      //console.log('%c editItem = ' + JSON.stringify(item), 'color: violet')
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
+
+    onDeleteItem (item) {
+      console.log('deleteItem')
+
+      if (confirm('Na pewno chcesz usunąć ten rekord ?')) {
+        //ajaxDeleteDev(JSON.stringify(item._id.$oid))
+        ajaxDeleteDev(item)
+        //updateView(this.$store.getters.readDevs, item)
+      }
+    },
+
     updatePagination(pagination) {
       //console.log('%c pagination = ' + pagination.rowsPerPage, 'color: white')
       //if (pagination.rowsPerPage > 1000) {
         //console.log('Idź do mLaba ze skipem 1000 czy 2000')
-        this.$store.dispatch('getDevs', { paginationLimit: pagination.rowsPerPage })
+        this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
       //}
     }
   }
