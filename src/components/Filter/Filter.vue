@@ -2,8 +2,6 @@
 
 <script>
   export default {
-    components: { },
-    computed() {},
     data() {
       return {
         skill_1: '',

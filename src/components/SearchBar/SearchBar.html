@@ -1,0 +1,25 @@
+<div id="main">
+  <v-toolbar flat color="grey">
+    <v-toolbar-title>Skill Bill</v-toolbar-title>
+    <v-spacer></v-spacer>
+
+    <v-layout xs12 sm1 d-flex ml-2>
+      <v-text-field v-model="search"
+        append-icon="search"
+        clearable
+        label="Search"
+        single-line
+        box
+        hide-details>
+      </v-text-field>
+
+
+      <v-btn @click="onSelected" color="primary" dark class="mt-3">Selected</v-btn>
+      <v-btn @click="onResetSelected" color="primary" dark class="mt-3">Reset</v-btn>
+      <v-btn @click="onEmail" color="primary" dark class="mt-3">Email</v-btn>
+      <v-btn @click="onNewDev" slot="activator" color="primary" dark class="mt-3 mr-0">New Dev</v-btn>
+    </v-layout>
+
+  </v-toolbar>
+
+</div>
