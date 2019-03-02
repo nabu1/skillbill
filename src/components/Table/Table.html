@@ -79,7 +79,7 @@
       <v-dialog v-model="calendar"
         color="blue"
         header-color="primary"
-        landscape="true"
+        landscape="false"
         max-width="320px">
 
         <v-card>
@@ -87,7 +87,7 @@
             <h3 id="calendar_heading">#{{ devId }}&nbsp;&nbsp;&nbsp;&nbsp;{{ devFirst }} {{ devLast }} </h3>
 
             <v-date-picker v-model="picker"
-              :landscape="true"
+              :landscape="false"
               :reactive="true"
               :allowed-dates="calendarAllowedDates"
               multiple

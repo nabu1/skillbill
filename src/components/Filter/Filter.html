@@ -3,38 +3,37 @@
     <div style="width: 230px"></div>
 
     <v-flex xs12 sm1 d-flex offset-xs3>
-      <v-select v-model="skill_1" :items="skills" @change="onSkill_1"
-        label="Skill 1" standard class="filters" clearable dense>
+      <v-select data-test="skill_1" v-model="skill_1" :items="skills"
+        @change="onSkill_1" label="Skill 1" standard class="filters" clearable dense>
       </v-select>
     </v-flex>
 
     <v-flex xs12 sm1 d-flex ml-2>
-      <v-select v-model="rank_1" :items="ranks" @change="onRank_1"
+      <v-select data-test="rank_1" v-model="rank_1" :items="ranks" @change="onRank_1"
         label="Rank 1" standard class="filters" clearable dense></v-select>
     </v-flex>
 
     <v-flex xs12 sm1 d-flex ml-2>
-      <v-select v-model="skill_2" :items="skills" @change="onSkill_2"
+      <v-select data-test="skill_2" v-model="skill_2" :items="skills" @change="onSkill_2"
         label="Skill 2" standard class="filters" clearable dense></v-select>
     </v-flex>
 
     <v-flex xs12 sm1 d-flex ml-2>
-      <v-select v-model="rank_2" :items="ranks" @change="onRank_2"
+      <v-select data-test="rank_2" v-model="rank_2" :items="ranks" @change="onRank_2"
         label="Rank 2" standard class="filters" clearable dense></v-select>
     </v-flex>
 
     <v-flex xs12 sm1 d-flex ml-2>
-      <v-select v-model="skill_3" :items="skills" @change="onSkill_3"
+      <v-select data-test="skill_3" v-model="skill_3" :items="skills" @change="onSkill_3"
         label="Skill 3" standard class="filters" clearable dense></v-select>
     </v-flex>
 
     <v-flex xs12 sm1 d-flex ml-2 mr-0>
-      <v-select v-model="rank_3" :items="ranks" @change="onRank_3"
+      <v-select data-test="rank_3" v-model="rank_3" :items="ranks" @change="onRank_3"
         label="Rank 3" standard class="filters" clearable dense></v-select>
     </v-flex>
 
-    <v-btn @click="onSearch" color="primary" dark class="mt-3 ml-0">Search</v-btn>
-    <v-btn @click="onClear" color="primary" dark class="mt-3 mr-4">Clear</v-btn>
+    <v-btn data-test="btnSearch" @click="onSearch" color="primary" dark class="mt-3 ml-0">Search</v-btn>
+    <v-btn data-test="btnClear" @click="onClear" color="primary" dark class="mt-3 mr-4">Clear</v-btn>
   </v-layout>
 </div>
-<!----------- BATONY: SEARCH i CLEAR          ------------------------------------------------------------>

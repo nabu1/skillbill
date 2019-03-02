@@ -17,10 +17,12 @@ export const station = (groupName, stationIndex ) => {
 
 export const tableCell = (tr, td) => {
   if (typeof tr === 'string') {
-    return '#table > tbody > tr:' + tr + ' > td:nth-child(' + td + ')'
+    //return '#table > tbody > tr:' + tr + ' > td:nth-child(' + td + ')'
+    return 'tbody > tr:' + tr + ' > td:nth-child(' + td + ')'
   }
 
-  return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
+  //return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
+  return 'tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
 }
 
 export const isWordInColumn = (el, word) => {
