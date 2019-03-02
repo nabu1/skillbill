@@ -1,7 +1,10 @@
 import { tableCell } from './cyhelper'
 
-describe('I. Filtering', () => {
-  it('1. .. using JS=5 and Java=3, should get at least 3 devs', () => {
+for (let i = 0; i < 5 ; i++) {
+describe('I. Documents filtering', () => {
+  it('1. .. using JS=5, Java=3 and ObjC without rank specified, should get at least 3 devs' +
+    'and pressing Clear button should clear all the select boxes', () => {
+
     cy.visit('http://localhost:8080')
 
     .get("[data-test='skill_1']").click({ force: true })
@@ -57,6 +60,20 @@ describe('I. Filtering', () => {
 
 
 })
+
+
+  describe('II. Deleting a dev', () => {
+    it.only('1. ..  should immediately remove him from the view', () => {
+
+      cy.visit('http://localhost:8080').wait(4000) 
+      // cy.get('tr:nth-child(1) > td.text-xs-left.body-2:nth-child(2)').should('not.have.text', '19')
+
+      //! tu wycinka rowu
+
+      cy.get('tr:nth-child(1) > td.text-xs-left.body-2:nth-child(2)').should('not.have.text', '19')
+    })
+  })
+}
 
 
 
