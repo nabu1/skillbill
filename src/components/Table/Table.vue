@@ -1,7 +1,7 @@
 <template src="./Table.html"></template>
 
 <script>
-import { ajaxInsertDev, ajaxDeleteDev, ajaxUpdateDev } from '../../services/ajax'
+import { ajaxInsertDev, ajaxDeleteDev, ajaxUpdateDev, ajaxUpdateDates } from '../../services/ajax'
 import { updateView } from '../../services/helpers'
 
 
@@ -78,9 +78,9 @@ export default {
     /* dialog (val) {
       val || this.close()
     }, */
-    calendar (val) {
+    /* calendar (val) {
       val || this.close()
-    }
+    } */
   },
 
   created () {
@@ -88,22 +88,19 @@ export default {
   },
 
   methods: {
-    calendarAllowedDates: val => parseInt(val.split('-')[2], 10) % 1 === 0,
 
     onCalendar(e) {
-      console.log('%c onCalendar: dates =' + e.dates, 'color: white')
-
+      console.log('%c onCalendar: _id =' + e._id.$oid, 'color: white')
       this.devId = e.id
       this.devFirst = e.first
       this.devLast = e.last
-      //this.$store.dispatch('setDdblClickedId', e._id.$oid)
-      // this.$store.dispatch('setDdblClickedId', e.id)
-      //this.picker = [ "2019-02-21" , "2019-02-23" , "2019-02-22"]
       this.picker = e.dates || []
       this.calendar = true
+      this.$store.dispatch('setDdblClickedId', e._id.$oid,)
     },
 
     onCalendarSave (item) {
+      console.log('%c item = ' + item, 'color: lime')
       console.log('%c this.$store.getters.getDblClickedId = ' + this.$store.getters.getDblClickedId, 'color: white')
       console.log(this.picker)
 
@@ -137,22 +134,16 @@ export default {
     },
 
     onNewDevSave () {
-      //console.log('%c Tu save', 'color: lime')
-      // console.log('%c this.editedIndex = ' + this.editedIndex, 'color: yellow')
-      // console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: yellow')
       console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: lime')
 
-      //const devs = this.$store.getters.readDevs
-      //console.log('%c devs.length = ' + devs.length, 'color: violet')
+      console.log('%c this.selected = ' + this.selected, 'color: orange')
 
       if (!this.editedItem.id) {
         console.log('%c Inserting Dev', 'color: lime')
         this.$store.dispatch('insertDev', this.editedItem)
-        //ajaxInsertDev(this.editedItem)
       }
       else {
         console.log('%c Updating Dev', 'color: lime')
-        // ajaxUpdateDev(this.editedItem)
         this.$store.dispatch('updateDev', this.editedItem)
       }
 

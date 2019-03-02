@@ -22,7 +22,7 @@ export default new Vuex.Store({
 
   mutations: {
     READ_DEVS(state, devs) {
-      console.log('%c Tu READ_DEVS, devs = ' + devs.length, 'color: yellow')
+      // console.log('%c Tu READ_DEVS, devs = ' + devs.length, 'color: yellow')
       state.devs = devs
     },
 

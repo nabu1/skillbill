@@ -89,7 +89,6 @@
             <v-date-picker v-model="picker"
               :landscape="false"
               :reactive="true"
-              :allowed-dates="calendarAllowedDates"
               multiple
               min="2019-01-15"
               max="2020-12-31">
@@ -147,14 +146,12 @@
                 <v-img :src = "props.item.picture" aspect-ratio="1.3"></v-img>
               </td> -->
             <td class="justify-center layout px-0">
-              <v-icon small
-                class="mr-2"
-                @click="onEditItem(props.item)">
+
+              <v-icon small class="mr-3" @click="onEditItem(props.item)">
                 edit
               </v-icon>
 
-              <v-icon small
-                @click="onDeleteItem(props.item)">
+              <v-icon small @click="onDeleteItem(props.item)">
                 delete
               </v-icon>
             </td>
