@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { LITERALS } from '../services/constants'
 import { fetch } from './ajaxHelpers'
+import { updateView } from './helpers'
 
 export const ajaxReadDevs = (context, selectedSkills) => {
   axios
@@ -12,20 +13,6 @@ export const ajaxReadDevs = (context, selectedSkills) => {
     .finally(() => {
       //context.commit('SET_LOADING', false)
     })
-}
-
-export const ajaxDeleteDev = (context, item) => {
-  //console.log('%c _id = ', 'color: white')
-  //console.log(_id.replace(/"/g, ''))
-  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  console.log('%c url = ' + url, 'color: white')
-
-  axios.delete(url)
-    .then(res => {
-      console.log('Skasowany ziutex: ', res)
-      updateView(this.$store.getters.readDevs, item)
-    })
-    .catch(err => console.log('Błąd: ', err))
 }
 
 export const ajaxUpdateDates = (_id, dates) => {
@@ -180,4 +167,22 @@ export const ajaxUpdateDev = (context, dev) => {
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
     })
+}
+
+export const ajaxDeleteDev = (context, dev) => {
+  console.log('%c Tu ajaxDeleteDev dev = ' + JSON.stringify(dev), 'color: yellow')
+  //console.log('%c _id = ', 'color: white')
+  //console.log(_id.replace(/"/g, ''))
+  const allDevs = context.getters.readDevs
+  const _id = dev._id.$oid
+
+  const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  console.log('%c url = ' + url, 'color: white')
+
+  axios.delete(url)
+    .then(res => {
+      console.log('Skasowany ziutex: ', res)
+      updateView(context, allDevs, dev)
+    })
+    .catch(err => console.log('Błąd: ', err))
 }

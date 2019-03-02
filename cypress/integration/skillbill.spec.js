@@ -1,79 +1,81 @@
 import { tableCell } from './cyhelper'
 
-for (let i = 0; i < 5 ; i++) {
-describe('I. Documents filtering', () => {
-  it('1. .. using JS=5, Java=3 and ObjC without rank specified, should get at least 3 devs' +
-    'and pressing Clear button should clear all the select boxes', () => {
+for (let i = 0; i < 1 ; i++) {
 
-    cy.visit('http://localhost:8080')
+  describe('I. Documents filtering', () => {
+    it('1. .. using JS=5, Java=3 and ObjC without rank specified, should get at least 3 devs' +
+      'and pressing Clear button should clear all the select boxes', () => {
 
-    .get("[data-test='skill_1']").click({ force: true })
-    cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(4) > a > div > div").click()
+      cy.visit('http://localhost:8080')
 
-    .get("[data-test='rank_1']").click({ force: true })
-    cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div").click()
+      .get("[data-test='skill_1']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(4) > a > div > div").click()
 
-    .get("[data-test='skill_2']").click({ force: true })
-    cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(5) > a > div > div").click()
+      .get("[data-test='rank_1']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div").click()
 
-    .get("[data-test='rank_2']").click({ force: true })
-    cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div").click()
+      .get("[data-test='skill_2']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(5) > a > div > div").click()
 
-    .get("[data-test='skill_3']").click({ force: true })
-    cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(6) > a > div > div").click()
+      .get("[data-test='rank_2']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div").click()
 
-    .get("[data-test='rank_3']").click({ force: true })
-    //cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(5) > a > div > div").click()
+      .get("[data-test='skill_3']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(6) > a > div > div").click()
 
-    .get("[data-test='btnSearch']").click().wait(1000)
+      .get("[data-test='rank_3']").click({ force: true })
+      //cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(5) > a > div > div").click()
 
-    cy.get(tableCell(1, 6)).should('contain', 'JS')
-    cy.get(tableCell(1, 7)).contains(/[4,5]/).should('exist')
+      .get("[data-test='btnSearch']").click().wait(1000)
 
-    cy.get(tableCell(1, 8)).should('contain', 'Java')
-    cy.get(tableCell(1, 9)).contains(/[3,4,5]/).should('exist')
+      cy.get(tableCell(1, 6)).should('contain', 'JS')
+      cy.get(tableCell(1, 7)).contains(/[4,5]/).should('exist')
 
-    cy.get(tableCell(1, 10)).should('contain', 'ObjC')
-    cy.get(tableCell(1, 11)).contains(/[1,2,3,4,5]/).should('exist')
+      cy.get(tableCell(1, 8)).should('contain', 'Java')
+      cy.get(tableCell(1, 9)).contains(/[3,4,5]/).should('exist')
 
-    cy.get(tableCell(2, 6)).should('contain', 'JS')
-    cy.get(tableCell(2, 7)).contains(/[4,5]/).should('exist')
+      cy.get(tableCell(1, 10)).should('contain', 'ObjC')
+      cy.get(tableCell(1, 11)).contains(/[1,2,3,4,5]/).should('exist')
 
-    cy.get(tableCell(2, 8)).should('contain', 'Java')
-    cy.get(tableCell(2, 9)).contains(/[3,4,5]/).should('exist')
+      cy.get(tableCell(2, 6)).should('contain', 'JS')
+      cy.get(tableCell(2, 7)).contains(/[4,5]/).should('exist')
 
-    cy.get(tableCell(2, 10)).should('contain', 'ObjC')
-    cy.get(tableCell(2, 11)).contains(/[1,2,3,4,5]/).should('exist')
+      cy.get(tableCell(2, 8)).should('contain', 'Java')
+      cy.get(tableCell(2, 9)).contains(/[3,4,5]/).should('exist')
 
-    cy.get("[data-test='btnClear']").click().wait(1000)
-    cy.get("[data-test='skill_1']").should('contain', '')
-    cy.get("[data-test='skill_2']").should('contain', '')
-    cy.get("[data-test='skill_3']").should('contain', '')
+      cy.get(tableCell(2, 10)).should('contain', 'ObjC')
+      cy.get(tableCell(2, 11)).contains(/[1,2,3,4,5]/).should('exist')
 
-    cy.get("[data-test='rank_1']").should('contain', '')
-    cy.get("[data-test='rank_2']").should('contain', '')
-    cy.get("[data-test='rank_3']").should('contain', '')
+      cy.get("[data-test='btnClear']").click().wait(1000)
+      cy.get("[data-test='skill_1']").should('contain', '')
+      cy.get("[data-test='skill_2']").should('contain', '')
+      cy.get("[data-test='skill_3']").should('contain', '')
 
-    cy.scrollTo(0, 0)
+      cy.get("[data-test='rank_1']").should('contain', '')
+      cy.get("[data-test='rank_2']").should('contain', '')
+      cy.get("[data-test='rank_3']").should('contain', '')
+
+      cy.scrollTo(0, 0)
+    })
+
+
+
   })
 
 
-
-})
-
-
   describe('II. Deleting a dev', () => {
-    it.only('1. ..  should immediately remove him from the view', () => {
+    it.skip('1. ..  should immediately remove him from the view', () => {
 
-      cy.visit('http://localhost:8080').wait(4000) 
-      // cy.get('tr:nth-child(1) > td.text-xs-left.body-2:nth-child(2)').should('not.have.text', '19')
+      cy.visit('http://localhost:8080').wait(4000)
+      cy.get('tr:nth-child(1) > td.text-xs-left.body-2:nth-child(2)').should('have.text', '32')
 
-      //! tu wycinka rowu
+      // deleting w the 1st row
+      cy.get("tr:nth-child(1) > td.justify-center.layout.px-0 > i:nth-child(2)").click()
 
-      cy.get('tr:nth-child(1) > td.text-xs-left.body-2:nth-child(2)').should('not.have.text', '19')
+      cy.get('tr:nth-child(1) > td.text-xs-left.body-2:nth-child(2)').should('not.have.text', '32')
     })
   })
 }
 
 
-
+// ("#app > div.application--wrap > div > div.elevation-6 > div.v-table__overflow > table > tbody > tr:nth-child(1) > td.justify-center.layout.px-0 > i:nth-child(2)")

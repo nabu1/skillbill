@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import createPersistedState from 'vuex-persistedstate'
-import { ajaxReadDevs, ajaxUpdateDev } from '../services/ajax'
+import { ajaxReadDevs, ajaxUpdateDev, ajaxDeleteDev } from '../services/ajax'
 Vue.use(Vuex)
 
 function initialState() {
@@ -39,7 +39,10 @@ export default new Vuex.Store({
       context.commit('SET_DBLCLICKED_ID', _id)
     },
 
-    deleteDev(constant, dev) { },
+    deleteDev(context, dev) {
+      console.log('%c Tu deleteDev  dev = ' + JSON.stringify(dev), 'color: yellow')
+      ajaxDeleteDev(context, dev)
+    },
 
     insertDev(context, dev) {
       console.log('%c dev = ' + JSON.stringify(dev), 'color: white')

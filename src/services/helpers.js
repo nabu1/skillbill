@@ -1,10 +1,10 @@
-function updateView(devs, item) {
+function updateView(context, allDevs, item) {
   console.log('updateView')
 
-  for(let i = 0; i < devs.length; i++) {
-    if (devs[i].id === item.id ) {
-      devs.splice(i, 1)
-      this.$store.commit('READ_DEVS', devs)
+  for(let i = 0; i < allDevs.length; i++) {
+    if (allDevs[i].id === item.id ) {
+      allDevs.splice(i, 1)
+      context.commit('READ_DEVS', allDevs)
       break
     }
   }

@@ -96,7 +96,7 @@ export default {
       this.devId = e.id
       this.devFirst = e.first
       this.devLast = e.last
-      this.$store.dispatch('setDdblClickedId', e._id.$oid)
+      //this.$store.dispatch('setDdblClickedId', e._id.$oid)
       // this.$store.dispatch('setDdblClickedId', e.id)
       //this.picker = [ "2019-02-21" , "2019-02-23" , "2019-02-22"]
       this.picker = e.dates || []
@@ -129,12 +129,10 @@ export default {
     },
 
     onDeleteItem (item) {
-      console.log('deleteItem')
 
       if (confirm('Na pewno chcesz usunąć ten rekord ?')) {
-        //ajaxDeleteDev(JSON.stringify(item._id.$oid))
-        ajaxDeleteDev(item)
-        //updateView(this.$store.getters.readDevs, item)
+        console.log('%c item = ' + JSON.stringify(item), 'color: yellow')
+        this.$store.dispatch('deleteDev', item)
       }
     },
 
