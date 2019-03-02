@@ -75,9 +75,9 @@ export default {
   },
 
   watch: {
-    dialog (val) {
+    /* dialog (val) {
       val || this.close()
-    },
+    }, */
     calendar (val) {
       val || this.close()
     }
