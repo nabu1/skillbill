@@ -80,7 +80,7 @@ export default {
     }, */
     /* calendar (val) {
       val || this.close()
-    } */
+    }  */
   },
 
   created () {
@@ -89,23 +89,23 @@ export default {
 
   methods: {
 
-    onCalendar(e) {
-      console.log('%c onCalendar: _id =' + e._id.$oid, 'color: white')
-      this.devId = e.id
-      this.devFirst = e.first
-      this.devLast = e.last
-      this.picker = e.dates || []
+    onCalendar(dev) {
+      console.log('%c dev = ' + JSON.stringify(dev), 'color: white')
+      this.devId = dev.id
+      this.devFirst = dev.first
+      this.devLast = dev.last
+      this.picker = dev.dates || []
       this.calendar = true
-      this.$store.dispatch('setDdblClickedId', e._id.$oid,)
+      this.$store.dispatch('setDdblClickedDev', dev)
     },
 
     onCalendarSave (item) {
       console.log('%c item = ' + item, 'color: lime')
-      console.log('%c this.$store.getters.getDblClickedId = ' + this.$store.getters.getDblClickedId, 'color: white')
+      console.log('%c this.$store.getters.getDblClickedDev = ' + this.$store.getters.getDblClickedDev, 'color: white')
       console.log(this.picker)
 
       this.calendar = false
-      ajaxUpdateDates(this.$store.getters.getDblClickedId, this.picker)
+      this.$store.dispatch('updateCalendar', { dev: this.$store.getters.getDblClickedDev, dates: this.picker })
     },
 
     onCalendarClose () {
