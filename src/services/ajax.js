@@ -76,39 +76,6 @@ export const ajaxInsertDev = dev => {
 
   insertDev()
 
-
-
-  // async function getCount (para) {
-  //   return await
-  // }
-
-  // async function getLastDocument (para) {
-  //   return await sleep(para)
-  // }
-
-  // async function insertDocument (para) {
-  //   return await sleep(para)
-  // }
-
-
-  // axios.get(countUrl)
-  //   .then(res => {
-  //     console.log('%c res = ' + res.data, 'color: orange')
-  //     dev.id = res.data
-
-  //     axios.post(url, dev)
-  //       .then(res => {
-  //         console.log(res)
-  //         console.log(res.data)
-  //         alert('Dane zostały zapisane na serwerze')
-  //       })
-  //       .catch(err =>  {
-  //         alert('Błąd zapisu na serwerze (1): ', err)
-  //       })
-  //   })
-  //   .catch(err => {
-  //     alert('Błąd zapisu na serwerze (2): ', err)
-  //   })
 }
 
 export const ajaxDeleteDev = (context, dev) => {
@@ -190,7 +157,6 @@ export const ajaxUpdateDates = (context, dev) => {
 
   axios.put(url, datesObj)
     .then(res => {
-      console.log(res)
       console.log(res.data)
 
       for(let i = 0; i < allDevs.length; i++) {

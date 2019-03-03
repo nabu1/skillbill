@@ -7,7 +7,7 @@ Vue.use(Vuex)
 function initialState() {
   return {
     devs: [],
-    dblClickedId: null
+    dblClickedDev: null
   }
 }
 
@@ -22,8 +22,8 @@ export default new Vuex.Store({
 
   mutations: {
     READ_DEVS(state, devs) {
-      // console.log('%c Tu READ_DEVS, devs = ' + devs.length, 'color: yellow')
       state.devs = devs
+      console.log('%c Tu READ_DEVS, devs[i] = ' + JSON.stringify(devs[1]), 'color: yellow')
     },
 
     SET_DBLCLICKED_DEV(state, dev) {
