@@ -119,9 +119,7 @@
         dark>
 
         <template slot="items" slot-scope="props">
-          <tr :active="props.selected"
-              @dblclick="onCalendar(props.item)"
-              @change="onCheckbox(props.item)">
+          <tr @dblclick="onCalendar(props.item)">
 
             <td>
               <v-checkbox v-model="props.selected"

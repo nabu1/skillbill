@@ -67,9 +67,12 @@ export default {
       //return this.$store.getters.getSelectedDevs || this.$store.getters.readDevs
       return this.$store.getters.readDevs
     },
+
     // selected() {
-    //   return this.$store.getters.getSelectedDevs || []
+    //   console.log('computed: selected()')
+    //   return this.$store.getters.getSelectedDevs
     // },
+
     formTitle () {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
     }
@@ -93,6 +96,11 @@ export default {
   },
 
   methods: {
+    onCheckbox() {
+      console.log('onCheckbox')
+
+    },
+
     onCalendar(dev) {
 
       this.devId = dev.id
@@ -118,8 +126,6 @@ export default {
     },
 
     onEditItem (item) {
-      this.selected = []
-
       console.log('onEditItem')
       this.selected
       console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: white')
