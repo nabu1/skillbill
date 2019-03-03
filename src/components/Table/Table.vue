@@ -101,11 +101,17 @@ export default {
 
     onCalendarSave (item) {
       console.log('%c item = ' + item, 'color: lime')
-      console.log('%c this.$store.getters.getDblClickedDev = ' + this.$store.getters.getDblClickedDev, 'color: white')
-      console.log(this.picker)
 
+      const clickedDev = this.$store.getters.getDblClickedDev
+      console.log('%c clickedDev = ' + clickedDev, 'color: lime')
+
+      console.log('%c this.picker = ' + this.picker, 'color: lime')
+
+      clickedDev.dates = this.picker
+      console.log('%c clickedDev.dates = ' + clickedDev.dates, 'color: lime')
+
+      this.$store.dispatch('updateCalendar', clickedDev)
       this.calendar = false
-      this.$store.dispatch('updateCalendar', { dev: this.$store.getters.getDblClickedDev, dates: this.picker })
     },
 
     onCalendarClose () {

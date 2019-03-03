@@ -131,19 +131,19 @@ export const ajaxUpdateDev = (context, dev) => {
     })
 }
 
-export const ajaxUpdateDates = (context, dev) => {
+export const ajaxUpdateDates = (context, clickedDev) => {
   const axios = require('axios')
   axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-  console.log('%c dev = ' + JSON.stringify(dev), 'color: lime')
+  console.log('%c clickedDev = ' + JSON.stringify(clickedDev), 'color: lime')
 
-  const _id = dev.dev._id.$oid
+  const _id = clickedDev._id.$oid
   console.log('%c _id = ' + _id, 'color: lime')
 
-  const id = dev.dev.id
+  const id = clickedDev.id
   console.log('%c id = ' + id, 'color: lime')
 
-  const dates = dev.dates
+  const dates = clickedDev.dates
   console.log('%c dates = ' + dates, 'color: lime')
 
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
@@ -160,17 +160,22 @@ export const ajaxUpdateDates = (context, dev) => {
       console.log(res.data)
 
       for(let i = 0; i < allDevs.length; i++) {
-        if (allDevs[i].id === dev.dev.id ) {
+        if (allDevs[i].id === clickedDev.id ) {
           console.log('%c allDevs[id].dates PRZED = ' + allDevs[id].dates, 'color: violet')
-          allDevs[id].dates = dates
+          allDevs.splice(i, 1)
+          allDevs.push(clickedDev)
           console.log('%c allDevs[id].dates PO = ' + allDevs[id].dates, 'color: violet')
           //allDevs.push(dev)
-          context.commit('READ_DEVS', allDevs)
+          //context.commit('READ_DEVS', allDevs)
           break
         }
       }
 
-      alert('Daty zostały zapisane na serwerze')
+      console.log('%c allDevs[id].dates PO 2 = ' + allDevs[1].dates, 'color: violet')
+
+      context.commit('READ_DEVS', allDevs)
+
+      // alert('Daty zostały zapisane na serwerze')
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)

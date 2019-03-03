@@ -22,8 +22,11 @@ export default new Vuex.Store({
 
   mutations: {
     READ_DEVS(state, devs) {
-      state.devs = devs
-      console.log('%c Tu READ_DEVS, devs[i] = ' + JSON.stringify(devs[1]), 'color: yellow')
+      setTimeout(() => {
+        state.devs = devs
+        console.log('%c Tu READ_DEVS, devs[i] = ' + JSON.stringify(state.devs[0]), 'color: yellow')
+      }, 1000)
+
     },
 
     SET_DBLCLICKED_DEV(state, dev) {
@@ -55,8 +58,8 @@ export default new Vuex.Store({
       ajaxUpdateDev(context, dev)
     },
 
-    updateCalendar(context, dev) {
-      ajaxUpdateDates(context, dev)
+    updateCalendar(context, clickedDev) {
+      ajaxUpdateDates(context, clickedDev)
     },
 
   },
