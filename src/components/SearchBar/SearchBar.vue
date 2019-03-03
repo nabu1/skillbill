@@ -4,18 +4,19 @@
   export default {
     data() {
       return {
-        search: ''
+        search: '',
+        // selected: []
       }
     },
     methods: {
       onSelected() {
-        console.log('%c selected = ' + JSON.stringify(this.selected), 'color: yellow')
-        this.$store.commit('READ_DEVS', this.selected)
+        console.log('%c selected = ' + JSON.stringify(this.$store.getters.getSelectedDevs), 'color: yellow')
+        this.$store.commit('READ_DEVS', this.$store.getters.getSelectedDevs)
       },
       onResetSelected() {
-        // console.log('%c onResetSelected', 'color: lime')
-        this.selected = []
-        this.$store.commit('READ_DEVS', this.selected)
+        //this.selected = []
+        this.$store.dispatch('setSelectedDevs', [])
+        this.$store.dispatch('readDevs', {})
 
       },
       onEmail() {
@@ -23,11 +24,7 @@
       },
 
       onNewDev(item) {
-        // console.log('%c onNewDev', 'color: lime')
       },
-
-     
-
     }
   }
 </script>

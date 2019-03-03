@@ -7,7 +7,8 @@ Vue.use(Vuex)
 function initialState() {
   return {
     devs: [],
-    dblClickedDev: null
+    dblClickedDev: null,
+    selectedDevs: []
   }
 }
 
@@ -17,20 +18,24 @@ export default new Vuex.Store({
 
   getters: {
     readDevs: state => state.devs,
-    getDblClickedDev: state => state.dblClickedDev
+    getDblClickedDev: state => state.dblClickedDev,
+    getSelectedDevs: state => state.selectedDevs
   },
 
   mutations: {
     READ_DEVS(state, devs) {
-      setTimeout(() => {
-        state.devs = devs
-        console.log('%c Tu READ_DEVS, devs[i] = ' + JSON.stringify(state.devs[0]), 'color: yellow')
-      }, 1000)
-
+      state.devs = devs
+      console.log('%c state.devs = ' + state.devs, 'color: lime')
+      //state.selected = []
     },
 
     SET_DBLCLICKED_DEV(state, dev) {
       state.dblClickedDev = dev
+    },
+
+    SET_SELECTED_DEVS(state, selectedDevs) {
+      console.log('%c SET_SELECTED_DEVS = ' + JSON.stringify(selectedDevs), 'color: white')
+      state.selectedDevs = selectedDevs
     }
   },
 
@@ -44,23 +49,26 @@ export default new Vuex.Store({
     },
 
     deleteDev(context, dev) {
-      console.log('%c Tu deleteDev  dev = ' + JSON.stringify(dev), 'color: yellow')
       ajaxDeleteDev(context, dev)
     },
 
     insertDev(context, dev) {
-      console.log('%c dev = ' + JSON.stringify(dev), 'color: white')
       ajaxInsertDev(context, dev)
     },
 
     updateDev(context, dev) {
-      console.log('%c dev = ' + JSON.stringify(dev), 'color: white')
       ajaxUpdateDev(context, dev)
     },
 
     updateCalendar(context, clickedDev) {
       ajaxUpdateDates(context, clickedDev)
     },
+
+    setSelectedDevs(context, selectedDevs) {
+      console.log('%c setSelectedDevs = ' + JSON.stringify(selectedDevs), 'color: white')
+      context.commit('SET_SELECTED_DEVS', selectedDevs)
+
+    }
 
   },
 })

@@ -1,20 +1,14 @@
-import { LITERALS } from './constants'
+import { LITERALS, NUMBERS } from './constants'
 
 export const fetch = (context, selectedSkills = {}) => {
-  //console.log('%c ajaxHelpers selectedSkills = ' + JSON.stringify(selectedSkills), 'color: lime')
 
   if (selectedSkills.paginationLimit) {
-    //console.log('%c selectedSkills.paginationLimit = ' + selectedSkills.paginationLimit, 'color: lime')
-
-    if (selectedSkills.paginationLimit > 1000) {
-      const limit = Number(String(selectedSkills.paginationLimit).slice(1)) || 1000
+    if (selectedSkills.paginationLimit > NUMBERS.PAGINATION_LIMIT) {
+      const limit = Number(String(selectedSkills.paginationLimit).slice(1)) || NUMBERS.PAGINATION_LIMIT
       const skip = Number(selectedSkills.paginationLimit) - limit
-      //console.log('%c skip = ' + skip, 'color: violet')
-      //console.log('%c limit = ' + limit, 'color: violet')
       return LITERALS.PREFIX + `?s={id:1}&sk=${skip}&l=${limit}` + LITERALS.SUFFIX
     }
-
-    return LITERALS.PREFIX + '?s={id:1}&l=1000' + LITERALS.SUFFIX
+    return LITERALS.PREFIX + '?s={id:1}&l=' + NUMBERS.DOWNLOAD_LIMIT + LITERALS.SUFFIX
   }
 
   let query = ''
@@ -39,10 +33,9 @@ export const fetch = (context, selectedSkills = {}) => {
   }
   else {
     console.log('Bez skilli')
-    query = '?s={id:1}&l=100'  // limit 9 rekordów zamiast 1,000 przy pustych selektach
+    query = '?s={id:1}&l=' + NUMBERS.DOWNLOAD_LIMIT  // limit 100 rekordów zamiast 1,000 przy pustych selektach
     //query = '?s={id:1}'  // mLab ma limit  1,000 dokumentów
   }
-
 
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
   console.log('%c urlString = ' + urlString, 'color: lime')
