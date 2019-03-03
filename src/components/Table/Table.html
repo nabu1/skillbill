@@ -120,7 +120,6 @@
 
         <template slot="items" slot-scope="props">
           <tr :active="props.selected"
-              @click="props.selected = !props.selected"
               @dblclick="onCalendar(props.item)"
               @change="onCheckbox(props.item)">
 

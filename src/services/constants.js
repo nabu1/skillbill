@@ -7,7 +7,7 @@ export const LITERALS = {
 }
 
 export const NUMBERS = {
-  DOWNLOAD_LIMIT: 100,
+  DOWNLOAD_LIMIT: 30,
   PAGINATION_LIMIT: 1000
 }
 

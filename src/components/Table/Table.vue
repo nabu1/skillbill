@@ -83,7 +83,7 @@ export default {
       val || this.close()
     }  */
     selected() {
-      console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: white')
+      console.log('%c this.selected = ' + this.selected.length, 'color: white')
       this.$store.dispatch('setSelectedDevs', this.selected)
     }
   },
@@ -93,7 +93,6 @@ export default {
   },
 
   methods: {
-
     onCalendar(dev) {
 
       this.devId = dev.id
@@ -119,6 +118,8 @@ export default {
     },
 
     onEditItem (item) {
+      this.selected = []
+
       console.log('onEditItem')
       this.selected
       console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: white')
