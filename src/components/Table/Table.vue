@@ -33,7 +33,7 @@ export default {
       skill_2: '',
       rank_2: '',
       skill_3: '',
-      rank_3: ''
+      rank_3: '',
     },
     defaultItem: {
       first: '',
@@ -44,14 +44,14 @@ export default {
       skill_2: '',
       rank_2: '',
       skill_3: '',
-      rank_3: ''
+      rank_3: '',
     },
     ranks: [5, 4, 3, 2, 1],
     skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
     rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 2085, 3000],
     pagination: {
-      rowsPerPage: 10
+      rowsPerPage: 10,
     },
     loading: false,
     newDevs: [],
@@ -63,19 +63,14 @@ export default {
   }),
 
   computed: {
-    devs () {
+    devs() {
       //return this.$store.getters.getSelectedDevs || this.$store.getters.readDevs
       return this.$store.getters.readDevs
     },
 
-    // selected() {
-    //   console.log('computed: selected()')
-    //   return this.$store.getters.getSelectedDevs
-    // },
-
-    formTitle () {
+    formTitle() {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
-    }
+    },
   },
 
   watch: {
@@ -88,20 +83,20 @@ export default {
     selected() {
       console.log('%c this.selected = ' + this.selected.length, 'color: white')
       this.$store.dispatch('setSelectedDevs', this.selected)
-    }
+    },
   },
 
-  created () {
+  created() {
     this.$store.dispatch('readDevs')
   },
 
   methods: {
     onCheckbox() {
       console.log('onCheckbox')
-
     },
 
     onCalendar(dev) {
+      console.log('onCalendar')
 
       this.devId = dev.id
       this.devFirst = dev.first
@@ -111,22 +106,21 @@ export default {
       this.$store.dispatch('setDdblClickedDev', dev)
     },
 
-    onCalendarSave (item) {
+    onCalendarSave(item) {
       const clickedDev = this.$store.getters.getDblClickedDev
-
 
       clickedDev.dates = this.picker
       this.$store.dispatch('updateCalendar', clickedDev)
       this.calendar = false
     },
 
-    onCalendarClose () {
+    onCalendarClose() {
       this.picker = []
       this.calendar = false
     },
 
-    onEditItem (item) {
-      console.log('onEditItem')
+    onEdit(item) {
+      console.log('onEdit')
       this.selected
       console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: white')
 
@@ -134,31 +128,23 @@ export default {
       this.dialog = true
     },
 
-    onDeleteItem (item) {
-
+    onDelete(item) {
       if (confirm('Na pewno chcesz usunąć ten rekord ?')) {
-
         this.$store.dispatch('deleteDev', item)
       }
     },
 
-    onNewDevSave () {
-
-
+    onNewDevSave() {
       if (!this.editedItem.id) {
-
         this.$store.dispatch('insertDev', this.editedItem)
-      }
-      else {
-
+      } else {
         this.$store.dispatch('updateDev', this.editedItem)
       }
 
       this.dialog = false
     },
 
-    onNewDevClose () {
-
+    onNewDevClose() {
       this.dialog = false
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
@@ -170,33 +156,34 @@ export default {
       this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
     },
 
-    onCheckbox(item) {
-
-      this.selected = !this.selected
-    }
-  }
+    onDblClick(item) {
+      console.log('item')
+      console.log('%c item = ' + JSON.stringify(item), 'color: lime')
+      this.selected.push(item)
+      this.$store.dispatch('setSelectedDevs', this.selected)
+    },
+  },
 }
 </script>
 
 <style scoped>
-  .filters {
-    transform: scale(1, 1);
-    transform-origin: left;
-  }
+.filters {
+  transform: scale(1, 1);
+  transform-origin: left;
+}
 
-  .filters-row {
-    background-color: grey;
-  }
+.filters-row {
+  background-color: grey;
+}
 
-  #calendar_heading {
-    color: #2196F3;
-    margin: 0 0 10px 0
-  }
+#calendar_heading {
+  color: #2196f3;
+  margin: 0 0 10px 0;
+}
 
-  #app {
-    margin-top: 0px !important;
-    margin-bottom: 0px;
-  }
-
+#app {
+  margin-top: 0px !important;
+  margin-bottom: 0px;
+}
 </style>
 

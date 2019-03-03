@@ -119,14 +119,15 @@
         dark>
 
         <template slot="items" slot-scope="props">
-          <tr @dblclick="onCalendar(props.item)">
+          <tr @dblclick="onDblClick(props.item)">
 
-            <td>
+            <!-- <td>
               <v-checkbox v-model="props.selected"
                 primary
+                ref="myCheckbox"
                 hide-details>
               </v-checkbox>
-            </td>
+            </td> -->
 
             <td class="text-xs-left body-2">{{ props.item.id }}</td>
             <td class="text-xs-left body-2">{{ props.item.title }}</td>
@@ -144,11 +145,15 @@
               </td> -->
             <td class="justify-center layout px-0">
 
-              <v-icon small class="mr-3" @click="onEditItem(props.item)">
+              <v-icon small class="mr-3" @click="onEdit(props.item)">
                 edit
               </v-icon>
 
-              <v-icon small @click="onDeleteItem(props.item)">
+              <v-icon small class="mr-3" @click="onCalendar(props.item)">
+                calendar_today
+              </v-icon>
+
+              <v-icon small @click="onDelete(props.item)">
                 delete
               </v-icon>
             </td>

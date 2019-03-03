@@ -26,7 +26,7 @@ export default new Vuex.Store({
     READ_DEVS(state, devs) {
       state.selectedDevs = devs
       state.devs = devs
-      console.log('%c state.devs = ' + JSON.stringify(state.devs), 'color: lime')
+      // console.log('%c state.devs = ' + JSON.stringify(state.devs), 'color: lime')
     },
 
     SET_DBLCLICKED_DEV(state, dev) {
