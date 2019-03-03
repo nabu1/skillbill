@@ -18,39 +18,33 @@
     },
     methods: {
       onSkill_1(e) {
-        // console.log('%c onSkill_1 = ' + e, 'color: yellow')
+
         this.selectedSkills.skill_1 = e
       },
       onRank_1(e) {
-        // console.log('%c onRank_1 = ' + e, 'color: yellow')
-        this.selectedSkills.rank_1 = e
 
-        this.console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
+        this.selectedSkills.rank_1 = e
       },
       onSkill_2(e) {
-        // console.log('%c onSkill_2 = ' + e, 'color: yellow')
+
         this.selectedSkills.skill_2 = e
       },
       onRank_2(e) {
-        // console.log('%c onRank_2 = ' + e, 'color: yellow')
+
         this.selectedSkills.rank_2 = e
       },
       onSkill_3(e) {
-        // console.log('%c onSkill_3 = ' + e, 'color: yellow')
+
         this.selectedSkills.skill_3 = e
       },
       onRank_3(e) {
-        // console.log('%c onRank_3 = ' + e, 'color: yellow')
+
         this.selectedSkills.rank_3 = e
       },
       onSearch() {
-        // console.log('%c onSearch ', 'color: lime')
-        console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: orange')
         this.$store.dispatch('readDevs', this.selectedSkills)
       },
       onClear() {
-        // console.log('%c this.skill_1 = ' + this.skill_1, 'color: lime')
-        console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
         this.selectedSkills = {}
         this.skill_1 = null
         this.skill_2 = null
@@ -62,8 +56,6 @@
     },
   }
 </script>
-
-
 <style scoped>
   .filters {
     transform: scale(1, 1);

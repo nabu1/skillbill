@@ -23,8 +23,8 @@ export default {
       { text: 'Rank 2', sortable: false, value: 'rank_2' },
       { text: 'Skill 3', sortable: true, value: 'rank_3' },
       { text: 'Rank 3', sortable: false, value: 'rank_3' },
-      //{ text: 'City', sortable: true, value: 'city' },
-      //{ text: 'Picture', sortable: false, value: 'picture' }
+
+
     ],
     editedIndex: -1,
     editedItem: {
@@ -90,7 +90,7 @@ export default {
   methods: {
 
     onCalendar(dev) {
-      console.log('%c dev = ' + JSON.stringify(dev), 'color: white')
+
       this.devId = dev.id
       this.devFirst = dev.first
       this.devLast = dev.last
@@ -100,27 +100,27 @@ export default {
     },
 
     onCalendarSave (item) {
-      console.log('%c item = ' + item, 'color: lime')
-      console.log('%c this.$store.getters.getDblClickedDev = ' + this.$store.getters.getDblClickedDev, 'color: white')
-      console.log(this.picker)
+
+
+
 
       this.calendar = false
       this.$store.dispatch('updateCalendar', { dev: this.$store.getters.getDblClickedDev, dates: this.picker })
     },
 
     onCalendarClose () {
-      console.log('%c Tu onCalendarClose', 'color: lime')
-      console.log('%c this.picker = ' + this.picker, 'color: white')
+
+
       this.picker = []
       this.calendar = false
     },
 
     onEditItem (item) {
-      console.log('Tu editItem')
-      console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: yellow')
 
-      //console.log('%c this.$store.getters.readDevs = ' + this.$store.getters.readDevs.length, 'color: yellow')
-      //console.log('%c editItem = ' + JSON.stringify(item), 'color: violet')
+
+
+
+
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
@@ -128,22 +128,22 @@ export default {
     onDeleteItem (item) {
 
       if (confirm('Na pewno chcesz usunąć ten rekord ?')) {
-        console.log('%c item = ' + JSON.stringify(item), 'color: yellow')
+
         this.$store.dispatch('deleteDev', item)
       }
     },
 
     onNewDevSave () {
-      console.log('%c this.editedItem.id = ' + this.editedItem.id, 'color: lime')
 
-      console.log('%c this.selected = ' + this.selected, 'color: orange')
+
+
 
       if (!this.editedItem.id) {
-        console.log('%c Inserting Dev', 'color: lime')
+
         this.$store.dispatch('insertDev', this.editedItem)
       }
       else {
-        console.log('%c Updating Dev', 'color: lime')
+
         this.$store.dispatch('updateDev', this.editedItem)
       }
 
@@ -151,7 +151,7 @@ export default {
     },
 
     onNewDevClose () {
-      console.log('%c Tu close', 'color: lime')
+
       this.dialog = false
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
@@ -164,7 +164,7 @@ export default {
     },
 
     onCheckbox(item) {
-      console.log('%c onCheckbox = ' + onCheckbox, 'color: lime')
+
       this.selected = !this.selected
     }
   }

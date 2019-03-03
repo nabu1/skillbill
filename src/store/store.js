@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import createPersistedState from 'vuex-persistedstate'
+//! import createPersistedState from 'vuex-persistedstate'
 import { ajaxReadDevs, ajaxUpdateDev, ajaxDeleteDev, ajaxUpdateDates } from '../services/ajax'
 Vue.use(Vuex)
 
@@ -12,7 +12,7 @@ function initialState() {
 }
 
 export default new Vuex.Store({
-  // plugins: [createPersistedState()],
+  //! plugins: [createPersistedState()],
   state: initialState,
 
   getters: {
@@ -23,7 +23,7 @@ export default new Vuex.Store({
   mutations: {
     READ_DEVS(state, devs) {
       state.devs = devs
-      console.log('%c Tu READ_DEVS, devs[i] = ' + JSON.stringify(devs[1]), 'color: yellow')
+
     },
 
     SET_DBLCLICKED_DEV(state, dev) {
@@ -41,17 +41,17 @@ export default new Vuex.Store({
     },
 
     deleteDev(context, dev) {
-      console.log('%c Tu deleteDev  dev = ' + JSON.stringify(dev), 'color: yellow')
+
       ajaxDeleteDev(context, dev)
     },
 
     insertDev(context, dev) {
-      console.log('%c dev = ' + JSON.stringify(dev), 'color: white')
+
       ajaxInsertDev(context, dev)
     },
 
     updateDev(context, dev) {
-      console.log('%c dev = ' + JSON.stringify(dev), 'color: white')
+
       ajaxUpdateDev(context, dev)
     },
 

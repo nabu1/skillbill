@@ -13,7 +13,7 @@
         this.$store.commit('READ_DEVS', this.selected)
       },
       onResetSelected() {
-        // console.log('%c onResetSelected', 'color: lime')
+
         this.selected = []
         this.$store.commit('READ_DEVS', this.selected)
 
@@ -23,10 +23,10 @@
       },
 
       onNewDev(item) {
-        // console.log('%c onNewDev', 'color: lime')
+
       },
 
-     
+
 
     }
   }
