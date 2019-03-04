@@ -9,7 +9,8 @@ function initialState() {
     devs: [],
     dblClickedDevs: null,
     selectedDevs: [],
-    openDialog: false
+    openDialog: false,
+    calendarDev: null
   }
 }
 
@@ -20,7 +21,8 @@ export default new Vuex.Store({
   getters: {
     readDevs: state => state.devs,
     getDblClickedDevs: state => state.dblClickedDevs,
-    getOpenDialog: state => state.openDialog
+    getOpenDialog: state => state.openDialog,
+    getCalendarDev: state => state.calendarDev
   },
 
   mutations: {
@@ -39,6 +41,11 @@ export default new Vuex.Store({
     OPEN_DIALOG(state, bool) {
       state.openDialog = bool
       console.log('%c OPEN_DIALOG = ' + bool, 'color: white')
+    },
+
+    SET_CALENDAR_DEV(state, dev) {
+      console.log('%c SET_CALENDAR_DEV dev = ' + dev, 'color: yellow')
+      state.calendarDev = dev
     }
   },
 
@@ -63,13 +70,19 @@ export default new Vuex.Store({
       ajaxUpdateDev(context, dev)
     },
 
-    updateCalendar(context, clickedDev) {
-      ajaxUpdateDates(context, clickedDev)
+    updateCalendar(context, calendarDev) {
+      console.log('%c updateCalendar calendarDev = ' + calendarDev, 'color: white')
+      ajaxUpdateDates(context, calendarDev)
     },
 
     openDialog(context, bool) {
       context.commit('OPEN_DIALOG', bool)
 
+    },
+
+    setCalendarDev(context, dev) {
+      console.log('%c setCalendarDev dev = ' + dev, 'color: yellow')
+      context.commit('SET_CALENDAR_DEV', dev)
     }
 
 

@@ -16,13 +16,10 @@ export const ajaxReadDevs = (context, selectedSkills) => {
 }
 
 export const ajaxInsertDev = dev => {
-
   const axios = require('axios')
-  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-
-  const countUrl = LITERALS.PREFIX + '?&c=true' + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
-
   axios.defaults.headers.post['Content-Type'] = 'application/json'
+  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
+  const countUrl = LITERALS.PREFIX + '?&c=true' + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
 
   const getCount = async () => {
     return axios.get(countUrl)
@@ -34,7 +31,6 @@ export const ajaxInsertDev = dev => {
   }
 
   const getLastDocumentId = async lastDocumentUrl => {
-
     return axios.get(lastDocumentUrl)
       .then(res => {
         return res.data[0].id
@@ -69,7 +65,6 @@ export const ajaxInsertDev = dev => {
 export const ajaxDeleteDev = (context, dev) => {
   const allDevs = context.getters.readDevs
   const _id = dev._id.$oid
-
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   axios.delete(url)
     .then(res => {
@@ -103,13 +98,14 @@ export const ajaxUpdateDev = (context, dev) => {
     })
 }
 
-export const ajaxUpdateDates = (context, clickedDev) => {
+export const ajaxUpdateDates = (context, calendarDev) => {
+  console.log('%c calendarDev = ' + JSON.stringify(calendarDev), 'color: white')
+
   const axios = require('axios')
   axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-  const _id = clickedDev._id.$oid
-  const id = clickedDev.id
-  const dates = clickedDev.dates
+  const _id = calendarDev._id.$oid
+  const dates = calendarDev.dates
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
 
   const allDevs = context.getters.readDevs
@@ -118,16 +114,15 @@ export const ajaxUpdateDates = (context, clickedDev) => {
   axios.put(url, datesObj)
     .then(res => {
       for(let i = 0; i < allDevs.length; i++) {
-        if (allDevs[i].id === clickedDev.id ) {
-
+        if (allDevs[i].id === calendarDev.id ) {
           allDevs.splice(i, 1)
-          allDevs.push(clickedDev)
-
+          allDevs.push(calendarDev)
           break
         }
       }
 
       context.commit('READ_DEVS', allDevs)
+      console.log('Daty zapisano na serwerze')
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)

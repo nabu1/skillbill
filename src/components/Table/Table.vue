@@ -105,14 +105,16 @@ export default {
       this.devLast = dev.last
       this.picker = dev.dates || []
       this.calendar = true
-      this.$store.dispatch('setDdblClickedDev', dev)
+      this.$store.dispatch('setCalendarDev', dev)
     },
 
     onCalendarSave(item) {
-      const clickedDev = this.$store.getters.getDblClickedDev
+      console.log('onCalendarSave')
 
-      clickedDev.dates = this.picker
-      this.$store.dispatch('updateCalendar', clickedDev)
+      const calendarDev = this.$store.getters.getCalendarDev
+
+      calendarDev.dates = this.picker
+      this.$store.dispatch('updateCalendar', calendarDev)
       this.calendar = false
     },
 
