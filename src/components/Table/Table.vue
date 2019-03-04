@@ -139,9 +139,15 @@ export default {
     },
 
     onNewDevSave() {
+      console.log('%c onNewDevSave', 'color: orange')
+      console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: orange')
+
       if (!this.editedItem.id) {
+        console.log('1')
         this.$store.dispatch('insertDev', this.editedItem)
-      } else {
+      }
+      else {
+        console.log('2')
         this.$store.dispatch('updateDev', this.editedItem)
       }
 
