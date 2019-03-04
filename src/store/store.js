@@ -63,7 +63,8 @@ export default new Vuex.Store({
     },
 
     insertDev(context, dev) {
-      ajaxInsertDev(context, dev)
+      console.log('%c insertDev dev = ' + JSON.stringify(dev), 'color: yellow')
+      ajaxInsertDev(dev)
     },
 
     updateDev(context, dev) {

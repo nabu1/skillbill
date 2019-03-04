@@ -16,6 +16,9 @@ export const ajaxReadDevs = (context, selectedSkills) => {
 }
 
 export const ajaxInsertDev = dev => {
+
+  console.log('%c dev = ' + JSON.stringify(dev), 'color: yellow')
+
   const axios = require('axios')
   axios.defaults.headers.post['Content-Type'] = 'application/json'
   const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
@@ -44,6 +47,7 @@ export const ajaxInsertDev = dev => {
   const insertDocument = async (url, dev, lastDocumentId) => {
     dev.id = lastDocumentId + 1
     console.log('%c dev.id = ' + dev.id, 'color: violet')
+    console.log('%c dev = ' + JSON.stringify(dev), 'color: yellow')
 
     return axios.post(url, dev)
       .then(res => {
@@ -57,16 +61,8 @@ export const ajaxInsertDev = dev => {
   async function insertDev() {
     try {
       const count = await getCount() - 1
-
-
-      //const query = LITERALS.PREFIX + `?sk=${count}&l=1` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
-
       const query = LITERALS.PREFIX + `?s={id:1}&sk=${count}&l=1` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
-
-      //tvui1?s={title:1}&sk=2&l=5&apiKey=
-
       console.log('%c query = ' + query, 'color: orange')
-      // const lastDocumentId = await getLastDocumentId(LITERALS.PREFIX + `?sk=${count}` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI')
       const lastDocumentId = await getLastDocumentId(query)
       await insertDocument(url, dev, lastDocumentId)
     }
