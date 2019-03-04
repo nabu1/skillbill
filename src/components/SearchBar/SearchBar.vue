@@ -1,14 +1,22 @@
 <template src="./SearchBar.html"></template>
 
 <script>
+
   export default {
     data() {
       return {
         search: '',
-        //dblClickedDevs: ''
       }
     },
     computed: {
+      dblClickedDevs() {
+        if (this.$store.getters.getDblClickedDevs) {
+          return this.$store.getters.getDblClickedDevs.length
+        }
+      }
+    },
+
+    watch: {
       dblClickedDevs() {
         console.log('Tu dblClickedDevs')
         // console.log('%c this.selected = ' + this.selected.length, 'color: white')

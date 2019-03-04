@@ -34,7 +34,7 @@ export default new Vuex.Store({
 
     SET_DBLCLICKED_DEVS(state, devs) {
       console.log('%c SET_DBLCLICKED_DEVS = ' + devs.length , 'color: lime')
-      console.log('%c devs = ' + JSON.stringify(devs), 'color: lime')
+      console.log('%c devs.length = ' + devs.length, 'color: lime')
       state.dblClickedDevs = devs
     },
 

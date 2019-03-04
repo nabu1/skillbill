@@ -165,7 +165,7 @@ export default {
     onDblClick(item) {
       console.log('item')
       this.selected.push(item)
-      console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: lime')
+      console.log('%c this.selected.length = ' + this.selected.length, 'color: lime')
       this.$store.dispatch('setDdblClickedDevs', this.selected)
     },
   },
