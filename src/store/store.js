@@ -54,7 +54,7 @@ export default new Vuex.Store({
       ajaxReadDevs(context, selectedSkills)
     },
 
-    setDdblClickedDevs(context, devs) {
+    setDblClickedDevs(context, devs) {
       context.commit('SET_DBLCLICKED_DEVS', devs)
     },
 

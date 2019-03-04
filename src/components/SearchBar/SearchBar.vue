@@ -16,14 +16,14 @@
       }
     },
 
-    watch: {
-      dblClickedDevs() {
-        console.log('Tu dblClickedDevs')
-        // console.log('%c this.selected = ' + this.selected.length, 'color: white')
-        return this.$store.getters.getdblClickedDevs ? this.$store.getters.getdblClickedDevs.length : 0
+    // watch: {
+    //   dblClickedDevs() {
+    //     console.log('Tu dblClickedDevs')
+    //     // console.log('%c this.selected = ' + this.selected.length, 'color: white')
+    //     return this.$store.getters.getdblClickedDevs ? this.$store.getters.getdblClickedDevs.length : 0
 
-      },
-    },
+    //   },
+    // },
     methods: {
       onSelected() {
         console.log('%c selected = ' + JSON.stringify(this.$store.getters.getDblClickedDevs), 'color: yellow')
@@ -33,7 +33,7 @@
 
       onResetSelected() {
         //this.selected = []
-        this.$store.dispatch('setDdblClickedDevs', [])
+        this.$store.dispatch('setDblClickedDevs', [])
         this.$store.dispatch('readDevs', {})
         //this.$store.commit('READ_DEVS', [])
       },

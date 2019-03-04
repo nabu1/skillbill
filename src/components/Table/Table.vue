@@ -166,7 +166,7 @@ export default {
       console.log('item')
       this.selected.push(item)
       console.log('%c this.selected.length = ' + this.selected.length, 'color: lime')
-      this.$store.dispatch('setDdblClickedDevs', this.selected)
+      this.$store.dispatch('setDblClickedDevs', this.selected)
     },
   },
 }
