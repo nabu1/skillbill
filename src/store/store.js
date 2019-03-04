@@ -8,7 +8,8 @@ function initialState() {
   return {
     devs: [],
     dblClickedDevs: null,
-    selectedDevs: []
+    selectedDevs: [],
+    openDialog: false
   }
 }
 
@@ -19,7 +20,7 @@ export default new Vuex.Store({
   getters: {
     readDevs: state => state.devs,
     getDblClickedDevs: state => state.dblClickedDevs,
-    //getSelectedDevs: state => state.selectedDevs
+    getOpenDialog: state => state.openDialog
   },
 
   mutations: {
@@ -35,10 +36,10 @@ export default new Vuex.Store({
       state.dblClickedDevs = devs
     },
 
-    // SET_SELECTED_DEVS(state, selectedDevs) {
-    //   console.log('%c SET_SELECTED_DEVS = ' + JSON.stringify(selectedDevs), 'color: white')
-    //   state.selectedDevs = selectedDevs
-    // }
+    OPEN_DIALOG(state, bool) {
+      state.openDialog = bool
+      console.log('%c OPEN_DIALOG = ' + bool, 'color: white')
+    }
   },
 
   actions: {
@@ -66,11 +67,11 @@ export default new Vuex.Store({
       ajaxUpdateDates(context, clickedDev)
     },
 
-    // setSelectedDevs(context, selectedDevs) {
-    //   // console.log('%c setSelectedDevs = ' + JSON.stringify(selectedDevs), 'color: white')
-    //   context.commit('SET_SELECTED_DEVS', selectedDevs)
+    openDialog(context, bool) {
+      context.commit('OPEN_DIALOG', bool)
 
-    //}
+    }
+
 
   },
 })

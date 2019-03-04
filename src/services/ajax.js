@@ -43,12 +43,10 @@ export const ajaxInsertDev = dev => {
   }
 
   const insertDocument = async (url, dev, lastDocumentId) => {
-
     dev.id = lastDocumentId + 1
     return axios.post(url, dev)
       .then(res => {
-
-        alert('Dane zostały zapisane na serwerze')
+        console.log('Dane zostały zapisane na serwerze')
       })
       .catch(err => {
         alert('Błąd zapisu na serwerze: ', err)
@@ -58,22 +56,17 @@ export const ajaxInsertDev = dev => {
   async function insertDev() {
     try {
       const count = await getCount() - 1
-
       const lastDocumentId = await getLastDocumentId(LITERALS.PREFIX + `?sk=${count}` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI')
-
       await insertDocument(url, dev, lastDocumentId)
     }
     catch (err) {
-
+      alert('Błąd modyfikacji danych na serwerze: ', err)
     }
   }
-
   insertDev()
-
 }
 
 export const ajaxDeleteDev = (context, dev) => {
-
   const allDevs = context.getters.readDevs
   const _id = dev._id.$oid
 
@@ -103,8 +96,7 @@ export const ajaxUpdateDev = (context, dev) => {
           break
         }
       }
-
-      alert('Dane zostały uaktualnione')
+      console.log('Dane zostały uaktualnione')
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)

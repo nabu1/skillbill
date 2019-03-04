@@ -8,7 +8,8 @@ export default {
   data: () => ({
     expand: false,
     selected: [],
-    dialog: false,
+    //dialog: false,
+
     search: '',
     headers: [
       { text: '', sortable: false, value: '' },
@@ -71,6 +72,10 @@ export default {
     formTitle() {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
     },
+
+    dialog() {
+      return  this.$store.getters.getOpenDialog || false
+    }
   },
 
   watch: {
@@ -80,10 +85,7 @@ export default {
     /* calendar (val) {
       val || this.close()
     }  */
-    selected() {
-      console.log('%c this.selected = ' + this.selected.length, 'color: white')
-      this.$store.dispatch('setDdblClickedDevs', this.selected)
-    },
+
   },
 
   created() {
@@ -121,11 +123,11 @@ export default {
 
     onEdit(item) {
       console.log('onEdit')
-      this.selected
       console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: white')
 
       this.editedItem = Object.assign({}, item)
-      this.dialog = true
+      // this.dialog = true
+      this.$store.dispatch('openDialog', true)
     },
 
     onDelete(item) {
@@ -141,11 +143,13 @@ export default {
         this.$store.dispatch('updateDev', this.editedItem)
       }
 
-      this.dialog = false
+      // this.dialog = false
+      this.$store.dispatch('openDialog', false)
     },
 
     onNewDevClose() {
-      this.dialog = false
+      //this.dialog = false
+      this.$store.dispatch('openDialog', false)
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1

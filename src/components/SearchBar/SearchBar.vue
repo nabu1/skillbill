@@ -5,8 +5,16 @@
     data() {
       return {
         search: '',
-        dblClickedDevs: ''
+        //dblClickedDevs: ''
       }
+    },
+    computed: {
+      dblClickedDevs() {
+        console.log('Tu dblClickedDevs')
+        // console.log('%c this.selected = ' + this.selected.length, 'color: white')
+        return this.$store.getters.getdblClickedDevs ? this.$store.getters.getdblClickedDevs.length : 0
+
+      },
     },
     methods: {
       onSelected() {
@@ -27,6 +35,8 @@
       },
 
       onNewDev(item) {
+        console.log('Tu onNewDev')
+        this.$store.dispatch('openDialog', true)
       },
     }
   }
