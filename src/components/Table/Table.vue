@@ -82,7 +82,7 @@ export default {
     }  */
     selected() {
       console.log('%c this.selected = ' + this.selected.length, 'color: white')
-      this.$store.dispatch('setSelectedDevs', this.selected)
+      this.$store.dispatch('setDdblClickedDevs', this.selected)
     },
   },
 
@@ -158,9 +158,9 @@ export default {
 
     onDblClick(item) {
       console.log('item')
-      console.log('%c item = ' + JSON.stringify(item), 'color: lime')
       this.selected.push(item)
-      this.$store.dispatch('setSelectedDevs', this.selected)
+      console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: lime')
+      this.$store.dispatch('setDdblClickedDevs', this.selected)
     },
   },
 }
