@@ -18,6 +18,7 @@
     methods: {
       onFind() {
         console.log('%c onFind = ' + this.find, 'color: orange')
+        this.$store.dispatch('progressBar', true)
         this.$store.dispatch('findText', this.find)
       },
 

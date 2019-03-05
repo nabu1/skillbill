@@ -13,30 +13,25 @@ export const ajaxReadDevs = (context, selectedSkills) => {
     })
     .catch(err => console.log('My error: ', err))
     .finally(() => {
-
+      context.commit('PROGRESS_BAR', false)
     })
 }
 
 export const ajaxInsertDev = dev => {
-  console.log('%c dev = ' + JSON.stringify(dev), 'color: yellow')
   const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   const countUrl = LITERALS.PREFIX + '?&c=true' + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
 
   const getCount = async () => {
     return axios.get(countUrl)
       .then(res => {
-        console.log('%c count = ' + res.data, 'color: orange')
         return res.data
       })
       .catch(err => console.log('Error 1: ', err))
   }
 
   const getLastDocumentId = async lastDocumentUrl => {
-    console.log('%c lastDocumentUrl = ' + lastDocumentUrl, 'color: violet')
-
     return axios.get(lastDocumentUrl)
       .then(res => {
-        console.log('%c lastDocument id = ' + res.data[0].id, 'color: white')
         return res.data[0].id
       })
       .catch(err => console.log('Error 2: ', err))
@@ -44,8 +39,6 @@ export const ajaxInsertDev = dev => {
 
   const insertDocument = async (url, dev, lastDocumentId) => {
     dev.id = lastDocumentId + 1
-    console.log('%c dev.id = ' + dev.id, 'color: violet')
-    console.log('%c dev = ' + JSON.stringify(dev), 'color: yellow')
 
     return axios.post(url, dev)
       .then(res => {
@@ -60,11 +53,13 @@ export const ajaxInsertDev = dev => {
     try {
       const count = await getCount() - 1
       const query = LITERALS.PREFIX + `?s={id:1}&sk=${count}&l=1` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
-      console.log('%c query = ' + query, 'color: orange')
       const lastDocumentId = await getLastDocumentId(query)
       await insertDocument(url, dev, lastDocumentId)
+      context.commit('PROGRESS_BAR', false)
+
     }
     catch (err) {
+      context.commit('PROGRESS_BAR', false)
       alert('Błąd modyfikacji danych na serwerze: ', err)
     }
   }
@@ -77,10 +72,12 @@ export const ajaxDeleteDev = (context, dev) => {
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   axios.delete(url)
     .then(res => {
-
       updateView(context, allDevs, dev)
     })
     .catch(err => console.log('Błąd: ', err))
+    .finally(() => {
+      context.commit('PROGRESS_BAR', false)
+    })
 }
 
 export const ajaxUpdateDev = (context, dev) => {
@@ -102,14 +99,15 @@ export const ajaxUpdateDev = (context, dev) => {
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
     })
+    .finally(() => {
+      context.commit('PROGRESS_BAR', false)
+    })
 }
 
 export const ajaxUpdateDates = (context, calendarDev) => {
-  console.log('%c calendarDev = ' + JSON.stringify(calendarDev), 'color: white')
   const _id = calendarDev._id.$oid
   const dates = calendarDev.dates
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-
   const allDevs = context.getters.readDevs
   const datesObj = { "$set": { "dates": dates } }
 
@@ -129,19 +127,19 @@ export const ajaxUpdateDates = (context, calendarDev) => {
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
     })
+    .finally(() => {
+      context.commit('PROGRESS_BAR', false)
+    })
 }
 
 export const ajaxFindText = (context, text) => {
-  console.log('%c ajaxFindText = ' + text, 'color: white')
-
   axios
     .get(findText(text))
     .then(res => {
-      console.log('%c res.data = ' + res.data, 'color: orange')
       context.commit('READ_DEVS', res.data)
     })
     .catch(err => console.log('My error: ', err))
     .finally(() => {
-
+      context.commit('PROGRESS_BAR', false)
     })
 }

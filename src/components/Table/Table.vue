@@ -52,7 +52,6 @@ export default {
     pagination: {
       'sortBy': 'rank_1', 'descending': true, 'rowsPerPage': -1
     },
-    loading: false,
     newDevs: [],
     calendar: false,
     picker: [],
@@ -73,6 +72,10 @@ export default {
 
     dialog() {
       return  this.$store.getters.getOpenDialog || false
+    },
+
+    progressBar() {
+      return this.$store.getters.getProgressBar
     }
   },
 
@@ -104,11 +107,11 @@ export default {
 
     onCalendarSave(item) {
       console.log('onCalendarSave')
-
       const calendarDev = this.$store.getters.getCalendarDev
 
       calendarDev.dates = this.picker
       this.$store.dispatch('updateCalendar', calendarDev)
+      this.$store.dispatch('progressBar', true)
       this.calendar = false
     },
 
@@ -147,6 +150,7 @@ export default {
 
       // this.dialog = false
       this.$store.dispatch('openDialog', false)
+      this.$store.dispatch('progressBar', true)
     },
 
     onNewDevClose() {

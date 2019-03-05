@@ -33,7 +33,6 @@ export const fetch = (context, selectedSkills = {}) => {
   }
   else {
     console.log('Bez skilli')
-    ///query = '?s={id:1}&l=' + NUMBERS.DOWNLOAD_LIMIT  // limit 100 rekordów zamiast 1,000 przy pustych selektach
     query = '?s={id:1}' // limit 100 rekordów zamiast 1,000 przy pustych selektach
   }
 
@@ -45,15 +44,7 @@ export const fetch = (context, selectedSkills = {}) => {
 
 export const findText = text => {
   console.log('%c findText text = ' + text, 'color: white')
-  //const query = '&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}]}'
-  //console.log('%c urlString = ' + urlString, 'color: lime')
-
-  ///const queryTextFragment = `$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]`
-  ///const queryText = `s={timestamp:1}&q={$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
-
-  //const query = `?$or:[{"first":{"$regex":".*${text}.*",$options:"i"}},{"last":{"$regex":".*${text}.*",$options:"i"}}]`
   const query = `?q={$or:[{"first":{"$regex":".*${text}.*",$options:"i"}},{"last":{"$regex":".*${text}.*",$options:"i"}}]}`
-
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
   console.log('%c urlString = ' + urlString, 'color: white')
 
