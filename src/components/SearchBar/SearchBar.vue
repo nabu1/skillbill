@@ -5,7 +5,7 @@
   export default {
     data() {
       return {
-        search: '',
+        find: '',
       }
     },
     computed: {
@@ -16,6 +16,11 @@
       }
     },
     methods: {
+      onFind() {
+        console.log('%c onFind = ' + this.find, 'color: orange')
+        this.$store.dispatch('findText', this.find)
+      },
+
       onSelected() {
         console.log('%c selected = ' + JSON.stringify(this.$store.getters.getDblClickedDevs), 'color: yellow')
         this.$store.commit('READ_DEVS', this.$store.getters.getDblClickedDevs)

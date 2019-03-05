@@ -91,10 +91,6 @@ export default {
   },
 
   methods: {
-    onCheckbox() {
-      console.log('onCheckbox')
-    },
-
     onCalendar(dev) {
       console.log('onCalendar')
 
@@ -163,6 +159,7 @@ export default {
     },
 
     updatePagination(pagination) {
+      console.log('%c updatePagination = ' + JSON.stringify(pagination), 'color: white')
       this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
     },
 

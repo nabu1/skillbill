@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { LITERALS } from '../services/constants'
-import { fetch } from './ajaxHelpers'
+import { fetch, findText } from './ajaxHelpers'
 import { updateView } from './helpers'
+
+axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 export const ajaxReadDevs = (context, selectedSkills) => {
   axios
@@ -16,11 +18,7 @@ export const ajaxReadDevs = (context, selectedSkills) => {
 }
 
 export const ajaxInsertDev = dev => {
-
   console.log('%c dev = ' + JSON.stringify(dev), 'color: yellow')
-
-  const axios = require('axios')
-  axios.defaults.headers.post['Content-Type'] = 'application/json'
   const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   const countUrl = LITERALS.PREFIX + '?&c=true' + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
 
@@ -86,9 +84,6 @@ export const ajaxDeleteDev = (context, dev) => {
 }
 
 export const ajaxUpdateDev = (context, dev) => {
-  const axios = require('axios')
-  axios.defaults.headers.post['Content-Type'] = 'application/json'
-
   const url = `${LITERALS.PREFIX}/${dev._id.$oid.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   const allDevs = context.getters.readDevs  //.push(dev)
 
@@ -111,10 +106,6 @@ export const ajaxUpdateDev = (context, dev) => {
 
 export const ajaxUpdateDates = (context, calendarDev) => {
   console.log('%c calendarDev = ' + JSON.stringify(calendarDev), 'color: white')
-
-  const axios = require('axios')
-  axios.defaults.headers.post['Content-Type'] = 'application/json'
-
   const _id = calendarDev._id.$oid
   const dates = calendarDev.dates
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
@@ -137,5 +128,20 @@ export const ajaxUpdateDates = (context, calendarDev) => {
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
+    })
+}
+
+export const ajaxFindText = (context, text) => {
+  console.log('%c ajaxFindText = ' + text, 'color: white')
+
+  axios
+    .get(findText(text))
+    .then(res => {
+      console.log('%c res.data = ' + res.data, 'color: orange')
+      context.commit('READ_DEVS', res.data)
+    })
+    .catch(err => console.log('My error: ', err))
+    .finally(() => {
+
     })
 }

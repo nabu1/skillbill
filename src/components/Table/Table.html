@@ -13,52 +13,52 @@
               <v-layout wrap>
 
                 <v-flex xs12 sm6 md4>
-                  <v-text-field data-test="inputFirst" v-model="editedItem.first" label="First"></v-text-field>
+                  <v-text-field data-test="first" v-model="editedItem.first" label="First"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
-                  <v-text-field data-test="inputLast" v-model="editedItem.last" label="Last"></v-text-field>
+                  <v-text-field data-test="last" v-model="editedItem.last" label="Last"></v-text-field>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
-                  <v-select data-test="selectTitle" v-model="editedItem.title" :items="title"
+                  <v-select data-test="title" v-model="editedItem.title" :items="title"
                     label="Title" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
-                  <v-select  data-test="selectSkill_1" v-model="editedItem.skill_1" :items="skills"
+                  <v-select  data-test="skill_1" v-model="editedItem.skill_1" :items="skills"
                     label="Skill 1" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
 
                 <v-flex xs12 sm6 md4>
-                  <v-select data-test="selectRank_1" v-model="editedItem.rank_1" :items="ranks"
+                  <v-select data-test="rank_1" v-model="editedItem.rank_1" :items="ranks"
                     label="Rank 1" standard class="filters"
                     clearable dense></v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
-                  <v-select data-test="selectSkill_2" v-model="editedItem.skill_2" :items="skills"
+                  <v-select data-test="skill_2" v-model="editedItem.skill_2" :items="skills"
                     label="Skill 2" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
-                  <v-select data-test="selectRank_2" v-model="editedItem.rank_2" :items="ranks"
+                  <v-select data-test="rank_2" v-model="editedItem.rank_2" :items="ranks"
                     label="Rank 2" standard class="filters"
                     clearable dense></v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
-                  <v-select data-test="selectSkill_3" v-model="editedItem.skill_3" :items="skills"
+                  <v-select data-test="skill_3" v-model="editedItem.skill_3" :items="skills"
                     label="Skill 3" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
 
                 <v-flex xs12 sm6 md4>
-                  <v-select data-test="selectRank_3" v-model="editedItem.rank_3" :items="ranks"
+                  <v-select data-test="rank_3" v-model="editedItem.rank_3" :items="ranks"
                     label="Rank 3" standard class="filters"
                     clearable dense></v-select>
                 </v-flex>
@@ -109,9 +109,9 @@
 
       <v-data-table :headers="headers"
         :items="devs"
-        :search="search"
         :rows-per-page-items="rowsPerPageItems"
         :pagination.sync="pagination"
+        @update:pagination="updatePagination"
         :loading="loading"
         v-model="selected"
         class="elevation-6"
@@ -147,13 +147,7 @@
 
           </tr>
         </template>
-
-        <v-alert slot="no-results" :value="true" color="error" icon="warning">
-          Your search for "{{ search }}" found no results.
-        </v-alert>
-
       </v-data-table>
-
     </div>
   </v-app>
 </div>

@@ -72,20 +72,29 @@ for (let i = 0; i < 1 ; i++) {
   })
 
   describe('III. Inserting a dev', () => {
-    it.only('1. ..  should immediately add him to the view', () => {
-      cy.visit('http://localhost:8080').wait(4000)
+    it.only('1. .. should immediately add him to the view (JS=5, Java=5, C=5)', () => {
+      cy.visit('http://localhost:8080').wait(2000)
 
-      cy.get('#main > nav > div > div.layout.xs12.sm1.d-flex.ml-2 > button.mt-3.mr-0.v-btn.theme--dark.primary > div').click()
+      cy.get('#main > nav > div > div.layout.xs12.sm1.d-flex.ml-2 > button.mt-3.mr-0.v-btn.theme--dark.primary > div').click().wait(1000)
+      cy.get("[data-test='first']").type('Hans')
+      cy.get("[data-test='last']").type('Klops')
+
+      cy.get('#app > div:nth-child(11) > div > div > div:nth-child(1) > a > div > div').click({ force: true})
+      cy.get('#app > div:nth-child(10) > div > div > div:nth-child(4) > a > div > div').click({ force: true})
+      cy.get('#app > div:nth-child(9) > div > div > div:nth-child(1) > a > div > div').click({ force: true})
+      cy.get('#app > div:nth-child(8) > div > div > div:nth-child(5) > a > div > div').click({ force: true})
+      cy.get('#app > div:nth-child(7) > div > div > div:nth-child(1) > a > div > div').click({ force: true})
+      cy.get('#app > div:nth-child(6) > div > div > div:nth-child(1) > a > div > div').click({ force: true})
+
+      cy.get('#app > div:nth-child(5) > div > div > div:nth-child(1) > a > div > div').click({ force: true})
+
+      cy.get("[data-test='btnSave']").click({ force: true })
 
 
-      cy.get("[data-test='inputFirst']").type('Hans')
-      cy.get("[data-test='inputLast']").type('Klops')
-      cy.get("[data-test='selectTitle']").select(2)
     })
   })
-
-
-
-
 }
+
+
+// ('#app > div:nth-child(10) > div > div > div:nth-child(1) > a > div > div')
 

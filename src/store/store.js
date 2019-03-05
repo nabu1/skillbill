@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 // import createPersistedState from 'vuex-persistedstate'
-import { ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev, ajaxUpdateDates } from '../services/ajax'
-Vue.use(Vuex)
+import { ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev,
+  ajaxUpdateDates, ajaxFindText } from '../services/ajax'
+
+  Vue.use(Vuex)
 
 function initialState() {
   return {
@@ -46,6 +48,11 @@ export default new Vuex.Store({
     SET_CALENDAR_DEV(state, dev) {
       console.log('%c SET_CALENDAR_DEV dev = ' + dev, 'color: yellow')
       state.calendarDev = dev
+    },
+
+    FIND_TEXT(state, text) {
+      console.log('%c FIND_TEXT = ' + text, 'color: yellow')
+      state.text = text
     }
   },
 
@@ -84,6 +91,11 @@ export default new Vuex.Store({
     setCalendarDev(context, dev) {
       console.log('%c setCalendarDev dev = ' + dev, 'color: yellow')
       context.commit('SET_CALENDAR_DEV', dev)
+    },
+
+    findText(context, text) {
+      console.log('%c findText = ' + text, 'color: yellow')
+      ajaxFindText(context, text)
     }
 
 

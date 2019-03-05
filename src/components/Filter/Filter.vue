@@ -18,38 +18,29 @@
     },
     methods: {
       onSkill_1(e) {
-
         this.selectedSkills.skill_1 = e
       },
       onRank_1(e) {
-
         this.selectedSkills.rank_1 = e
-
         this.console.log('%c selectedSkills = ' + JSON.stringify(selectedSkills), 'color: white')
       },
       onSkill_2(e) {
-
         this.selectedSkills.skill_2 = e
       },
       onRank_2(e) {
-
         this.selectedSkills.rank_2 = e
       },
       onSkill_3(e) {
-
         this.selectedSkills.skill_3 = e
       },
       onRank_3(e) {
-
         this.selectedSkills.rank_3 = e
       },
       onSearch() {
-
         console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: orange')
         this.$store.dispatch('readDevs', this.selectedSkills)
       },
       onClear() {
-
         console.log('%c this.selectedSkills = ' + JSON.stringify(this.selectedSkills), 'color: lime')
         this.selectedSkills = {}
         this.skill_1 = null
