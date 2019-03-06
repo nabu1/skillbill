@@ -21,6 +21,7 @@ export default {
       { text: 'Rank 2', sortable: true, value: 'rank_2' },
       { text: 'Skill 3', sortable: false, value: 'skill_3' },
       { text: 'Rank 3', sortable: true, value: 'rank_3' },
+      { text: 'Picture', sortable: false, value: 'picture' },
     ],
     editedIndex: -1,
     editedItem: {

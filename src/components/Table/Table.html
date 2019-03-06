@@ -2,7 +2,7 @@
   <v-app class="mx-0 my-1">
     <div>
 
-      <v-dialog v-model="dialog" max-width="500px">
+      <v-dialog v-model="dialog" max-width="700px">
         <v-card>
           <v-card-title>
             <span class="headline">{{ formTitle }}</span>
@@ -25,6 +25,11 @@
                     label="Title" standard
                     class="filters" clearable dense> </v-select>
                 </v-flex>
+
+                <v-flex xs12 sm6 md4>
+                  <v-text-field data-test="email" v-model="editedItem.email" label="Email"></v-text-field>
+                </v-flex>
+
 
                 <v-flex xs12 sm6 md4>
                   <v-select  data-test="skill_1" v-model="editedItem.skill_1" :items="skills"
@@ -62,6 +67,8 @@
                     label="Rank 3" standard class="filters"
                     clearable dense></v-select>
                 </v-flex>
+
+
 
               </v-layout>
             </v-container>
@@ -129,6 +136,7 @@
             <td class="text-xs-left body-2">{{ props.item.rank_2 }}</td>
             <td class="text-xs-left body-2">{{ props.item.skill_3 }}</td>
             <td class="text-xs-left body-2">{{ props.item.rank_3 }}</td>
+            <td class="text-xs-left body-2">{{ props.item.picture }}</td>
 
             <td class="justify-center layout px-0">
 
