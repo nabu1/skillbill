@@ -2,16 +2,11 @@
   <v-toolbar flat color="grey">
     <v-toolbar-title>Skill Bill</v-toolbar-title>
 
-    <b-col md="2">
-        <h2>
-          <router-link to="/about"
-                       active-class='active'
-                       class='ml-5'>
-            <a>Pomoc</a>
-          </router-link>
-        </h2>
-      </b-col>
-
+      <router-link to="/about"
+                   active-class="active"
+                   class="ml-5">
+        <a>Pomoc</a>
+      </router-link>
 
     <v-spacer></v-spacer>
 
@@ -29,7 +24,9 @@
       <v-btn @click="onFind" color="primary" dark class="mt-3 mr-5">Find</v-btn>
       <v-btn @click="onSelected" color="primary" dark class="mt-3">Selected {{ dblClickedDevs }}</v-btn>
       <v-btn @click="onResetSelected" color="primary" dark class="mt-3">Reset</v-btn>
-      <v-btn @click="onEmail" color="primary" dark class="mt-3">Email</v-btn>
+
+      <v-btn @click="onEmail" :disabled="emailDisabled" color="primary" dark class="mt-3">Email</v-btn>
+
       <v-btn @click="onNewDev" slot="activator" color="primary" dark class="mt-3 mr-0">New Dev</v-btn>
     </v-layout>
 

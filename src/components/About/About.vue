@@ -6,12 +6,11 @@
     font-family: "Roboto";
     font-size: 1em;
     margin: 10px 50px 30px 50px;
-    /* padding: 10px 20px 10px 20px */
   }
 
   a {
-    color: blue;
-    font-size: 1.4em;
+    color: primary;
+    font-size: 1.3em;
     font-weight: 400;
     text-decoration: none;
   }
@@ -22,7 +21,5 @@
 
   .content {
     font-size: 1em;
-
   }
-
 </style>
