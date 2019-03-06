@@ -46,7 +46,7 @@ export default {
       rank_3: '',
     },
     ranks: [5, 4, 3, 2, 1],
-    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
+    //skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
     rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 2085, 3000],
     pagination: {
@@ -76,17 +76,11 @@ export default {
 
     progressBar() {
       return this.$store.getters.getProgressBar
+    },
+
+    skills() {
+      return this.$store.getters.getSkills
     }
-  },
-
-  watch: {
-    /* dialog (val) {
-      val || this.close()
-    }, */
-    /* calendar (val) {
-      val || this.close()
-    }  */
-
   },
 
   created() {
@@ -125,7 +119,6 @@ export default {
       console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: white')
 
       this.editedItem = Object.assign({}, item)
-      // this.dialog = true
       this.$store.dispatch('openDialog', true)
     },
 
@@ -172,8 +165,8 @@ export default {
       this.selected.push(item)
       console.log('%c this.selected.length = ' + this.selected.length, 'color: lime')
       this.$store.dispatch('setDblClickedDevs', this.selected)
-    },
-  },
+    }
+  }
 }
 </script>
 
