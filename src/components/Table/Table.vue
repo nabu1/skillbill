@@ -173,23 +173,23 @@ export default {
 </script>
 
 <style scoped>
-.filters {
-  transform: scale(1, 1);
-  transform-origin: left;
-}
+  #app {
+    margin-top: 0px !important;
+    margin-bottom: 0px;
+  }
 
-.filters-row {
-  background-color: grey;
-}
+  .filters {
+    transform: scale(1, 1);
+    transform-origin: left;
+  }
 
-#calendar_heading {
-  color: #2196f3;
-  margin: 0 0 10px 0;
-}
+  .filters-row {
+    background-color: grey;
+  }
 
-#app {
-  margin-top: 0px !important;
-  margin-bottom: 0px;
-}
+  #calendar_heading {
+    color: #2196f3;
+    margin: 0 0 10px 0;
+  }
 </style>
 

@@ -8,7 +8,7 @@
     data() {
       return {
         find: '',
-        emailDisabled: false
+        emailDisabled: true
       }
     },
 
@@ -31,12 +31,13 @@
         console.log('%c selected = ' + JSON.stringify(this.$store.getters.getDblClickedDevs), 'color: yellow')
         this.$store.commit('READ_DEVS', this.$store.getters.getDblClickedDevs)
         //this.$refs.btnEmail.disabled = false
-        this.emailDisabled = true
+        this.emailDisabled = false
       },
 
       onResetSelected() {
         this.$store.dispatch('setDblClickedDevs', [])
         this.$store.dispatch('readDevs', {})
+        this.emailDisabled = true
       },
 
       onEmail() {
@@ -45,9 +46,7 @@
         const devs = this.$store.getters.getDblClickedDevs
         console.log('%c devs = ' + devs, 'color: orange')
 
-        const emails = devs.map(el => {
-          return el.email
-        })
+        const emails = devs.map(el => el.email)
 
         console.log('%c emails = ' + emails, 'color: orange')
         sendEmail(emails, text)
@@ -55,6 +54,7 @@
 
       onNewDev(item) {
         console.log('Tu onNewDev')
+        this.emailDisabled = true
         this.$store.dispatch('openDialog', true)
       },
     }
