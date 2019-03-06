@@ -50,12 +50,13 @@
 
         console.log('%c emails = ' + emails, 'color: orange')
         sendEmail(emails, text)
+        this.emailDisabled = true
       },
 
       onNewDev(item) {
         console.log('Tu onNewDev')
-        this.emailDisabled = true
         this.$store.dispatch('openDialog', true)
+        this.emailDisabled = true
       },
     }
   }
