@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // import createPersistedState from 'vuex-persistedstate'
 import { ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev,
   ajaxUpdateDates, ajaxFindText } from '../services/ajax'
+import { dedupeSkills } from '../services/helpers'
 
   Vue.use(Vuex)
 
@@ -28,7 +29,7 @@ export default new Vuex.Store({
     getOpenDialog: state => state.openDialog,
     getCalendarDev: state => state.calendarDev,
     getProgressBar: state => state.progressBar,
-    getSkills: state => state.skills || []
+    getSkills: state => state.skills
     //getSkills: state => ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby']
   },
 
@@ -66,9 +67,10 @@ export default new Vuex.Store({
       state.progressBar = bool
     },
 
-    PROGRESS_BAR(state, skills = []) {
-      console.log('%c PROGRESS_BAR = ' + skills, 'color: white')
-      state.skills = skills
+    SKILLS(state, filteredSkills) {
+      console.log('%c SKILLS = ' + filteredSkills, 'color: white')
+      //state.skills = filteredSkills
+      state.skills =  ['Javascript', 'Java']
     }
   },
 
@@ -119,8 +121,10 @@ export default new Vuex.Store({
       context.commit('PROGRESS_BAR', bool)
     },
 
-    skills(context, skills) {
-      context.commit('SKILLS', skills)
+    skills(context, skill) {
+      console.log('%c skills = ' + skill, 'color: lime')
+      //context.commit('SKILLS', skills)
+      dedupeSkills(context, skill)
     }
   }
 })
