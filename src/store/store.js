@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 // import createPersistedState from 'vuex-persistedstate'
 import { ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev,
   ajaxUpdateDates, ajaxFindText } from '../services/ajax'
-import { dedupeSkills } from '../services/helpers'
 
   Vue.use(Vuex)
 
@@ -14,8 +13,7 @@ function initialState() {
     selectedDevs: [],
     openDialog: false,
     calendarDev: null,
-    progressBar: false,
-    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby']
+    progressBar: false
   }
 }
 
@@ -29,8 +27,6 @@ export default new Vuex.Store({
     getOpenDialog: state => state.openDialog,
     getCalendarDev: state => state.calendarDev,
     getProgressBar: state => state.progressBar,
-    getSkills: state => state.skills
-    //getSkills: state => ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby']
   },
 
   mutations: {
@@ -66,12 +62,6 @@ export default new Vuex.Store({
       console.log('%c PROGRESS_BAR = ', 'color: yellow')
       state.progressBar = bool
     },
-
-    SKILLS(state, filteredSkills) {
-      console.log('%c SKILLS = ' + filteredSkills, 'color: white')
-      //state.skills = filteredSkills
-      state.skills =  ['Javascript', 'Java']
-    }
   },
 
   actions: {
@@ -120,11 +110,5 @@ export default new Vuex.Store({
       console.log('%c progressBar = ' + bool, 'color: white')
       context.commit('PROGRESS_BAR', bool)
     },
-
-    skills(context, skill) {
-      console.log('%c skills = ' + skill, 'color: lime')
-      //context.commit('SKILLS', skills)
-      dedupeSkills(context, skill)
-    }
   }
 })
