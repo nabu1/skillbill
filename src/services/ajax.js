@@ -151,7 +151,11 @@ export const sendEmail = (recipients, text) => {
   const subject = LITERALS.EMAIL_SUBJECT
   const proxy = LITERALS.EMAIL_PROXY
 
-  axios.post(mailUrl)
+  recipients.map(el => {
+    const mailUrl = proxy + '?to=' + el + '&subject=' + subject + '&html=' + text
+    console.log('%c mailUrl = ' + mailUrl, 'color: orange')
+
+    axios.post(mailUrl)
     .then(() => {
       console.log('Email wysłany')
       alert('Email wysłany. Sprawdź za chwilę skrzynkę')
@@ -160,8 +164,5 @@ export const sendEmail = (recipients, text) => {
     .finally(() => {
       alert('Email wysłany. Sprawdź za chwilę skrzynkę')
     })
-
-  const mailUrl = proxy + '?to=' + email + '&subject=' + subject + '&html=' + text
-  console.log('%c mailUrl = ' + mailUrl, 'color: orange')
-
+  })
 }
