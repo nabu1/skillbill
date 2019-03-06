@@ -1,7 +1,6 @@
 import { LITERALS, NUMBERS } from './constants'
 
 export const fetch = (context, selectedSkills = {}) => {
-
   if (selectedSkills.paginationLimit) {
     if (selectedSkills.paginationLimit > NUMBERS.PAGINATION_LIMIT) {
       const limit = Number(String(selectedSkills.paginationLimit).slice(1)) || NUMBERS.PAGINATION_LIMIT

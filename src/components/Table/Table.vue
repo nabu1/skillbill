@@ -80,9 +80,9 @@ export default {
       return this.$store.getters.getProgressBar
     },
 
-    skills() {
-      return this.$store.getters.getSkills
-    }
+    // skills() {
+    //   return this.$store.getters.getSkills
+    // }
   },
 
   created() {

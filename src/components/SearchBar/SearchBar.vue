@@ -1,6 +1,8 @@
 <template src="./SearchBar.html"></template>
 
 <script>
+  import { sendEmail } from '../../services/ajax'
+  import { LITERALS } from '../../services/constants.js'
 
   export default {
     data() {
@@ -29,14 +31,22 @@
       },
 
       onResetSelected() {
-        //this.selected = []
         this.$store.dispatch('setDblClickedDevs', [])
         this.$store.dispatch('readDevs', {})
-        //this.$store.commit('READ_DEVS', [])
       },
 
       onEmail() {
         console.log('onEmail')
+        const text = LITERALS.EMAIL_TEXT//const
+        const devs = this.$store.getters.getDblClickedDevs
+        console.log('%c devs = ' + devs, 'color: orange')
+
+        const emails = devs.map(el => {
+          return el.email
+        })
+
+        console.log('%c emails = ' + emails, 'color: orange')
+        sendEmail(emails, text)
       },
 
       onNewDev(item) {
