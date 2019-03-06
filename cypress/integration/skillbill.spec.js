@@ -87,7 +87,7 @@ for (let i = 0; i < 1 ; i++) {
       cy.get('#app > div:nth-child(6) > div > div > div:nth-child(1) > a > div > div').click({ force: true})
 
       cy.get('#app > div:nth-child(5) > div > div > div:nth-child(1) > a > div > div').click({ force: true})
-
+cy.pause()
       cy.get("[data-test='btnSave']").click({ force: true })
 
 

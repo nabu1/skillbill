@@ -17,7 +17,7 @@ export const ajaxReadDevs = (context, selectedSkills) => {
     })
 }
 
-export const ajaxInsertDev = dev => {
+export const ajaxInsertDev = (context, dev) => {
   const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   const countUrl = LITERALS.PREFIX + '?&c=true' + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
 
