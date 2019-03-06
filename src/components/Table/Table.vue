@@ -22,6 +22,7 @@ export default {
       { text: 'Skill 3', sortable: false, value: 'skill_3' },
       { text: 'Rank 3', sortable: true, value: 'rank_3' },
       { text: 'Picture', sortable: false, value: 'picture' },
+      { text: 'Tools', sortable: false, value: '' },
     ],
     editedIndex: -1,
     editedItem: {
@@ -47,7 +48,7 @@ export default {
       rank_3: '',
     },
     ranks: [5, 4, 3, 2, 1],
-    //skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
+    skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
     rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 2085, 3000],
     pagination: {
