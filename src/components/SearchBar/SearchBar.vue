@@ -61,4 +61,22 @@
   #main {
     font-family: "Roboto";
   }
+
+  a {
+    color: primary;
+    font-weight: 400;
+    font-size: 1.1em;
+    text-decoration: none;
+  }
+  body {
+    color: white;
+    font-variant: italic;
+  }
+  .stations {
+    color: yellow;
+  }
+  .documents {
+    color: lime;
+  }
+
 </style>

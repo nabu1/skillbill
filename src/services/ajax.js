@@ -158,11 +158,8 @@ export const sendEmail = (recipients, text) => {
     axios.post(mailUrl)
     .then(() => {
       console.log('Email wysłany')
-      alert('Email wysłany. Sprawdź za chwilę skrzynkę')
+      alert('Email został wysłany. Sprawdź za chwilę skrzynkę')
     })
     .catch(err => console.log('Mail error: ', err))
-    .finally(() => {
-      alert('Email wysłany. Sprawdź za chwilę skrzynkę')
-    })
   })
 }
