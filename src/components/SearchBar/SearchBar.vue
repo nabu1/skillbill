@@ -22,7 +22,12 @@
 
     methods: {
       onFind() {
-        console.log('%c onFind = ' + this.find, 'color: orange')
+        console.log('%c this.find.length = ' + this.find.length, 'color: orange')
+
+        if (this.find.length < 3) {
+          return alert('Szukane słowo musi mieć conajmniej 3 znaki')
+        }
+
         this.$store.dispatch('progressBar', true)
         this.$store.dispatch('findText', this.find)
       },
