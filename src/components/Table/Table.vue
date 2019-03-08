@@ -8,6 +8,7 @@ export default {
   data: () => ({
     expand: false,
     selected: [],
+
     //dialog: false,
 
     headers: [
@@ -80,8 +81,8 @@ export default {
       return this.$store.getters.getProgressBar
     },
 
-    // skills() {
-    //   return this.$store.getters.getSkills
+    // selected() {
+    //   return this.$store.getters.getDblClickedDevs
     // }
   },
 
@@ -158,7 +159,7 @@ export default {
     },
 
     updatePagination(pagination) {
-      console.log('%c updatePagination = ' + JSON.stringify(pagination), 'color: white')
+      // console.log('%c updatePagination = ' + JSON.stringify(pagination), 'color: white')
       this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
     },
 
@@ -166,7 +167,11 @@ export default {
       console.log('item')
       this.selected.push(item)
       console.log('%c this.selected.length = ' + this.selected.length, 'color: lime')
-      this.$store.dispatch('setDblClickedDevs', this.selected)
+      //this.$store.dispatch('setDblClickedDevs', this.selected)
+      let selectedDevs = this.$store.getters.getDblClickedDevs || []
+      selectedDevs.push(item)
+
+      this.$store.dispatch('setDblClickedDevs', selectedDevs)
     }
   }
 }
