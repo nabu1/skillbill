@@ -36,6 +36,7 @@
       onResetSelected() {
         this.$store.dispatch('setDblClickedDevs', [])
         this.$store.dispatch('readDevs', {})
+        this.$store.dispatch('progressBar', true)
         this.emailDisabled = true
       },
 
