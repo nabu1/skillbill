@@ -164,13 +164,16 @@ export default {
     },
 
     onDblClick(item) {
-      console.log('item')
-      this.selected.push(item)
-      console.log('%c this.selected.length = ' + this.selected.length, 'color: lime')
-      //this.$store.dispatch('setDblClickedDevs', this.selected)
       let selectedDevs = this.$store.getters.getDblClickedDevs || []
-      selectedDevs.push(item)
+      const selectedDevsLength = selectedDevs.length
 
+      for (let index = 0; index < selectedDevsLength; index++) {
+        if (selectedDevs[index].id === item.id) {
+          console.log('%c Są takie same', 'color: gold')
+          return
+        }
+      }
+      selectedDevs.push(item)
       this.$store.dispatch('setDblClickedDevs', selectedDevs)
     }
   }
