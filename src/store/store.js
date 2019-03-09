@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate'
 import { ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev,
   ajaxUpdateDates, ajaxFindText } from '../services/ajax'
 
@@ -18,7 +18,7 @@ function initialState() {
 }
 
 export default new Vuex.Store({
-  // plugins: [createPersistedState()],
+  plugins: [createPersistedState()],
   state: initialState,
 
   getters: {
@@ -32,7 +32,7 @@ export default new Vuex.Store({
   mutations: {
     READ_DEVS(state, devs) {
       // console.log('%c devs = ' + typeof devs, 'color: white')
-      state.selectedDevs = devs
+      //state.selectedDevs = devs
       state.devs = devs
       // console.log('%c state.devs = ' + JSON.stringify(state.devs), 'color: lime')
     },
