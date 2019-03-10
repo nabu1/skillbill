@@ -3,27 +3,28 @@ import { tableCell } from './cyhelper'
 for (let i = 0; i < 1 ; i++) {
 
   describe('I. Documents filtering', () => {
-    it.skip('1. .. using JS=4, Java=2 and ObjC without rank specified, should get at least 3 devs' +
+    it.only('1. .. using JS=4, Java=2 and C without rank specified, should get at least 3 devs' +
       'and pressing Clear button should clear all the select boxes', () => {
 
       cy.visit('http://localhost:8080')
-      .get("[data-test='skill_1']").click({ force: true })
+
+      .get("[data-test='filter_skill_1']").click({ force: true })
       cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(4) > a > div > div").click()
 
-      .get("[data-test='rank_1']").click({ force: true })
+      .get("[data-test='filter_rank_1']").eq(0).click({ force: true })
       cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div").click()
 
-      .get("[data-test='skill_2']").click({ force: true })
-      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(5) > a > div > div").click()
-
-      .get("[data-test='rank_2']").click({ force: true })
+      .get("[data-test='filter_skill_2']").click({ force: true })
       cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(4) > a > div > div").click()
 
-      .get("[data-test='skill_3']").click({ force: true })
-      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(6) > a > div > div").click()
+      .get("[data-test='filter_rank_2']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(4) > a > div > div").click()
 
-      //.get("[data-test='rank_3']").click({ force: true })
-      //cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(5) > a > div > div").click()
+      .get("[data-test='filter_skill_3']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(1) > a > div > div").click()
+
+      .get("[data-test='filter_rank_3']").click({ force: true })
+      cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(5) > a > div > div").click()
 
       .get("[data-test='btnSearch']").click().wait(2000)
 //cy.pause()
@@ -34,7 +35,7 @@ for (let i = 0; i < 1 ; i++) {
       cy.get(tableCell(1, 7)).should('contain', 'Java')
       cy.get(tableCell(1, 8)).contains(/[3,4,5]/).should('exist')
 
-      cy.get(tableCell(1, 9)).should('contain', 'ObjC')
+      cy.get(tableCell(1, 9)).should('contain', 'C')
       cy.get(tableCell(1, 10)).contains(/[1,2,3,4,5]/).should('exist')
 
       cy.get(tableCell(2, 5)).should('contain', 'JS')
@@ -43,7 +44,7 @@ for (let i = 0; i < 1 ; i++) {
       cy.get(tableCell(2, 7)).should('contain', 'Java')
       cy.get(tableCell(2, 8)).contains(/[2,3,4,5]/).should('exist')
 
-      cy.get(tableCell(2, 9)).should('contain', 'ObjC')
+      cy.get(tableCell(2, 9)).should('contain', 'C')
       cy.get(tableCell(2, 10)).contains(/[1,2,3,4,5]/).should('exist')
 
       cy.get("[data-test='btnClear']").click().wait(1000)
@@ -72,7 +73,7 @@ for (let i = 0; i < 1 ; i++) {
   })
 
   describe('III. Inserting a dev', () => {
-    it.only('1. .. should immediately add him to the view (JS=5, Java=5, C=5)', () => {
+    it.skip('1. .. should immediately add him to the view (JS=5, Java=5, C=5)', () => {
       cy.visit('http://localhost:8080').wait(2000)
 
       cy.get('#main > nav > div > div.layout.xs12.sm1.d-flex.ml-2 > button.mt-3.mr-0.v-btn.theme--dark.primary > div').click().wait(1000)
@@ -97,4 +98,7 @@ cy.pause()
 
 
 // ('#app > div:nth-child(10) > div > div > div:nth-child(1) > a > div > div')
+
+// document.querySelector("#main > div > div:nth-child(4) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections > input[type=text]")
+// document.querySelector("#app > div:nth-child(3) > div > div > div.v-card__text > div > div > div:nth-child(7) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections > input[type=text]")
 
