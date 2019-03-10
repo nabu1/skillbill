@@ -100,7 +100,7 @@ for (let i = 0; i < 1 ; i++) {
   })
 
   describe('IV. Editing a dev', () => {
-    it.only('1. .. should immediately show modified data of a dev', () => {
+    it.skip('1. .. should immediately show modified data of a dev', () => {
       cy.visit('http://localhost:8080').wait(2000)
 
       cy.get("#app > div.application--wrap > div > div.elevation-6 > div.v-table__overflow > table > tbody > tr:nth-child(1) > td.justify-center.layout.px-0 > i:nth-child(1)").click()
@@ -122,17 +122,26 @@ for (let i = 0; i < 1 ; i++) {
     })
   })
 
+  describe('V. Selected devs', () => {
+    it.only('1. .. should be visible after being doubleclicked and button Selected was clicked. \
+      After clicking Reset butto, previous table id shown', () => {
+        
+      cy.visit('http://localhost:8080').wait(2000)
 
+      cy.contains('Uszatek').dblclick()
+      cy.contains('Worsnup').dblclick()
+      cy.contains('Suddell').dblclick()
 
+      cy.get("[data-test='btnSelected']").click()
 
+      cy.contains('Uszatek').should('exist')
+      cy.contains('Worsnup').should('exist')
+      cy.contains('Suddell').should('exist')
 
-
-
+      cy.get("[data-test='btnReset']").click().wait(1000)
+      cy.get('table > tbody > tr').its('length').should('be.gte', 10)
+    })
+  })
 }
 
-
-// ('#app > div:nth-child(10) > div > div > div:nth-child(1) > a > div > div')
-
-// document.querySelector("#main > div > div:nth-child(4) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections > input[type=text]")
-// document.querySelector("#app > div:nth-child(3) > div > div > div.v-card__text > div > div > div:nth-child(7) > div > div > div.v-input__slot > div.v-select__slot > div.v-select__selections > input[type=text]")
-
+// ("#app > div.application--wrap > div > div.elevation-6 > div.v-table__overflow > table > tbody > tr:nth-child(3)")
