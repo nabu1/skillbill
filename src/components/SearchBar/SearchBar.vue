@@ -17,7 +17,7 @@
         if (this.$store.getters.getDblClickedDevs) {
           return this.$store.getters.getDblClickedDevs.length
         }
-      }
+      },
     },
 
     methods: {
@@ -74,7 +74,7 @@
 
   a {
     color: primary;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: 400;
     text-decoration: none;
   }

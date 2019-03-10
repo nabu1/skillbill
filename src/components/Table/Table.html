@@ -68,7 +68,6 @@
                 </v-flex>
 
 
-
               </v-layout>
             </v-container>
           </v-card-text>
@@ -111,16 +110,12 @@
         </v-card>
       </v-dialog>
 
-<!----------- DATA TABLE                      ------------------------------------------------------------>
-
       <v-data-table :headers="headers"
         :items="devs"
-        :rows-per-page-items="rowsPerPageItems"
-        :pagination.sync="pagination"
-        @update:pagination="updatePagination"
         :loading="progressBar"
         v-model="selected"
         class="elevation-6"
+        hide-actions
         dark>
 
         <template slot="items" slot-scope="props">

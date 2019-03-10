@@ -51,10 +51,6 @@ export default {
     ranks: [5, 4, 3, 2, 1],
     skills: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
     title: ['Junior', 'Mid', 'Senior', 'Consultant', 'Architect'],
-    rowsPerPageItems: [10, 25, 100, 250, 1000, 1100, 2000, 2085, 3000],
-    pagination: {
-      'sortBy': 'rank_1', 'descending': true, 'rowsPerPage': -1
-    },
     newDevs: [],
     calendar: false,
     picker: [],
@@ -70,7 +66,8 @@ export default {
     },
 
     formTitle() {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      //return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return 'Developer Data'
     },
 
     dialog() {
@@ -156,11 +153,6 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
-    },
-
-    updatePagination(pagination) {
-      // console.log('%c updatePagination = ' + JSON.stringify(pagination), 'color: white')
-      this.$store.dispatch('readDevs', { paginationLimit: pagination.rowsPerPage })
     },
 
     onDblClick(item) {
