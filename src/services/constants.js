@@ -1,5 +1,5 @@
 export const LITERALS = {
-  LIST: 'https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
+  DB: 'https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
   PREFIX: 'https://api.mlab.com/api/1/databases/skillbill/collections/skillbill',
   SUFFIX: '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
   EMAIL_TEXT: 'Hi, please contact me regarding upcoming project. Best regards',
