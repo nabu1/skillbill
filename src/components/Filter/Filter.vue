@@ -57,7 +57,6 @@ export default {
       this.$store.dispatch('readDevs', this.selectedSkills)
     },
     onClear() {
-      skill1
       this.selectedSkills = {}
       this.skill_1 = null
       this.skill2 = null

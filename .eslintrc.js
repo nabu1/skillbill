@@ -25,6 +25,7 @@ module.exports = {
     "newline-per-chained-call": 'off',
     'no-alert': 'off',
     'no-multiple-empty-lines': [1, { max: 1 }],
+    'no-multi-str': 'off',
     'no-param-reassign': 'off',
     'no-plusplus': 0,
     'no-restricted-globals': 'off',
