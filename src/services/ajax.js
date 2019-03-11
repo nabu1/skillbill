@@ -73,7 +73,7 @@ export const ajaxDeleteDev = (context, dev) => {
 
 export const ajaxUpdateDev = (context, dev) => {
   const url = `${LITERALS.PREFIX}/${dev._id.$oid.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  const allDevs = context.getters.readDevs 
+  const allDevs = context.getters.readDevs
 
   axios.put(url, dev)
     .then(() => {
@@ -155,6 +155,3 @@ export const sendEmail = (recipients, text) => {
   })
 }
 
-
-(;|^)*console.log.*  - console.logi
-(?:\/\*(?:[\s\S]*?)\*\/)|(?:^\s*\/\/(?:.*)$) - komentarze; przejrzyj i ew prawy i Dismiss
