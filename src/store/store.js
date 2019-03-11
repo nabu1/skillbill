@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import { ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev,
-  ajaxUpdateDates, ajaxFindText } from '../services/ajax'
+import {
+  ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev,
+  ajaxUpdateDates, ajaxFindText
+} from '../services/ajax'
 
-  Vue.use(Vuex)
+Vue.use(Vuex)
 
 function initialState() {
   return {
@@ -31,35 +33,31 @@ export default new Vuex.Store({
 
   mutations: {
     READ_DEVS(state, devs) {
-
-
       state.devs = devs
-
     },
 
     SET_DBLCLICKED_DEVS(state, devs) {
-      console.log('%c SET_DBLCLICKED_DEVS = ' + devs.length , 'color: lime')
+
 
       state.dblClickedDevs = devs
     },
 
     OPEN_DIALOG(state, bool) {
       state.openDialog = bool
-      console.log('%c OPEN_DIALOG = ' + bool, 'color: white')
+
     },
 
     SET_CALENDAR_DEV(state, dev) {
-      console.log('%c SET_CALENDAR_DEV dev = ' + dev, 'color: yellow')
+
       state.calendarDev = dev
     },
 
     FIND_TEXT(state, text) {
-      console.log('%c FIND_TEXT = ' + text, 'color: yellow')
+
       state.text = text
     },
 
     PROGRESS_BAR(state, bool) {
-
       state.progressBar = bool
     },
   },
@@ -78,7 +76,7 @@ export default new Vuex.Store({
     },
 
     insertDev(context, dev) {
-      console.log('%c insertDev dev = ' + JSON.stringify(dev), 'color: yellow')
+
       ajaxInsertDev(context, dev)
     },
 
@@ -87,27 +85,26 @@ export default new Vuex.Store({
     },
 
     updateCalendar(context, calendarDev) {
-      console.log('%c updateCalendar calendarDev = ' + calendarDev, 'color: white')
+
       ajaxUpdateDates(context, calendarDev)
     },
 
     openDialog(context, bool) {
       context.commit('OPEN_DIALOG', bool)
-
     },
 
     setCalendarDev(context, dev) {
-      console.log('%c setCalendarDev dev = ' + dev, 'color: yellow')
+
       context.commit('SET_CALENDAR_DEV', dev)
     },
 
     findText(context, text) {
-      console.log('%c findText = ' + text, 'color: yellow')
+
       ajaxFindText(context, text)
     },
 
     progressBar(context, bool) {
-      console.log('%c progressBar = ' + bool, 'color: white')
+
       context.commit('PROGRESS_BAR', bool)
     },
   }

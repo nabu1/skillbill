@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { LITERALS } from '../services/constants'
+import { LITERALS } from './constants'
 import { fetch, findText } from './ajaxHelpers'
-import { updateView } from './helpers'
+import updateView from './helpers'
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
@@ -18,31 +18,23 @@ export const ajaxReadDevs = (context, selectedSkills) => {
 }
 
 export const ajaxInsertDev = (context, dev) => {
-  const url = `https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  const countUrl = LITERALS.PREFIX + '?&c=true' + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
+  const url = 'https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
+  const countUrl = LITERALS.PREFIX + '?&c=true&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
 
-  const getCount = async () => {
-    return axios.get(countUrl)
-      .then(res => {
-        return res.data
-      })
-      .catch(err => console.log('Error 1: ', err))
-  }
+  const getCount = async () => axios.get(countUrl)
+    .then(res => res.data)
+    .catch(err => console.log('Error 1: ', err))
 
-  const getLastDocumentId = async lastDocumentUrl => {
-    return axios.get(lastDocumentUrl)
-      .then(res => {
-        return res.data[0].id
-      })
-      .catch(err => console.log('Error 2: ', err))
-  }
+  const getLastDocumentId = async lastDocumentUrl => axios.get(lastDocumentUrl)
+    .then(res => res.data[0].id)
+    .catch(err => console.log('Error 2: ', err))
 
   const insertDocument = async (url, dev, lastDocumentId) => {
     dev.id = lastDocumentId + 1
 
     return axios.post(url, dev)
-      .then(res => {
-        console.log('Dane zostały zapisane na serwerze')
+      .then(() => {
+
       })
       .catch(err => {
         alert('Błąd zapisu na serwerze: ', err)
@@ -52,11 +44,10 @@ export const ajaxInsertDev = (context, dev) => {
   async function insertDev() {
     try {
       const count = await getCount() - 1
-      const query = LITERALS.PREFIX + `?s={id:1}&sk=${count}&l=1` + '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
+      const query = LITERALS.PREFIX + `?s={id:1}&sk=${count}&l=1&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
       const lastDocumentId = await getLastDocumentId(query)
       await insertDocument(url, dev, lastDocumentId)
       context.commit('PROGRESS_BAR', false)
-
     }
     catch (err) {
       context.commit('PROGRESS_BAR', false)
@@ -71,7 +62,7 @@ export const ajaxDeleteDev = (context, dev) => {
   const _id = dev._id.$oid
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   axios.delete(url)
-    .then(res => {
+    .then(() => {
       updateView(context, allDevs, dev)
     })
     .catch(err => console.log('Błąd: ', err))
@@ -82,11 +73,11 @@ export const ajaxDeleteDev = (context, dev) => {
 
 export const ajaxUpdateDev = (context, dev) => {
   const url = `${LITERALS.PREFIX}/${dev._id.$oid.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  const allDevs = context.getters.readDevs  //.push(dev)
+  const allDevs = context.getters.readDevs 
 
   axios.put(url, dev)
-    .then(res => {
-      for(let i = 0; i < allDevs.length; i++) {
+    .then(() => {
+      for (let i = 0; i < allDevs.length; i++) {
         if (allDevs[i].id === dev.id ) {
           allDevs.splice(i, 1)
           allDevs.push(dev)
@@ -94,7 +85,7 @@ export const ajaxUpdateDev = (context, dev) => {
           break
         }
       }
-      console.log('Dane zostały uaktualnione')
+
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
@@ -109,11 +100,11 @@ export const ajaxUpdateDates = (context, calendarDev) => {
   const dates = calendarDev.dates
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   const allDevs = context.getters.readDevs
-  const datesObj = { "$set": { "dates": dates } }
+  const datesObj = { $set: { dates } }
 
   axios.put(url, datesObj)
-    .then(res => {
-      for(let i = 0; i < allDevs.length; i++) {
+    .then(() => {
+      for (let i = 0; i < allDevs.length; i++) {
         if (allDevs[i].id === calendarDev.id ) {
           allDevs.splice(i, 1)
           allDevs.push(calendarDev)
@@ -122,7 +113,7 @@ export const ajaxUpdateDates = (context, calendarDev) => {
       }
 
       context.commit('READ_DEVS', allDevs)
-      console.log('Daty zapisano na serwerze')
+
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
@@ -145,21 +136,25 @@ export const ajaxFindText = (context, text) => {
 }
 
 export const sendEmail = (recipients, text) => {
-  console.log('%c text = ' + text, 'color: orange')
-  console.log('%c recipients = ' + recipients, 'color: orange')
+
+
 
   const subject = LITERALS.EMAIL_SUBJECT
   const proxy = LITERALS.EMAIL_PROXY
 
   recipients.map(el => {
     const mailUrl = proxy + '?to=' + el + '&subject=' + subject + '&html=' + text
-    console.log('%c mailUrl = ' + mailUrl, 'color: orange')
+
 
     axios.post(mailUrl)
-    .then(() => {
-      console.log('Email wysłany')
-      alert('Email został wysłany. Sprawdź za chwilę skrzynkę')
-    })
-    .catch(err => console.log('Mail error: ', err))
+      .then(() => {
+
+        alert('Email został wysłany. Sprawdź za chwilę skrzynkę')
+      })
+      .catch(err => console.log('Mail error: ', err))
   })
 }
+
+
+(;|^)*console.log.*  - console.logi
+(?:\/\*(?:[\s\S]*?)\*\/)|(?:^\s*\/\/(?:.*)$) - komentarze; przejrzyj i ew prawy i Dismiss

@@ -1,15 +1,10 @@
 <template src="./Table.html"></template>
 
 <script>
-import { ajaxInsertDev, ajaxDeleteDev, ajaxUpdateDev, ajaxUpdateDates } from '../../services/ajax'
-import { updateView } from '../../services/helpers'
-
 export default {
   data: () => ({
     expand: false,
     selected: [],
-
-
 
     headers: [
       { text: 'id', sortable: true, value: 'id' },
@@ -61,25 +56,20 @@ export default {
 
   computed: {
     devs() {
-
       return this.$store.getters.readDevs
     },
 
     formTitle() {
-
       return 'Developer Data'
     },
 
     dialog() {
-      return  this.$store.getters.getOpenDialog || false
+      return this.$store.getters.getOpenDialog || false
     },
 
     progressBar() {
       return this.$store.getters.getProgressBar
     },
-
-
-
 
   },
 
@@ -89,8 +79,6 @@ export default {
 
   methods: {
     onCalendar(dev) {
-
-
       this.devId = dev.id
       this.devFirst = dev.first
       this.devLast = dev.last
@@ -99,8 +87,7 @@ export default {
       this.$store.dispatch('setCalendarDev', dev)
     },
 
-    onCalendarSave(item) {
-
+    onCalendarSave() {
       const calendarDev = this.$store.getters.getCalendarDev
 
       calendarDev.dates = this.picker
@@ -115,9 +102,6 @@ export default {
     },
 
     onEdit(item) {
-
-
-
       this.editedItem = Object.assign({}, item)
       this.$store.dispatch('openDialog', true)
     },
@@ -129,25 +113,18 @@ export default {
     },
 
     onNewDevSave() {
-
-
-
       if (!this.editedItem.id) {
-
         this.$store.dispatch('insertDev', this.editedItem)
       }
       else {
-
         this.$store.dispatch('updateDev', this.editedItem)
       }
-
 
       this.$store.dispatch('openDialog', false)
       this.$store.dispatch('progressBar', true)
     },
 
     onNewDevClose() {
-
       this.$store.dispatch('openDialog', false)
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
@@ -156,12 +133,11 @@ export default {
     },
 
     onDblClick(item) {
-      let selectedDevs = this.$store.getters.getDblClickedDevs || []
+      const selectedDevs = this.$store.getters.getDblClickedDevs || []
       const selectedDevsLength = selectedDevs.length
 
       for (let index = 0; index < selectedDevsLength; index++) {
         if (selectedDevs[index].id === item.id) {
-
           return
         }
       }
