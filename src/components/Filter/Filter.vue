@@ -70,16 +70,16 @@ export default {
 </script>
 
 <style scoped>
-  .filters {
-    transform: scale(1, 1);
-    transform-origin: left;
-  }
+.filters {
+  transform: scale(1, 1);
+  transform-origin: left;
+}
 
-  .filters-row {
-    background-color: grey;
-  }
+.filters-row {
+  background-color: grey;
+}
 
-  #main {
-    font-family: "Roboto";
-  }
+#main {
+  font-family: 'Roboto';
+}
 </style>

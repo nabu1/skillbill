@@ -4,11 +4,10 @@ export const LITERALS = {
   SUFFIX: '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
   EMAIL_TEXT: 'Hi, please contact me regarding upcoming project. Best regards',
   EMAIL_SUBJECT: 'Upcoming project',
-  EMAIL_PROXY: 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email'
+  EMAIL_PROXY: 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email',
 }
 
 export const NUMBERS = {
   DOWNLOAD_LIMIT: 10,
-  PAGINATION_LIMIT: 1000
+  PAGINATION_LIMIT: 1000,
 }
-

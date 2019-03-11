@@ -20,18 +20,21 @@ export const ajaxReadDevs = (context, selectedSkills) => {
 export const ajaxInsertDev = (context, dev) => {
   const countUrl = LITERALS.PREFIX + '?&c=true&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
 
-  const getCount = async () => axios.get(countUrl)
+  const getCount = async () => axios
+    .get(countUrl)
     .then(res => res.data)
     .catch(err => console.log('Error 1: ', err))
 
-  const getLastDocumentId = async lastDocumentUrl => axios.get(lastDocumentUrl)
+  const getLastDocumentId = async lastDocumentUrl => axios
+    .get(lastDocumentUrl)
     .then(res => res.data[0].id)
     .catch(err => console.log('Error 2: ', err))
 
   const insertDocument = async lastDocumentId => {
     dev.id = lastDocumentId + 1
 
-    return axios.post(LITERALS.DB, dev)
+    return axios
+      .post(LITERALS.DB, dev)
       .then(() => {
         alert('Dane zostały zapisane na serwerze')
       })
@@ -42,7 +45,7 @@ export const ajaxInsertDev = (context, dev) => {
 
   async function insertDev() {
     try {
-      const count = await getCount() - 1
+      const count = (await getCount()) - 1
       const query = LITERALS.PREFIX + `?s={id:1}&sk=${count}&l=1&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
       const lastDocumentId = await getLastDocumentId(query)
       await insertDocument(lastDocumentId)
@@ -60,7 +63,8 @@ export const ajaxDeleteDev = (context, dev) => {
   const allDevs = context.getters.readDevs
   const _id = dev._id.$oid
   const url = `${LITERALS.PREFIX}/${_id.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
-  axios.delete(url)
+  axios
+    .delete(url)
     .then(() => {
       updateView(context, allDevs, dev)
     })
@@ -74,10 +78,11 @@ export const ajaxUpdateDev = (context, dev) => {
   const url = `${LITERALS.PREFIX}/${dev._id.$oid.replace(/"/g, '')}?apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
   const allDevs = context.getters.readDevs
 
-  axios.put(url, dev)
+  axios
+    .put(url, dev)
     .then(() => {
       for (let i = 0; i < allDevs.length; i++) {
-        if (allDevs[i].id === dev.id ) {
+        if (allDevs[i].id === dev.id) {
           allDevs.splice(i, 1)
           allDevs.push(dev)
           context.commit('READ_DEVS', allDevs)
@@ -100,10 +105,11 @@ export const ajaxUpdateDates = (context, calendarDev) => {
   const allDevs = context.getters.readDevs
   const datesObj = { $set: { dates } }
 
-  axios.put(url, datesObj)
+  axios
+    .put(url, datesObj)
     .then(() => {
       for (let i = 0; i < allDevs.length; i++) {
-        if (allDevs[i].id === calendarDev.id ) {
+        if (allDevs[i].id === calendarDev.id) {
           allDevs.splice(i, 1)
           allDevs.push(calendarDev)
           break
@@ -139,11 +145,11 @@ export const sendEmail = (recipients, text) => {
   recipients.forEach(el => {
     const mailUrl = proxy + '?to=' + el + '&subject=' + subject + '&html=' + text
 
-    axios.post(mailUrl)
+    axios
+      .post(mailUrl)
       .then(() => {
         alert('Email został wysłany. Sprawdź za chwilę skrzynkę')
       })
       .catch(err => console.log('Mail error: ', err))
   })
 }
-

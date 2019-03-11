@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 import {
-  ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev,
-  ajaxUpdateDates, ajaxFindText
+  ajaxReadDevs, ajaxInsertDev, ajaxUpdateDev, ajaxDeleteDev, ajaxUpdateDates, ajaxFindText
 } from '../services/ajax'
 
 Vue.use(Vuex)
@@ -15,7 +14,7 @@ function initialState() {
     selectedDevs: [],
     openDialog: false,
     calendarDev: null,
-    progressBar: false
+    progressBar: false,
   }
 }
 
@@ -97,5 +96,5 @@ export default new Vuex.Store({
     progressBar(context, bool) {
       context.commit('PROGRESS_BAR', bool)
     },
-  }
+  },
 })

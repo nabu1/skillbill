@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       find: '',
-      emailDisabled: true
+      emailDisabled: true,
     }
   },
 
@@ -55,19 +55,19 @@ export default {
       this.$store.dispatch('openDialog', true)
       this.emailDisabled = true
     },
-  }
+  },
 }
 </script>
 
 <style scoped>
-  #main {
-    font-family: "Roboto";
-  }
+#main {
+  font-family: 'Roboto';
+}
 
-  a {
-    color: #2196F3;
-    font-size: 1.2em;
-    font-weight: 400;
-    text-decoration: none;
-  }
+a {
+  color: #2196f3;
+  font-size: 1.2em;
+  font-weight: 400;
+  text-decoration: none;
+}
 </style>

@@ -67,7 +67,6 @@
                     clearable dense></v-select>
                 </v-flex>
 
-
               </v-layout>
             </v-container>
           </v-card-text>
@@ -82,21 +81,21 @@
       </v-dialog>
 
       <v-dialog v-model="calendar"
-        color="blue"
-        header-color="primary"
-        landscape="false"
-        max-width="320px">
+                color="blue"
+                header-color="primary"
+                landscape="false"
+                max-width="320px">
 
         <v-card>
           <v-card-title>
             <h3 id="calendar_heading">#{{ devId }}&nbsp;&nbsp;&nbsp;&nbsp;{{ devFirst }} {{ devLast }} </h3>
 
             <v-date-picker v-model="picker"
-              :landscape="false"
-              :reactive="true"
-              multiple
-              min="2019-01-15"
-              max="2020-12-31">
+                           :landscape="false"
+                           :reactive="true"
+                           multiple
+                           min="2019-01-15"
+                           max="2020-12-31">
             </v-date-picker>
 
           </v-card-title>
@@ -130,7 +129,6 @@
             <td class="text-xs-left body-2">{{ props.item.rank2 }}</td>
             <td class="text-xs-left body-2">{{ props.item.skill3 }}</td>
             <td class="text-xs-left body-2">{{ props.item.rank3 }}</td>
-
 
             <td class="text-xs-left body-2">
               <v-img :src = "props.item.picture" aspect-ratio="2"></v-img>

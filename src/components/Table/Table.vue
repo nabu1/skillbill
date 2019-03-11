@@ -5,7 +5,6 @@ export default {
   data: () => ({
     expand: false,
     selected: [],
-
     headers: [
       { text: 'id', sortable: true, value: 'id' },
       { text: 'title', sortable: true, value: 'title' },
@@ -70,7 +69,6 @@ export default {
     progressBar() {
       return this.$store.getters.getProgressBar
     },
-
   },
 
   created() {
@@ -89,7 +87,6 @@ export default {
 
     onCalendarSave() {
       const calendarDev = this.$store.getters.getCalendarDev
-
       calendarDev.dates = this.picker
       this.$store.dispatch('updateCalendar', calendarDev)
       this.$store.dispatch('progressBar', true)
@@ -143,25 +140,24 @@ export default {
       }
       selectedDevs.push(item)
       this.$store.dispatch('setDblClickedDevs', selectedDevs)
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style scoped>
-  #app {
-    margin-top: 0px !important;
-    margin-bottom: 0px;
-  }
+#app {
+  margin-top: 0px !important;
+  margin-bottom: 0px;
+}
 
-  .filters {
-    transform: scale(1, 1);
-    transform-origin: left;
-  }
+.filters {
+  transform: scale(1, 1);
+  transform-origin: left;
+}
 
-  #calendar_heading {
-    color: #2196f3;
-    margin: 0 0 10px 0;
-  }
+#calendar_heading {
+  color: #2196f3;
+  margin: 0 0 10px 0;
+}
 </style>
-
