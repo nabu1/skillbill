@@ -18,7 +18,6 @@ export const ajaxReadDevs = (context, selectedSkills) => {
 }
 
 export const ajaxInsertDev = (context, dev) => {
-  // const url = 'https://api.mlab.com/api/1/databases/skillbill/collections/skillbill?s={id:1}&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
   const countUrl = LITERALS.PREFIX + '?&c=true&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI'
 
   const getCount = async () => axios.get(countUrl)
@@ -29,7 +28,7 @@ export const ajaxInsertDev = (context, dev) => {
     .then(res => res.data[0].id)
     .catch(err => console.log('Error 2: ', err))
 
-  const insertDocument = async (dev, lastDocumentId) => {
+  const insertDocument = async lastDocumentId => {
     dev.id = lastDocumentId + 1
 
     return axios.post(LITERALS.DB, dev)
@@ -46,8 +45,7 @@ export const ajaxInsertDev = (context, dev) => {
       const count = await getCount() - 1
       const query = LITERALS.PREFIX + `?s={id:1}&sk=${count}&l=1&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI`
       const lastDocumentId = await getLastDocumentId(query)
-      //await insertDocument(url, dev, lastDocumentId)
-      await insertDocument(dev, lastDocumentId)
+      await insertDocument(lastDocumentId)
       context.commit('PROGRESS_BAR', false)
     }
     catch (err) {
@@ -138,7 +136,7 @@ export const sendEmail = (recipients, text) => {
   const subject = LITERALS.EMAIL_SUBJECT
   const proxy = LITERALS.EMAIL_PROXY
 
-  recipients.map(el => {
+  recipients.forEach(el => {
     const mailUrl = proxy + '?to=' + el + '&subject=' + subject + '&html=' + text
 
     axios.post(mailUrl)
