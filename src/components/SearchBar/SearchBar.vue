@@ -20,8 +20,6 @@ export default {
 
   methods: {
     onFind() {
-
-
       if (this.find.length < 3) {
         return alert('Szukane słowo musi mieć conajmniej 3 znaki')
       }
@@ -44,20 +42,16 @@ export default {
     },
 
     onEmail() {
-
       const text = LITERALS.EMAIL_TEXT
       const devs = this.$store.getters.getDblClickedDevs
 
-
       const emails = devs.map(el => el.email)
-
 
       sendEmail(emails, text)
       this.emailDisabled = true
     },
 
     onNewDev() {
-
       this.$store.dispatch('openDialog', true)
       this.emailDisabled = true
     },

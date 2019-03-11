@@ -4,12 +4,12 @@
 export default {
   data() {
     return {
-      skill_1: '',
-      rank_1: '',
-      skill_2: '',
-      rank_2: '',
-      skill_3: '',
-      rank_3: '',
+      skill1: '',
+      rank1: '',
+      skill2: '',
+      rank2: '',
+      skill3: '',
+      rank3: '',
       ranks: [5, 4, 3, 2, 1],
       skills_1: ['C', 'CPP', 'Go', 'JS', 'Java', 'ObjC', 'Ruby'],
       skills_2: [],
@@ -21,7 +21,7 @@ export default {
 
   methods: {
     onSkill_1(skill) {
-      this.selectedSkills.skill_1 = skill
+      this.selectedSkills.skill1 = skill
 
       const arr = this.skills_1.filter(el => el !== skill)
 
@@ -29,11 +29,11 @@ export default {
     },
 
     onRank_1(rank) {
-      this.selectedSkills.rank_1 = rank
+      this.selectedSkills.rank1 = rank
     },
 
-    onSkill_2(skill) {
-      this.selectedSkills.skill_2 = skill
+    onskill2(skill) {
+      this.selectedSkills.skill2 = skill
 
       const arr = this.skills_2.filter(el => el !== skill)
 
@@ -41,31 +41,30 @@ export default {
     },
 
     onRank_2(rank) {
-      this.selectedSkills.rank_2 = rank
+      this.selectedSkills.rank2 = rank
     },
 
     onSkill_3(skill) {
-      this.selectedSkills.skill_3 = skill
+      this.selectedSkills.skill3 = skill
     },
 
     onRank_3(rank) {
-      this.selectedSkills.rank_3 = rank
+      this.selectedSkills.rank3 = rank
     },
 
     onSearch() {
-
       this.$store.dispatch('progressBar', true)
       this.$store.dispatch('readDevs', this.selectedSkills)
     },
     onClear() {
-
+      skill1
       this.selectedSkills = {}
       this.skill_1 = null
-      this.skill_2 = null
-      this.skill_3 = null
-      this.rank_1 = null
-      this.rank_2 = null
-      this.rank_3 = null
+      this.skill2 = null
+      this.skill3 = null
+      this.rank1 = null
+      this.rank2 = null
+      this.rank3 = null
     },
   },
 }

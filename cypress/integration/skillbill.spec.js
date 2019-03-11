@@ -14,7 +14,7 @@ for (let i = 0; i < 1 ; i++) {
       .get("[data-test='filter_rank_1']").eq(0).click({ force: true })
       cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(2) > a > div > div").click()
 
-      .get("[data-test='filter_skill_2']").click({ force: true })
+      .get("[data-test='filter_skill2']").click({ force: true })
       cy.get("#app > div.v-menu__content.theme--light.menuable__content__active > div > div > div:nth-child(4) > a > div > div").click()
 
       .get("[data-test='filter_rank_2']").click({ force: true })
@@ -48,13 +48,13 @@ for (let i = 0; i < 1 ; i++) {
       cy.get(tableCell(2, 10)).contains(/[1,2,3,4,5]/).should('exist')
 
       cy.get("[data-test='btnClear']").click().wait(1000)
-      cy.get("[data-test='skill_1']").should('contain', '')
-      cy.get("[data-test='skill_2']").should('contain', '')
-      cy.get("[data-test='skill_3']").should('contain', '')
+      cy.get("[data-test='skill1']").should('contain', '')
+      cy.get("[data-test='skill2']").should('contain', '')
+      cy.get("[data-test='skill3']").should('contain', '')
 
-      cy.get("[data-test='rank_1']").should('contain', '')
-      cy.get("[data-test='rank_2']").should('contain', '')
-      cy.get("[data-test='rank_3']").should('contain', '')
+      cy.get("[data-test='rank1']").should('contain', '')
+      cy.get("[data-test='rank2']").should('contain', '')
+      cy.get("[data-test='rank3']").should('contain', '')
 
       cy.scrollTo(0, 0)
     })
@@ -125,7 +125,7 @@ for (let i = 0; i < 1 ; i++) {
   describe('V. Selected devs', () => {
     it.only('1. .. should be visible after being doubleclicked and button Selected was clicked. \
       After clicking Reset butto, previous table id shown', () => {
-        
+
       cy.visit('http://localhost:8080').wait(2000)
 
       cy.contains('Uszatek').dblclick()

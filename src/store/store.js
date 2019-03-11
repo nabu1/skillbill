@@ -37,23 +37,18 @@ export default new Vuex.Store({
     },
 
     SET_DBLCLICKED_DEVS(state, devs) {
-
-
       state.dblClickedDevs = devs
     },
 
     OPEN_DIALOG(state, bool) {
       state.openDialog = bool
-
     },
 
     SET_CALENDAR_DEV(state, dev) {
-
       state.calendarDev = dev
     },
 
     FIND_TEXT(state, text) {
-
       state.text = text
     },
 
@@ -76,7 +71,6 @@ export default new Vuex.Store({
     },
 
     insertDev(context, dev) {
-
       ajaxInsertDev(context, dev)
     },
 
@@ -85,7 +79,6 @@ export default new Vuex.Store({
     },
 
     updateCalendar(context, calendarDev) {
-
       ajaxUpdateDates(context, calendarDev)
     },
 
@@ -94,17 +87,14 @@ export default new Vuex.Store({
     },
 
     setCalendarDev(context, dev) {
-
       context.commit('SET_CALENDAR_DEV', dev)
     },
 
     findText(context, text) {
-
       ajaxFindText(context, text)
     },
 
     progressBar(context, bool) {
-
       context.commit('PROGRESS_BAR', bool)
     },
   }

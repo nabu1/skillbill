@@ -86,7 +86,6 @@ export const ajaxUpdateDev = (context, dev) => {
           break
         }
       }
-
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
@@ -114,7 +113,6 @@ export const ajaxUpdateDates = (context, calendarDev) => {
       }
 
       context.commit('READ_DEVS', allDevs)
-
     })
     .catch(err => {
       alert('Błąd zapisu dat na serwerze: ', err)
@@ -137,19 +135,14 @@ export const ajaxFindText = (context, text) => {
 }
 
 export const sendEmail = (recipients, text) => {
-
-
-
   const subject = LITERALS.EMAIL_SUBJECT
   const proxy = LITERALS.EMAIL_PROXY
 
   recipients.map(el => {
     const mailUrl = proxy + '?to=' + el + '&subject=' + subject + '&html=' + text
 
-
     axios.post(mailUrl)
       .then(() => {
-
         alert('Email został wysłany. Sprawdź za chwilę skrzynkę')
       })
       .catch(err => console.log('Mail error: ', err))

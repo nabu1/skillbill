@@ -11,25 +11,24 @@ export const fetch = (context, selectedSkills = {}) => {
   }
 
   let query = ''
-  const skill_1 = selectedSkills.skill_1
-  const rank_1 = selectedSkills.rank_1 || 1
-  const skill_2 = selectedSkills.skill_2
-  const rank_2 = selectedSkills.rank_2 || 1
-  const skill_3 = selectedSkills.skill_3
-  const rank_3 = selectedSkills.rank_3 || 1
+  const skill1 = selectedSkills.skill1
+  const rank1 = selectedSkills.rank1 || 1
+  const skill2 = selectedSkills.skill2
+  const rank2 = selectedSkills.rank2 || 1
+  const skill3 = selectedSkills.skill3
+  const rank3 = selectedSkills.rank3 || 1
 
-  if (skill_1 && rank_1 && skill_2 && rank_2 && skill_3 && rank_3) {
-    query = '?s={id:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}, \
-      {$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}}, \
-      {$and:[{"skill_3":"' + skill_3 + '"},{$and:[{"rank_3":{$gte:' + rank_3 + '}}]}]}]}]}]}'
+  if (skill1 && rank1 && skill2 && rank2 && skill3 && rank3) {
+    query = '?s={id:1}&q={"skill1":"' + skill1 + '",$and:[{"rank1":{$gte:' + rank1 + '}}, \
+      {$and:[{"skill2":"' + skill2 + '"},{$and:[{"rank2":{$gte:' + rank2 + '}}, \
+      {$and:[{"skill3":"' + skill3 + '"},{$and:[{"rank3":{$gte:' + rank3 + '}}]}]}]}]}]}'
   }
-  else if (skill_1 && rank_1 && skill_2 && rank_2) {
-    query = '?s={id:1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}, \
-      {$and:[{"skill_2":"' + skill_2 + '"},{$and:[{"rank_2":{$gte:' + rank_2 + '}}]}]}]}'
+  else if (skill1 && rank1 && skill2 && rank2) {
+    query = '?s={id:1}&q={"skill1":"' + skill1 + '",$and:[{"rank1":{$gte:' + rank1 + '}}, \
+      {$and:[{"skill2":"' + skill2 + '"},{$and:[{"rank2":{$gte:' + rank2 + '}}]}]}]}'
   }
-  else if (skill_1 && rank_1) {
-
-    query = '?s={rank_1:-1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}]}'
+  else if (skill1 && rank1) {
+    query = '?s={rank1:-1}&q={"skill1":"' + skill1 + '",$and:[{"rank1":{$gte:' + rank1 + '}}]}'
   }
   else {
     query = '?s={id:1}&l=' + NUMBERS.DOWNLOAD_LIMIT
@@ -41,10 +40,8 @@ export const fetch = (context, selectedSkills = {}) => {
 }
 
 export const findText = text => {
-
   const query = `?q={$or:[{"first":{"$regex":".*${text}.*",$options:"i"}},{"last":{"$regex":".*${text}.*",$options:"i"}}]}`
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
-
 
   return urlString
 }
