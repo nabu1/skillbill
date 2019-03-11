@@ -31,13 +31,13 @@ export const fetch = (context, selectedSkills = {}) => {
     query = '?s={rank_1:-1}&q={"skill_1":"' + skill_1 + '",$and:[{"rank_1":{$gte:' + rank_1 + '}}]}'
   }
   else {
-    //console.log('Bez skilli')
-    //query = '?s={id:1}&l=10' // limit 100 rekordów zamiast 1,000 przy pustych selektach
+
+
     query = '?s={id:1}&l=' + NUMBERS.DOWNLOAD_LIMIT // limit 100 rekordów zamiast 1,000 przy pustych selektach
   }
 
   const urlString = LITERALS.PREFIX + query + LITERALS.SUFFIX
-  // console.log('%c urlString = ' + urlString, 'color: lime')
+
 
   return urlString
 }

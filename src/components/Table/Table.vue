@@ -9,7 +9,7 @@ export default {
     expand: false,
     selected: [],
 
-    //dialog: false,
+
 
     headers: [
       { text: 'id', sortable: true, value: 'id' },
@@ -61,12 +61,12 @@ export default {
 
   computed: {
     devs() {
-      //return this.$store.getters.getSelectedDevs || this.$store.getters.readDevs
+
       return this.$store.getters.readDevs
     },
 
     formTitle() {
-      //return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+
       return 'Developer Data'
     },
 
@@ -78,9 +78,9 @@ export default {
       return this.$store.getters.getProgressBar
     },
 
-    // selected() {
-    //   return this.$store.getters.getDblClickedDevs
-    // }
+
+
+
   },
 
   created() {
@@ -89,7 +89,7 @@ export default {
 
   methods: {
     onCalendar(dev) {
-      console.log('onCalendar')
+
 
       this.devId = dev.id
       this.devFirst = dev.first
@@ -100,7 +100,7 @@ export default {
     },
 
     onCalendarSave(item) {
-      console.log('onCalendarSave')
+
       const calendarDev = this.$store.getters.getCalendarDev
 
       calendarDev.dates = this.picker
@@ -115,8 +115,8 @@ export default {
     },
 
     onEdit(item) {
-      console.log('onEdit')
-      console.log('%c this.selected = ' + JSON.stringify(this.selected), 'color: white')
+
+
 
       this.editedItem = Object.assign({}, item)
       this.$store.dispatch('openDialog', true)
@@ -129,25 +129,25 @@ export default {
     },
 
     onNewDevSave() {
-      console.log('%c onNewDevSave', 'color: orange')
-      console.log('%c this.editedItem = ' + JSON.stringify(this.editedItem), 'color: orange')
+
+
 
       if (!this.editedItem.id) {
-        console.log('1')
+
         this.$store.dispatch('insertDev', this.editedItem)
       }
       else {
-        console.log('2')
+
         this.$store.dispatch('updateDev', this.editedItem)
       }
 
-      // this.dialog = false
+
       this.$store.dispatch('openDialog', false)
       this.$store.dispatch('progressBar', true)
     },
 
     onNewDevClose() {
-      //this.dialog = false
+
       this.$store.dispatch('openDialog', false)
       setTimeout(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
@@ -161,7 +161,7 @@ export default {
 
       for (let index = 0; index < selectedDevsLength; index++) {
         if (selectedDevs[index].id === item.id) {
-          console.log('%c Są takie same', 'color: gold')
+
           return
         }
       }

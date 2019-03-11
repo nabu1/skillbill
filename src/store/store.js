@@ -31,15 +31,15 @@ export default new Vuex.Store({
 
   mutations: {
     READ_DEVS(state, devs) {
-      // console.log('%c devs = ' + typeof devs, 'color: white')
-      //state.selectedDevs = devs
+
+
       state.devs = devs
-      // console.log('%c state.devs = ' + JSON.stringify(state.devs), 'color: lime')
+
     },
 
     SET_DBLCLICKED_DEVS(state, devs) {
       console.log('%c SET_DBLCLICKED_DEVS = ' + devs.length , 'color: lime')
-      //console.log('%c devs.length = ' + devs.length, 'color: lime')
+
       state.dblClickedDevs = devs
     },
 
@@ -59,7 +59,7 @@ export default new Vuex.Store({
     },
 
     PROGRESS_BAR(state, bool) {
-      //console.log('%c PROGRESS_BAR = ', 'color: yellow')
+
       state.progressBar = bool
     },
   },

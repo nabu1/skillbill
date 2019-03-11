@@ -34,7 +34,7 @@
 
       onSelected() {
         this.$store.commit('READ_DEVS', this.$store.getters.getDblClickedDevs)
-        //this.$refs.btnEmail.disabled = false
+
         this.emailDisabled = false
       },
 
