@@ -71,7 +71,7 @@ export default {
   }
 
   a {
-    color: primary;
+    color: #2196F3;
     font-size: 1.2em;
     font-weight: 400;
     text-decoration: none;

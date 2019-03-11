@@ -159,10 +159,6 @@ export default {
     transform-origin: left;
   }
 
-  .filters-row {
-    background-color: grey;
-  }
-
   #calendar_heading {
     color: #2196f3;
     margin: 0 0 10px 0;

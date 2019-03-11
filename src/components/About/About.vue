@@ -2,6 +2,7 @@
 
 <style scoped>
   #main {
+    background: #46494c;
     color: white;
     font-family: "Roboto";
     font-size: 1em;
@@ -9,8 +10,8 @@
   }
 
   a {
-    color: primary;
-    font-size: 1.3em;
+    color: #2196F3;
+    font-size: 1.2em;
     font-weight: 400;
     text-decoration: none;
   }
@@ -23,3 +24,4 @@
     font-size: 1em;
   }
 </style>
+
