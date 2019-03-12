@@ -119,6 +119,7 @@ export default {
 
       this.$store.dispatch('openDialog', false)
       this.$store.dispatch('progressBar', true)
+      this.editedItem = []
     },
 
     onNewDevClose() {
